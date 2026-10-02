@@ -52,7 +52,7 @@ const SkeletonViewer = () => {
     );
 
     renderer.setPixelRatio(
-      Math.min(window.devicePixelRatio, 2)
+      Math.min(window.devicePixelRatio, 1)
     );
 
     renderer.setClearColor(0x000000, 0);
