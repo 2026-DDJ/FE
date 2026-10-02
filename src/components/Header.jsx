@@ -1,0 +1,41 @@
+import { useLocation, useNavigate } from "react-router-dom";
+
+import {
+  HeaderContainer,
+  Navigation,
+  NavItem,
+} from "../styles/Header.styles";
+
+const Header = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  return (
+    <HeaderContainer>
+      <Navigation>
+        <NavItem
+          $active={location.pathname === "/intro"}
+          onClick={() => navigate("/intro")}
+        >
+          서비스 소개
+        </NavItem>
+
+        <NavItem
+          $active={location.pathname === "/data"}
+          onClick={() => navigate("/data")}
+        >
+          데이터 정보
+        </NavItem>
+
+        <NavItem
+          $active={location.pathname === "/mypage"}
+          onClick={() => navigate("/mypage")}
+        >
+          마이 페이지
+        </NavItem>
+      </Navigation>
+    </HeaderContainer>
+  );
+};
+
+export default Header;
