@@ -50,6 +50,14 @@ const GlobalStyle = createGlobalStyle`
     color: inherit;
     text-decoration: none;
   }
+
+  ::view-transition-group(data-card-hira),
+::view-transition-group(data-card-khp),
+::view-transition-group(data-card-nhis) {
+  animation-duration: 0.65s;
+  animation-timing-function:
+    cubic-bezier(0.22, 1, 0.36, 1);
+}
 `;
 
 export default GlobalStyle;

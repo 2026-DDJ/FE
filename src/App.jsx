@@ -8,6 +8,7 @@ import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Intro from "./pages/Intro";
+import Data from "./pages/Data";
 
 import AnalysisLayout from "./pages/analysis/AnalysisLayout";
 import Analysis1 from "./pages/analysis/Analysis1";
@@ -32,6 +33,11 @@ const App = () => {
       <Route
         path="/intro"
         element={<Intro />}
+      />
+
+      <Route
+        path="/data"
+        element={<Data />}
       />
 
       {/* Analysis */}
