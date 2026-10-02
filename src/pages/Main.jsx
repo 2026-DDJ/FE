@@ -19,7 +19,7 @@ const Main = () => {
 
   return (
     <MainContainer>
-      <Header />
+      <Header showLogo={false} />
 
       <HeroSection>
         <SkeletonArea>

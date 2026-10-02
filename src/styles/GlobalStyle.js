@@ -1,5 +1,7 @@
 import { createGlobalStyle } from "styled-components";
 import "pretendard/dist/web/variable/pretendardvariable.css";
+import AkiraExpanded from "../assets/fonts/AkiraExpanded-Demo.otf";
+
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -13,6 +15,18 @@ const GlobalStyle = createGlobalStyle`
   #root {
     width: 100%;
     min-height: 100%;
+  }
+
+  @font-face {
+    font-family: "Akira Expanded";
+    src: url(${AkiraExpanded}) format("opentype");
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 
   body {

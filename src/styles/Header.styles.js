@@ -6,12 +6,27 @@ export const HeaderContainer = styled.header`
   position: absolute;
 
   top: 50px;
-  right: 120px;
+  left: 6.5%;
+  right: 8%;
+
+  display: flex;
+  align-items: center;
 
   z-index: 100;
 `;
 
+export const HeaderLogo = styled.img`
+  width: 300px;
+  height: auto;
+
+  display: block;
+
+  cursor: pointer;
+`;
+
 export const Navigation = styled.nav`
+  margin-left: auto;
+
   display: flex;
   align-items: center;
 
@@ -19,8 +34,6 @@ export const Navigation = styled.nav`
 `;
 
 export const NavItem = styled.button`
-  position: relative;
-
   padding: 0;
 
   border: none;
@@ -30,6 +43,8 @@ export const NavItem = styled.button`
 
   font-size: 18px;
   font-weight: 600;
+
+  white-space: nowrap;
 
   cursor: pointer;
 
