@@ -15,18 +15,26 @@ export const DataContainer = styled(PageContainer)`
 `;
 
 export const DataContent = styled.main`
-  width: min(1320px, calc(100% - 120px));
+  position: relative;
 
-  margin: 0 auto;
+  width: 100%;
+  min-height: 100vh;
+
   padding-top: 145px;
   padding-bottom: 80px;
 
   display: grid;
   grid-template-columns: 520px 1fr;
-  gap: 140px;
 `;
 
 export const LeftSection = styled.section`
+  position: absolute;
+
+  top: 145px;
+  left: 6.5%;
+
+  width: 520px;
+
   display: flex;
   flex-direction: column;
 
@@ -341,9 +349,13 @@ export const ReferenceResult = styled.div`
 ========================= */
 
 export const RightSection = styled.section`
-  position: relative;
+  position: absolute;
 
-  min-height: 760px;
+  top: 145px;
+  right: 8%;
+
+  width: 590px;
+  min-height: calc(100vh - 225px);
 
   display: flex;
   flex-direction: column;
@@ -370,7 +382,7 @@ export const DataDescription = styled.p`
 
   color: #ffffff;
 
-  font-size: 20px;
+  font-size: 24px;
   font-weight: 400;
   line-height: 1.7;
 
@@ -378,7 +390,7 @@ export const DataDescription = styled.p`
 `;
 
 export const ButtonArea = styled.div`
-  margin-top: 300px;
+  margin-top: 240px;
 `;
 
 export const ViewTransitionStyles = styled.div`

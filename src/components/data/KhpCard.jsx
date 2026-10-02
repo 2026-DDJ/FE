@@ -67,6 +67,7 @@ const KhpCard = ({
     <DataCard
       $expanded={expanded}
       onClick={onClick}
+      transitionName={transitionName}
     >
       <CardHeader>
         <CardName>KHP</CardName>
@@ -101,16 +102,6 @@ const KhpCard = ({
               </FeatureItem>
             ))}
           </FeatureGrid>
-
-          <TargetArea>
-            <TargetLabel>
-              PREDICTION TARGET · 개인 연간 의료비
-            </TargetLabel>
-
-            <TargetFormula>
-              EROOP + INOOP + OUOOP_1 + OUOOP_2
-            </TargetFormula>
-          </TargetArea>
         </DetailArea>
       )}
     </DataCard>
