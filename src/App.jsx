@@ -1,17 +1,23 @@
-import { Route, Routes } from "react-router-dom";
+import {
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 import Main from "./pages/Main";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Intro from "./pages/Intro";
 
+import AnalysisLayout from "./pages/analysis/AnalysisLayout";
+import Analysis1 from "./pages/analysis/Analysis1";
+import Analysis2 from "./pages/analysis/Analysis2";
+import Analysis3 from "./pages/analysis/Analysis3";
+
 const App = () => {
   return (
     <Routes>
-      <Route
-        path="/"
-        element={<Main />}
-      />
+      <Route path="/" element={<Main />} />
 
       <Route
         path="/login"
@@ -27,6 +33,37 @@ const App = () => {
         path="/intro"
         element={<Intro />}
       />
+
+      {/* Analysis */}
+      <Route
+        path="/analysis"
+        element={<AnalysisLayout />}
+      >
+        <Route
+          index
+          element={
+            <Navigate
+              to="1"
+              replace
+            />
+          }
+        />
+
+        <Route
+          path="1"
+          element={<Analysis1 />}
+        />
+
+        <Route
+          path="2"
+          element={<Analysis2 />}
+        />
+
+        <Route
+          path="3"
+          element={<Analysis3 />}
+        />
+      </Route>
     </Routes>
   );
 };
