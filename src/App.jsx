@@ -16,6 +16,7 @@ import Analysis2 from "./pages/analysis/Analysis2";
 import Analysis3 from "./pages/analysis/Analysis3";
 import AnalysisLoading from "./pages/analysis/AnalysisLoading";
 import AnalysisResult from "./pages/analysis/AnalysisResult";
+import Simulation from "./pages/simulation/Simulation";
 
 const App = () => {
   return (
@@ -81,6 +82,11 @@ const App = () => {
       <Route
        path="/analysis/result"
         element={<AnalysisResult />}
+      />
+
+      <Route
+        path="/simulation"
+        element={<Simulation />}
       />
     </Routes>
   );
