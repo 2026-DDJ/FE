@@ -37,13 +37,6 @@ const Header = ({ showLogo = true }) => {
         >
           데이터 정보
         </NavItem>
-
-        <NavItem
-          $active={location.pathname === "/mypage"}
-          onClick={() => navigate("/mypage")}
-        >
-          마이 페이지
-        </NavItem>
       </Navigation>
     </HeaderContainer>
   );
