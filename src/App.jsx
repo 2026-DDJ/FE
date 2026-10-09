@@ -14,6 +14,7 @@ import AnalysisLayout from "./pages/analysis/AnalysisLayout";
 import Analysis1 from "./pages/analysis/Analysis1";
 import Analysis2 from "./pages/analysis/Analysis2";
 import Analysis3 from "./pages/analysis/Analysis3";
+import AnalysisLoading from "./pages/analysis/AnalysisLoading";
 
 const App = () => {
   return (
@@ -70,6 +71,11 @@ const App = () => {
           element={<Analysis3 />}
         />
       </Route>
+
+      <Route
+        path="/analysis/loading"
+        element={<AnalysisLoading />}
+      />
     </Routes>
   );
 };

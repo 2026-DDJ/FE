@@ -29,10 +29,10 @@ const Analysis3 = () => {
   } = useOutletContext();
 
   const handleNext = () => {
-    console.log("최종 입력 데이터:", formData);
+  console.log("최종 입력 데이터:", formData);
 
-    // 추후 의료비 예측 API 연결
-  };
+  navigate("/analysis/loading");
+};
 
   return (
     <AnalysisContainer>
