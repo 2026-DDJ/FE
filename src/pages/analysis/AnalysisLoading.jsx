@@ -1,3 +1,5 @@
+import { useNavigate } from "react-router-dom";
+
 import Header from "../../components/Header";
 
 import skeletonBg from "../../assets/skeleton_bg.png";
@@ -13,6 +15,16 @@ import {
 } from "../../styles/AnalysisLoading.styles";
 
 const AnalysisLoading = () => {
+  const navigate = useNavigate();
+
+  const handleAnimationEnd = (event) => {
+    if (event.target !== event.currentTarget) return;
+
+    navigate("/analysis/result", {
+      replace: true,
+    });
+  };
+
   return (
     <LoadingContainer>
       <Header />
@@ -26,7 +38,9 @@ const AnalysisLoading = () => {
             alt="Skeleton"
           />
 
-          <SkeletonOverlay>
+          <SkeletonOverlay
+            onAnimationEnd={handleAnimationEnd}
+          >
             <img
               src={skeletonOg}
               alt=""

@@ -15,6 +15,7 @@ import Analysis1 from "./pages/analysis/Analysis1";
 import Analysis2 from "./pages/analysis/Analysis2";
 import Analysis3 from "./pages/analysis/Analysis3";
 import AnalysisLoading from "./pages/analysis/AnalysisLoading";
+import AnalysisResult from "./pages/analysis/AnalysisResult";
 
 const App = () => {
   return (
@@ -75,6 +76,11 @@ const App = () => {
       <Route
         path="/analysis/loading"
         element={<AnalysisLoading />}
+      />
+
+      <Route
+       path="/analysis/result"
+        element={<AnalysisResult />}
       />
     </Routes>
   );
