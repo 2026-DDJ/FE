@@ -27,9 +27,7 @@ const Intro = () => {
       <IntroContent>
         <LeftSection>
           <Title>
-            HOW SERVICE
-            <br />
-            WORKS
+            서비스 이용 방법
           </Title>
 
           <Description>

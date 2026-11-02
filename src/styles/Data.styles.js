@@ -112,14 +112,14 @@ export const CardName = styled.h2`
 
   font-family: "Akira Expanded", sans-serif;
 
-  font-size: 30px;
+  font-size: 36px;
   font-weight: normal;
 `;
 
 export const CardSummary = styled.p`
   margin: 0;
 
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   line-height: 1.4;
 
@@ -281,7 +281,7 @@ export const CompareItem = styled.div`
 
   color: #202020;
 
-  font-size: 11px;
+  font-size: 12px;
 `;
 
 export const CompareBar = styled.div`
@@ -330,7 +330,7 @@ export const ReferenceTag = styled.span`
 
   color: #202020;
 
-  font-size: 11px;
+  font-size: 12px;
 `;
 
 export const ReferenceArrow = styled.div`
@@ -350,13 +350,14 @@ export const ReferenceResult = styled.div`
    오른쪽
 ========================= */
 
+
 export const RightSection = styled.section`
   position: absolute;
 
   top: 145px;
   right: 8%;
 
-  width: 590px;
+  width: 700px;
   min-height: calc(100vh - 225px);
 
   display: flex;
@@ -364,31 +365,34 @@ export const RightSection = styled.section`
   align-items: flex-end;
 `;
 
-export const DataTitle = styled.h1`
-  margin: 0;
-
-  color: #29AE89;
-
-  font-family: "Akira Expanded", sans-serif;
-  font-size: 64px;
-  font-weight: normal;
-  line-height: 0.95;
-
-  text-align: right;
-`;
-
 export const DataDescription = styled.p`
-  max-width: 590px;
+  max-width: 700px;
 
   margin-top: 55px;
 
   color: #202020;
 
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 400;
   line-height: 1.7;
 
   text-align: right;
+  word-break: keep-all;
+`;
+
+
+export const DataTitle = styled.h1`
+  margin: 0;
+
+  color: #29AE89;
+
+  font-family: "Pretendard", sans-serif;
+  font-size: 80px;
+  font-weight: 800;
+  line-height: 0.95;
+
+  text-align: right;
+  letter-spacing: -3%;
 `;
 
 export const ButtonArea = styled.div`

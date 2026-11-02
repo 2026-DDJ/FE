@@ -40,7 +40,7 @@ const ButtonContainer = styled.button`
 
   color: #FFFFFF;
 
-  font-size: 24px;
+  font-size: 28px;
   font-weight: 700;
 
   cursor: pointer;

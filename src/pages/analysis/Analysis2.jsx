@@ -100,7 +100,7 @@ const Analysis2 = () => {
           <FormField
             icon="❤️"
             title="전반적인 건강 상태"
-            description="현재 본인이 느끼는 전반적인 건강 상태를 선택해주세요."
+            description="현재 느끼는 전반적인 건강 상태를 선택해주세요."
           >
             <OptionButtons
               value={formData.healthStatus}

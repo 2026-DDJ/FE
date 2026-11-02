@@ -34,7 +34,7 @@ export const FieldTitle = styled.h3`
 
   color: #202020;
 
-  font-size: 28px;
+  font-size: 36px;
   font-weight: 700;
 `;
 
@@ -43,7 +43,7 @@ export const FieldDescription = styled.p`
 
   color: rgba(32, 32, 32, 0.9);
 
-  font-size: 17px;
+  font-size: 24px;
   font-weight: 400;
 `;
 

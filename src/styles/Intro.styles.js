@@ -35,12 +35,12 @@ export const Title = styled.h1`
 
   color: #29AE89;
 
-  font-family: "Akira Expanded", "Arial Black", sans-serif;
-  font-size: 64px;
+  font-family: "Pretendard", sans-serif;
+  font-size: 80px;
   font-weight: 800;
   line-height: 0.95;
+  letter-spacing: -3%;
 
-  letter-spacing: 1px;
 `;
 
 export const Description = styled.div`
@@ -48,7 +48,7 @@ export const Description = styled.div`
 
   color: #202020;
 
-  font-size: 24px;
+  font-size: 32px;
   font-weight: 400;
   line-height: 154%;
 
@@ -59,6 +59,7 @@ export const Description = styled.div`
 
 export const MedicastText = styled.span`
   font-family: "Akira Expanded", "Arial Black", sans-serif;
+  color: #29AE89;
   font-weight: 800;
 `;
 
@@ -254,7 +255,7 @@ export const ProgressLabel = styled.span`
 
   color: #202020;
 
-  font-size: 22px;
+  font-size: 28px;
   font-weight: 700;
 
   text-align: right;

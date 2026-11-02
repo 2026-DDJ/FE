@@ -93,9 +93,7 @@ const Data = () => {
 
         <RightSection>
           <DataTitle>
-            DATA
-            <br />
-            OVERVIEW
+            데이터 소개
           </DataTitle>
 
           <DataDescription>
