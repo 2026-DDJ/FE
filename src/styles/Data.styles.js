@@ -58,6 +58,7 @@ export const DataCard = styled.div`
   min-height: ${({ $expanded }) =>
     $expanded ? "315px" : "140px"};
 
+  border: 1px solid #29AE89;
   border-radius: 8px;
   overflow: hidden;
 

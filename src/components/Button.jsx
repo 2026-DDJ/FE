@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import { COLORS } from "../styles/Common.styles";
 
@@ -33,11 +34,11 @@ const ButtonContainer = styled.button`
   border: none;
   border-radius: 0.5rem;
 
-  background: rgba(255, 219, 237, 0.8);
+  background: rgba(41, 174, 137, 0.8);
 
   box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
 
-  color: ${COLORS.background};
+  color: #FFFFFF;
 
   font-size: 24px;
   font-weight: 700;
@@ -50,7 +51,7 @@ const ButtonContainer = styled.button`
     opacity 0.2s ease;
 
   &:hover {
-    background: rgba(255, 219, 237, 0.95);
+    background: rgba(41, 174, 137, 0.95);
   }
 
   &:active {

@@ -63,19 +63,17 @@ const SkeletonViewer = () => {
     // 4. Lighting
     // ==============================
 
-    // 기존 흰색 AmbientLight보다 훨씬 약하게
-    // 전체적으로 아주 은은한 핑크빛만 줌
     const ambientLight = new THREE.AmbientLight(
-      0xffdbed,
-      0.65
+      0xffffff,
+      2.0
     );
 
     scene.add(ambientLight);
 
     // 앞쪽 조명
     const frontLight = new THREE.DirectionalLight(
-      0xffc4df,
-      1.1
+      0xffffff,
+      0.9
     );
 
     frontLight.position.set(0, 2, 5);
@@ -85,8 +83,8 @@ const SkeletonViewer = () => {
     // 뒤쪽 조명
     // 360도 회전했을 때 뒷면이 까매지는 것 방지
     const backLight = new THREE.DirectionalLight(
-      0xc58ca7,
-      0.75
+      0xffffff,
+      1.0
     );
 
     backLight.position.set(0, 2, -5);
@@ -95,8 +93,8 @@ const SkeletonViewer = () => {
 
     // 왼쪽 조명
     const leftLight = new THREE.DirectionalLight(
-      0xb77f9b,
-      0.35
+      0xcfeedd,
+      0.3
     );
 
     leftLight.position.set(-5, 1, 0);
@@ -105,8 +103,8 @@ const SkeletonViewer = () => {
 
     // 오른쪽 조명
     const rightLight = new THREE.DirectionalLight(
-      0xb77f9b,
-      0.35
+      0xcfeedd,
+      0.3
     );
 
     rightLight.position.set(5, 1, 0);
@@ -148,23 +146,21 @@ const SkeletonViewer = () => {
 
           child.material =
             new THREE.MeshPhysicalMaterial({
-              color: new THREE.Color("#fff"),
+              color: new THREE.Color("#9FE0C2"),
 
               // X-ray 반투명
               transparent: true,
 
-              opacity: 0.58,
+              opacity: 0.55,
 
               // 앞면 + 뒷면 모두 렌더링
               side: THREE.DoubleSide,
 
-              // 자체 발광은 매우 약하게
-              emissive: new THREE.Color("#29AE89"),
+              emissive: new THREE.Color("#c7fce8"),
 
-              emissiveIntensity: 0.05,
+              emissiveIntensity: 0.12,
 
-              // 뼈 표면 명암 유지
-              roughness: 0.65,
+              roughness: 0.5,
 
               metalness: 0,
 
@@ -182,7 +178,7 @@ const SkeletonViewer = () => {
         // ==============================
         //
         // 기본 Skeleton을 하나 복제해서
-        // 바깥쪽 윤곽에만 핑크빛이 나타나는
+        // 바깥쪽 윤곽에만 민트빛이 나타나는
         // Fresnel Shader를 덮어씌움
         //
 
@@ -197,17 +193,17 @@ const SkeletonViewer = () => {
           child.material = new THREE.ShaderMaterial({
             uniforms: {
               glowColor: {
-                value: new THREE.Color("#29AE89"),
+                value: new THREE.Color("#a1d3c0"),
               },
 
               // 가장자리 빛의 세기
               intensity: {
-                value: 0.3,
+                value: 0.5,
               },
 
               // 값이 높을수록 가장자리에만 집중됨
               power: {
-                value: 2.4,
+                value: 2.5,
               },
             },
 

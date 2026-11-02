@@ -61,8 +61,8 @@ export const NavItem = styled.button`
     $active &&
     css`
       text-shadow:
-        0 0 6px #29AE89,
-        0 0 14px rgba(41, 174, 137, 0.7),
-        0 0 24px rgba(41, 174, 137, 0.45);
+      0 0 4px rgba(41, 174, 137, 0.18),
+      0 0 10px rgba(41, 174, 137, 0.12),
+      0 0 18px rgba(137, 230, 203, 0.08);
     `}
 `;
