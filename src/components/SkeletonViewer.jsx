@@ -148,8 +148,6 @@ const SkeletonViewer = () => {
 
           child.material =
             new THREE.MeshPhysicalMaterial({
-              // #FFDBED를 그대로 쓰면 너무 밝아서
-              // 한 단계 어두운 핑크 사용
               color: new THREE.Color("#fff"),
 
               // X-ray 반투명
@@ -161,7 +159,7 @@ const SkeletonViewer = () => {
               side: THREE.DoubleSide,
 
               // 자체 발광은 매우 약하게
-              emissive: new THREE.Color("#706269"),
+              emissive: new THREE.Color("#29AE89"),
 
               emissiveIntensity: 0.05,
 
@@ -199,7 +197,7 @@ const SkeletonViewer = () => {
           child.material = new THREE.ShaderMaterial({
             uniforms: {
               glowColor: {
-                value: new THREE.Color("#fae9f1"),
+                value: new THREE.Color("#29AE89"),
               },
 
               // 가장자리 빛의 세기

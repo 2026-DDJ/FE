@@ -14,7 +14,7 @@ export const ResultContainer = styled.div`
   min-height: 100vh;
   min-height: 100dvh;
 
-  background: #051320;
+  background: #FFFFFF;
 
   overflow-x: hidden;
 `;
@@ -41,7 +41,7 @@ export const ResultContent = styled.main`
 // ==========================================
 
 export const ResultHeading = styled.h1`
-  color: #ffffff;
+  color: #202020;
 
   font-size: 48px;
   font-weight: 600;
@@ -74,7 +74,7 @@ export const ResultDescription = styled.p`
   margin-top: 24px;
   margin-bottom: 48px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 28px;
   font-weight: 400;
@@ -112,7 +112,7 @@ export const ResultCard = styled.section`
 
   padding: 36px 38px;
 
-  background: #373b49;
+  background: #EAF7F4;
 
   border: 1px solid ${COLORS.pink};
   border-radius: 8px;
@@ -124,7 +124,7 @@ export const ResultCard = styled.section`
 `;
 
 export const CardTitle = styled.h2`
-  color: #ffffff;
+  color: #202020;
 
   font-size: 32px;
   font-weight: 700;
@@ -167,7 +167,7 @@ export const FactorLabel = styled.div`
   width: 145px;
   flex-shrink: 0;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 27px;
   font-weight: 600;
@@ -184,7 +184,7 @@ export const FactorTrack = styled.div`
   flex: 1;
   height: 13px;
 
-  background: #a79aa8;
+  background: #EAF7F4;
 
   border-radius: 20px;
   overflow: hidden;
@@ -244,7 +244,7 @@ export const ChartValue = styled.div`
   margin-bottom: 10px;
 
   color: ${({ $active }) =>
-    $active ? COLORS.pink : "#bcbac1"};
+    $active ? COLORS.pink : "#202020"};
 
   font-size: 15px;
   font-weight: 600;
@@ -264,7 +264,7 @@ export const ChartBar = styled.div`
   max-height: 140px;
 
   background: ${({ $active }) =>
-    $active ? COLORS.pink : "#777780"};
+    $active ? COLORS.pink : "#202020"};
 
   border-radius: 6px 6px 0 0;
 `;
@@ -279,10 +279,10 @@ export const ChartLabel = styled.div`
 
   padding: 8px 0;
 
-  border-top: 1px solid #77717b;
+  border-top: 1px solid #29AE89;
 
   color: ${({ $active }) =>
-    $active ? COLORS.pink : "#ffffff"};
+    $active ? COLORS.pink : "#202020"};
 
   font-size: 14px;
   font-weight: 500;
@@ -309,7 +309,7 @@ export const SimulationBanner = styled.section`
   margin-top: 28px;
   padding: 30px 38px;
 
-  background: #373b49;
+  background: #EAF7F4;
 
   border: 1px solid ${COLORS.pink};
   border-radius: 8px;
@@ -333,7 +333,7 @@ export const SimulationText = styled.div`
 `;
 
 export const SimulationTitle = styled.h2`
-  color: #ffffff;
+  color: #202020;
 
   font-size: 32px;
   font-weight: 700;
@@ -345,7 +345,7 @@ export const SimulationTitle = styled.h2`
 `;
 
 export const SimulationDescription = styled.p`
-  color: #ffffff;
+  color: #202020;
 
   font-size: 20px;
   font-weight: 400;
@@ -364,8 +364,8 @@ export const SimulationButton = styled.button`
 
   padding: 0 36px;
 
-  background: #dcbccd;
-  color: #051320;
+  background: #29AE89;
+  color: #FFFFFF;
 
   border-radius: 8px;
 

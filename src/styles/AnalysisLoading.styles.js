@@ -1,3 +1,4 @@
+
 import styled, { keyframes } from "styled-components";
 
 const skeletonScan = keyframes`
@@ -15,7 +16,7 @@ export const LoadingContainer = styled.div`
   min-height: 100vh;
   min-height: 100dvh;
 
-  background: #03131f;
+  background: #FFFFFF;
 
   display: flex;
   flex-direction: column;
@@ -36,7 +37,7 @@ export const LoadingContent = styled.main`
 export const LoadingTitle = styled.h1`
   margin: 0;
 
-  color: #f8cfe3;
+  color: #29AE89;
 
   font-size: 48px;
   font-weight: 700;

@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 import {
@@ -31,7 +32,7 @@ export const NavItem = styled.button`
   padding: 0;
 
   background: transparent;
-  color: ${COLORS.pink};
+  color: #29AE89;
 
   font-size: 18px;
   font-weight: 600;

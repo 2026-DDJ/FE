@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 import { COLORS } from "./Common.styles";
@@ -17,14 +18,14 @@ export const StepCircle = styled.div`
   justify-content: center;
   align-items: center;
 
-  border: 1.5px solid ${COLORS.pink};
+  border: 1.5px solid #29AE89;
   border-radius: 50%;
 
   background: ${({ $active }) =>
-    $active ? COLORS.pink : "transparent"};
+    $active ? "#29AE89" : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? COLORS.background : COLORS.pink};
+    $active ? "#FFFFFF" : "#29AE89"};
 
   font-family: "Akira Expanded", sans-serif;
   font-size: 22px;

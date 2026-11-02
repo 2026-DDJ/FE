@@ -1,3 +1,4 @@
+
 import { createGlobalStyle } from "styled-components";
 import "pretendard/dist/web/variable/pretendardvariable.css";
 import AkiraExpanded from "../assets/fonts/AkiraExpanded-Demo.otf";
@@ -31,8 +32,8 @@ const GlobalStyle = createGlobalStyle`
 
   body {
     font-family: "Pretendard Variable", Pretendard, sans-serif;
-    background: #051320;
-    color: #FFDBED;
+    background: #FFFFFF;
+    color: #202020;
   }
 
   button,

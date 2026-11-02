@@ -1,10 +1,11 @@
+
 import styled from "styled-components";
 
 export const COLORS = {
-  background: "#051320",
-  pink: "#FFDBED",
-  button: "#373B49",
-  white: "#fff",
+  background: "#FFFFFF",
+  pink: "#29AE89",
+  button: "#EAF7F4",
+  white: "#202020",
 };
 
 export const PageContainer = styled.main`

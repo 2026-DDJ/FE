@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import { PageContainer, COLORS } from "./Common.styles";
 
@@ -34,7 +35,7 @@ export const BottomSection = styled.div`
 `;
 
 export const SignupLink = styled.a`
-  color: ${COLORS.white};
+  color: #202020;
 
   font-size: 18px;
   font-weight: 600;

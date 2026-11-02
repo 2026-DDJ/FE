@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 import {
@@ -60,11 +61,11 @@ export const DataCard = styled.div`
   border-radius: 8px;
   overflow: hidden;
 
-  background: #504f5d;
-  color: ${COLORS.pink};
+  background: #EAF7F4;
+  color: #29AE89;
 
   filter: drop-shadow(
-    0 -40px 50px rgba(0, 0, 0, 0.25)
+    0 -40px 50px rgba(32, 32, 32, 0.25)
   );
 
   cursor: ${({ $expanded }) =>
@@ -85,7 +86,7 @@ export const DataCard = styled.div`
         transform: translateY(-8px);
 
         filter: drop-shadow(
-          0 -45px 55px rgba(0, 0, 0, 0.3)
+          0 -45px 55px rgba(32, 32, 32, 0.3)
         );
       }
 
@@ -176,7 +177,7 @@ export const DetailLabel = styled.span`
 export const DetailTitle = styled.h3`
   margin: 0 0 16px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 20px;
   font-weight: 700;
@@ -185,7 +186,7 @@ export const DetailTitle = styled.h3`
 export const DetailDescription = styled.p`
   margin: 0;
 
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(32, 32, 32, 0.8);
 
   font-size: 14px;
   line-height: 1.6;
@@ -206,7 +207,7 @@ export const FeatureItem = styled.div`
   padding: 9px 7px;
 
   border: 1px solid
-    rgba(255, 219, 237, 0.28);
+    rgba(41, 174, 137, 0.28);
 
   border-radius: 4px;
 
@@ -227,7 +228,7 @@ export const FeatureName = styled.span`
 
   margin-top: 3px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 12px;
   font-weight: 600;
@@ -238,11 +239,11 @@ export const TargetArea = styled.div`
   padding-top: 12px;
 
   border-top: 1px solid
-    rgba(255, 219, 237, 0.25);
+    rgba(41, 174, 137, 0.25);
 `;
 
 export const TargetLabel = styled.div`
-  color: #ffffff;
+  color: #202020;
 
   font-size: 12px;
   font-weight: 600;
@@ -277,7 +278,7 @@ export const CompareItem = styled.div`
 
   gap: 10px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 11px;
 `;
@@ -287,7 +288,7 @@ export const CompareBar = styled.div`
 
   border-radius: 999px;
 
-  background: rgba(255, 219, 237, 0.15);
+  background: rgba(41, 174, 137, 0.15);
 
   overflow: hidden;
 `;
@@ -298,7 +299,7 @@ export const CompareBarFill = styled.div`
 
   border-radius: inherit;
 
-  background: ${COLORS.pink};
+  background: #29AE89;
 `;
 
 /* =========================
@@ -322,11 +323,11 @@ export const ReferenceTag = styled.span`
   padding: 7px 16px;
 
   border: 1px solid
-    rgba(255, 219, 237, 0.4);
+    rgba(41, 174, 137, 0.4);
 
   border-radius: 999px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 11px;
 `;
@@ -338,7 +339,7 @@ export const ReferenceArrow = styled.div`
 `;
 
 export const ReferenceResult = styled.div`
-  color: #ffffff;
+  color: #202020;
 
   font-size: 13px;
   font-weight: 700;
@@ -365,7 +366,7 @@ export const RightSection = styled.section`
 export const DataTitle = styled.h1`
   margin: 0;
 
-  color: ${COLORS.pink};
+  color: #29AE89;
 
   font-family: "Akira Expanded", sans-serif;
   font-size: 64px;
@@ -380,7 +381,7 @@ export const DataDescription = styled.p`
 
   margin-top: 55px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 24px;
   font-weight: 400;

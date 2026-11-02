@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 import { COLORS } from "./Common.styles";
@@ -15,10 +16,10 @@ export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 1px solid rgba(255, 219, 237, 0.8);
+  border: 1px solid rgba(41, 174, 137, 0.8);
   border-radius: 8px;
 
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(234, 247, 244, 0.2);
 `;
 
 export const FieldHeader = styled.div`
@@ -31,7 +32,7 @@ export const FieldHeader = styled.div`
 export const FieldTitle = styled.h3`
   margin: 0;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 28px;
   font-weight: 700;
@@ -40,7 +41,7 @@ export const FieldTitle = styled.h3`
 export const FieldDescription = styled.p`
   margin-top: 8px;
 
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(32, 32, 32, 0.9);
 
   font-size: 17px;
   font-weight: 400;
@@ -74,9 +75,9 @@ export const Select = styled.select`
 
   outline: none;
 
-  background: #ffdbed;
+  background: #29AE89;
 
-  color: ${COLORS.background};
+  color: #FFFFFF;
 
   font-size: 18px;
   font-weight: 700;
@@ -94,7 +95,7 @@ export const SelectArrow = styled.span`
 
   transform: translateY(-50%);
 
-  color: ${COLORS.background};
+  color: #FFFFFF;
 
   font-size: 18px;
 
@@ -127,22 +128,22 @@ export const Input = styled.input`
 
   outline: none;
 
-  background: #ffdbed;
+  background: #29AE89;
 
-  color: ${COLORS.background};
+  color: #FFFFFF;
 
   font-size: 18px;
   font-weight: 700;
 
   &::placeholder {
-    color: rgba(3, 22, 34, 0.45);
+    color: rgba(255, 255, 255, 0.45);
   }
 `;
 
 export const InputSuffix = styled.span`
   width: 44px;
 
-  color: #ffdbed;
+  color: #29AE89;
 
   font-size: 18px;
   font-weight: 700;
@@ -167,14 +168,14 @@ export const OptionButtonContainer = styled.div`
 export const OptionButton = styled.button`
   height: 58px;
 
-  border: 1px solid #ffdbed;
+  border: 1px solid #29AE89;
   border-radius: 4px;
 
   background: ${({ $active }) =>
-    $active ? "#ffdbed" : "transparent"};
+    $active ? "#29AE89" : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? COLORS.background : "rgba(255, 219, 237, 0.5)"};
+    $active ? "#FFFFFF" : "rgba(41, 174, 137, 0.5)"};
 
   font-size: 18px;
   font-weight: 700;
@@ -188,7 +189,7 @@ export const OptionButton = styled.button`
   &:hover {
     background: ${({ $active }) =>
       $active
-        ? "#ffdbed"
-        : "rgba(255, 219, 237, 0.08)"};
+        ? "#29AE89"
+        : "rgba(41, 174, 137, 0.08)"};
   }
 `;

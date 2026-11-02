@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 import {
   PageContainer,
@@ -31,7 +32,7 @@ export const Agreement = styled.p`
   width: 580px;
   margin-top: 24px;
 
-  color: ${COLORS.pink};
+  color: #29AE89;
 
   font-size: 12px;
   font-weight: 400;
@@ -51,7 +52,7 @@ export const BottomSection = styled.div`
 `;
 
 export const LoginLink = styled.a`
-  color: ${COLORS.white};
+  color: #202020;
 
   font-size: 18px;
   font-weight: 600;

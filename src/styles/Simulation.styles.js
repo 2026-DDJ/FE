@@ -2,11 +2,11 @@
 import styled from "styled-components";
 import { COLORS } from "./Common.styles";
 
-const BG = "#051320";
-const CARD = "#373b49";
-const PINK = COLORS.pink;
-const WHITE = "#ffffff";
-const MUTED = "#c8b8c4";
+const BG = "#FFFFFF";
+const CARD = "#EAF7F4";
+const PINK = "#29AE89";
+const WHITE = "#202020";
+const MUTED = "#202020";
 
 // 전체 페이지
 
@@ -80,7 +80,7 @@ export const ConditionRow = styled.div`
   gap: 20px;
   min-height: 112px;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(255, 219, 237, 0.1);
+  border-bottom: 1px solid rgba(41, 174, 137, 0.1);
 
   @media (max-width: 750px) {
     grid-template-columns: 1fr;
@@ -124,9 +124,9 @@ export const ConditionControl = styled.div`
 
 export const ConditionHelp = styled.div`
   padding: 12px;
-  background: #252631;
+  background: #FFFFFF;
   border-radius: 8px;
-  color: #bcb0bd;
+  color: #202020;
   font-size: 12px;
   line-height: 1.5;
 
@@ -152,7 +152,7 @@ export const BMIValues = styled.div`
     display: flex;
     flex-direction: column;
     gap: 5px;
-    color: #c9bbc7;
+    color: #202020;
     font-size: 12px;
   }
 
@@ -169,7 +169,7 @@ export const BMIValues = styled.div`
     padding: 6px 10px;
     background: ${PINK};
     border-radius: 20px;
-    color: ${BG};
+    color: #FFFFFF;
     font-size: 14px;
     font-weight: 800;
   }
@@ -180,7 +180,7 @@ export const BMISlider = styled.input`
   height: 7px;
   appearance: none;
   -webkit-appearance: none;
-  background: #1c1d27;
+  background: #FFFFFF;
   border-radius: 10px;
   outline: none;
   cursor: pointer;
@@ -192,7 +192,7 @@ export const BMISlider = styled.input`
     height: 20px;
     background: ${PINK};
     border-radius: 50%;
-    box-shadow: 0 0 10px rgba(255, 219, 237, 0.5);
+    box-shadow: 0 0 10px rgba(41, 174, 137, 0.5);
   }
 
   &::-moz-range-thumb {
@@ -208,7 +208,7 @@ export const BMISliderLabels = styled.div`
   display: flex;
   justify-content: space-between;
   margin-top: 10px;
-  color: #99909d;
+  color: #202020;
   font-size: 10px;
 `;
 
@@ -217,7 +217,7 @@ export const BMISliderLabels = styled.div`
 export const OptionGroup = styled.div`
   display: flex;
   width: 100%;
-  border: 1px solid #805c71;
+  border: 1px solid #29AE89;
   border-radius: 8px;
   overflow: hidden;
 `;
@@ -228,9 +228,9 @@ export const OptionButton = styled.button`
   min-height: 42px;
   padding: 8px 10px;
   background: ${({ $active }) =>
-    $active ? PINK : "#211e29"};
+    $active ? PINK : "#FFFFFF"};
   color: ${({ $active }) =>
-    $active ? BG : "#d4bbcc"};
+    $active ? "#FFFFFF" : "#202020"};
   font-size: 14px;
   font-weight: ${({ $active }) =>
     $active ? 700 : 500};
@@ -239,7 +239,7 @@ export const OptionButton = styled.button`
 
   &:hover {
     background: ${({ $active }) =>
-      $active ? PINK : "#493243"};
+      $active ? PINK : "#EAF7F4"};
   }
 `;
 
@@ -249,8 +249,8 @@ export const PredictButton = styled.button`
   min-height: 74px;
   margin-top: 24px;
   padding: 15px 25px;
-  background: #dcbccd;
-  color: ${BG};
+  background: #29AE89;
+  color: #FFFFFF;
   border-radius: 8px;
   font-size: 27px;
   font-weight: 700;
@@ -258,7 +258,7 @@ export const PredictButton = styled.button`
   transition: background 0.2s ease;
 
   &:hover {
-    background: ${PINK};
+    background: #202020;
   }
 
   @media (max-width: 600px) {
@@ -293,14 +293,14 @@ export const CostBox = styled.div`
   flex: 1;
   min-width: 0;
   padding: 14px 10px;
-  background: #1a1a24;
-  border: 1px solid #3c2b3b;
+  background: #FFFFFF;
+  border: 1px solid #29AE89;
   border-radius: 8px;
 `;
 
 export const CostLabel = styled.p`
   margin-bottom: 12px;
-  color: #ddd0db;
+  color: #202020;
   font-size: 12px;
   white-space: nowrap;
 `;
@@ -321,7 +321,7 @@ export const CostAmount = styled.div`
 export const CostBar = styled.div`
   width: 100%;
   height: 7px;
-  background: #30303b;
+  background: #EAF7F4;
   border-radius: 10px;
   overflow: hidden;
 `;
@@ -347,8 +347,8 @@ export const DifferenceBox = styled.div`
   gap: 10px;
   margin-top: 14px;
   padding: 15px 12px;
-  background: #523044;
-  border: 1px solid #9c5c7e;
+  background: #FFFFFF;
+  border: 1px solid #29AE89;
   border-radius: 8px;
   color: ${PINK};
 `;
@@ -389,7 +389,7 @@ export const RiskGroup = styled.div`
 
 export const RiskLabel = styled.p`
   margin-bottom: 5px;
-  color: #c7b6c4;
+  color: #202020;
   font-size: 12px;
 `;
 
@@ -400,7 +400,7 @@ export const RiskGrade = styled.div`
   small {
     display: block;
     margin-top: 3px;
-    color: #c8b7c6;
+    color: #202020;
     font-size: 11px;
     font-weight: 400;
   }
@@ -416,9 +416,9 @@ export const RiskLevel = styled.span`
   flex: 1;
   padding: 5px 0;
   background: ${({ $active }) =>
-    $active ? PINK : "#28232e"};
+    $active ? PINK : "#FFFFFF"};
   color: ${({ $active }) =>
-    $active ? BG : "#bfa8b9"};
+    $active ? "#FFFFFF" : "#202020"};
   border-radius: 5px;
   font-size: 11px;
   font-weight: 700;
@@ -434,8 +434,8 @@ export const RiskArrow = styled.span`
 export const ExpectationBox = styled.div`
   margin-top: 28px;
   padding: 18px 14px;
-  background: #211c27;
-  border: 1px solid #76536a;
+  background: #FFFFFF;
+  border: 1px solid #29AE89;
   border-radius: 8px;
 `;
 
@@ -448,14 +448,14 @@ export const ExpectationTitle = styled.h3`
 
 export const ExpectationItem = styled.p`
   margin-top: 10px;
-  color: #ddd0dc;
+  color: #202020;
   font-size: 12px;
   line-height: 1.6;
 `;
 
 export const Notice = styled.p`
   margin-top: 28px;
-  color: #d0c4ce;
+  color: #202020;
   font-size: 13px;
   text-align: center;
   line-height: 1.6;

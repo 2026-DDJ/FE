@@ -1,3 +1,4 @@
+
 import styled from "styled-components";
 
 import {
@@ -32,7 +33,7 @@ export const LeftSection = styled.section`
 export const Title = styled.h1`
   margin: 0;
 
-  color: ${COLORS.pink};
+  color: #29AE89;
 
   font-family: "Akira Expanded", "Arial Black", sans-serif;
   font-size: 64px;
@@ -45,7 +46,7 @@ export const Title = styled.h1`
 export const Description = styled.div`
   margin-top: 60px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 24px;
   font-weight: 400;
@@ -135,7 +136,7 @@ export const BaseLine = styled.div`
   width: 100%;
   height: 100%;
 
-  background: rgba(255, 219, 237, 0.28);
+  background: #EAF7F4;
 `;
 
 /* =========================
@@ -151,7 +152,7 @@ export const FirstLineFill = styled.div`
   width: 100%;
   height: 50%;
 
-  background: #ffdbed;
+  background: #29AE89;
 
   transform: scaleY(0);
   transform-origin: top;
@@ -189,7 +190,7 @@ export const SecondLineFill = styled.div`
   width: 100%;
   height: 50%;
 
-  background: #ffdbed;
+  background: #29AE89;
 
   transform: scaleY(0);
   transform-origin: top;
@@ -251,7 +252,7 @@ export const ProgressStep = styled.div`
 export const ProgressLabel = styled.span`
   width: 190px;
 
-  color: #ffffff;
+  color: #202020;
 
   font-size: 22px;
   font-weight: 700;
@@ -273,7 +274,7 @@ export const ProgressDot = styled.div`
   justify-content: center;
   align-items: center;
 
-  border: 1.5px solid rgba(255, 219, 237, 0.6);
+  border: 1.5px solid #29AE89;
   border-radius: 50%;
 
   background: transparent;
@@ -293,7 +294,7 @@ export const Check = styled.span`
   justify-content: center;
   align-items: center;
 
-  color: #ffdbed;
+  color: #29AE89;
 
   font-size: 17px;
   font-weight: 700;
@@ -301,11 +302,7 @@ export const Check = styled.span`
 
   opacity: 0;
 
-  /*
-   * 체크된 원 내부
-   * #FFDBED / opacity 20%
-   */
-  background: rgba(255, 219, 237, 0.2);
+  background: #EAF7F4;
 
   border-radius: 50%;
 
