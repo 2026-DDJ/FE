@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "../../components/Header";
 import { readAssessment, getBMI } from "../../utils/assessment";
+import { formatMedicalCost } from "../../utils/formatMedicalCost";
 import { DEMO_PREDICTED_COST } from "../../utils/demoPrediction";
 import {
   SimulationContainer, SimulationContent, PageTitle, PageDescription,
@@ -9,8 +10,6 @@ import {
   PredictButton, ResultCard, CostBox, CostLabel, CostAmount,
   DifferenceBox, DifferenceAmount, DifferencePercent, Notice,
 } from "../../styles/Simulation.styles";
-
-const money = (value) => value.toLocaleString("ko-KR");
 
 const Simulation = () => {
   const [initial] = useState(() => {
@@ -69,10 +68,10 @@ const Simulation = () => {
           <ResultCard aria-labelledby="result-heading">
             <CardTitle id="result-heading">시뮬레이션 결과</CardTitle>
             <div role="status" aria-live="polite" aria-atomic="true">
-              <CostBox><CostLabel>변경 전 · 예시 연간 의료비</CostLabel><CostAmount>{money(DEMO_PREDICTED_COST)}<small>원</small></CostAmount></CostBox>
-              <CostBox $highlight><CostLabel>변경 후 · 예시 연간 의료비</CostLabel><CostAmount $highlight>{applied ? money(cost) : "—"}{applied && <small>원</small>}</CostAmount></CostBox>
+              <CostBox><CostLabel>변경 전 · 예시 연간 의료비</CostLabel><CostAmount>{formatMedicalCost(DEMO_PREDICTED_COST)}</CostAmount></CostBox>
+              <CostBox $highlight><CostLabel>변경 후 · 예시 연간 의료비</CostLabel><CostAmount $highlight>{applied ? formatMedicalCost(cost) : "—"}</CostAmount></CostBox>
               <DifferenceBox>
-                <DifferenceAmount>{!applied ? "조건을 선택하고 비교해보세요." : difference === 0 ? "금액 변화 없음" : `${money(Math.abs(difference))}원 ${direction}`}</DifferenceAmount>
+                <DifferenceAmount>{!applied ? "조건을 선택하고 비교해보세요." : difference === 0 ? "금액 변화 없음" : `${formatMedicalCost(Math.abs(difference))} ${direction}`}</DifferenceAmount>
                 {applied && difference !== 0 && <DifferencePercent>약 {percent}% {direction}</DifferencePercent>}
                 {applied && pending && <Notice>조건이 변경됐어요. 비교 버튼을 눌러 결과를 갱신하세요.</Notice>}
               </DifferenceBox>

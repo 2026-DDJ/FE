@@ -1,6 +1,7 @@
 
 import { useNavigate } from "react-router-dom";
 
+import { formatMedicalCost } from "../../utils/formatMedicalCost";
 import { DEMO_PREDICTED_COST } from "../../utils/demoPrediction";
 
 import Header from "../../components/Header";
@@ -79,10 +80,6 @@ const resultData = {
   ],
 };
 
-const formatCost = (value) => {
-  return value.toLocaleString("ko-KR");
-};
-
 const AnalysisResult = () => {
   const navigate = useNavigate();
 
@@ -102,10 +99,7 @@ const AnalysisResult = () => {
         </ResultHeading>
 
         <ResultAmount>
-          {Math.round(
-            resultData.predictedCost / 10000
-          ).toLocaleString("ko-KR")}
-          만원
+          {formatMedicalCost(resultData.predictedCost)}
         </ResultAmount>
 
         <ResultDescription>
@@ -158,7 +152,7 @@ const AnalysisResult = () => {
                     <ChartItem key={item.label}>
                       <ChartLabel $active={index === 0}>{item.label}</ChartLabel>
                       <ChartValue $active={index === 0}>
-                        {formatCost(item.cost)}원
+                        {formatMedicalCost(item.cost)}
                       </ChartValue>
                       <ChartTrack>
                         <ChartBar
