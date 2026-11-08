@@ -156,10 +156,10 @@ export const FactorItem = styled.div`
   display: flex;
   align-items: center;
 
-  gap: 20px;
+  gap: 12px;
 
   @media (max-width: 480px) {
-    gap: 12px;
+    gap: 8px;
   }
 `;
 
@@ -182,6 +182,7 @@ export const FactorLabel = styled.div`
 
 export const FactorTrack = styled.div`
   flex: 1;
+  min-width: 0;
   height: 13px;
 
   background: #EAF7F4;
@@ -235,6 +236,7 @@ export const ChartValue = styled.div`
 `;
 
 export const ChartTrack = styled.div`
+  grid-column: 1 / -1;
   height: 12px;
   background: #d7e9e3;
   border-radius: 8px;
@@ -254,11 +256,13 @@ export const ChartLabel = styled.div`
   font-weight: 600;
 `;
 
-export const ChartDifference = styled.div`
+export const FactorScore = styled.span`
   color: ${({ $active }) => $active ? COLORS.pink : "#38594f"};
   font-size: 16px;
   font-weight: 700;
   text-align: right;
+  min-width: 40px;
+  flex-shrink: 0;
 `;
 
 // ==========================================
