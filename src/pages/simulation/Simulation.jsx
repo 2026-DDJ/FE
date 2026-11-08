@@ -79,7 +79,6 @@ const Simulation = () => {
             </div>
           </ResultCard>
         </SimulationGrid>
-        <Notice>AI 연동 전 예시 계산입니다. 실제 의료비나 생활습관 개선 효과를 의미하지 않습니다.</Notice>
       </SimulationContent>
     </SimulationContainer>
   );

@@ -97,8 +97,6 @@ const AnalysisResult = () => {
       <Header />
 
       <ResultContent>
-        <ChartNote>예시 결과 · 실제 AI 분석 전입니다.</ChartNote>
-        {/* 예상 연간 의료비 */}
         <ResultHeading>
           예상 연간 의료비
         </ResultHeading>
@@ -125,8 +123,6 @@ const AnalysisResult = () => {
               주요 영향요인{" "}
               <Highlight>Top 3</Highlight>
             </CardTitle>
-
-            <ChartNote>영향 점수 · 100점 기준 (예시)</ChartNote>
             <FactorList>
               {resultData.factors.map(
                 (factor, index) => (
