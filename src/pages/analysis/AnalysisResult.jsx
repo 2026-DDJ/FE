@@ -28,7 +28,7 @@ import {
   ChartLabel,
   ChartNote,
   ChartTrack,
-  ChartDifference,
+  FactorScore,
   SimulationBanner,
   SimulationText,
   SimulationTitle,
@@ -86,10 +86,7 @@ const formatCost = (value) => {
 const AnalysisResult = () => {
   const navigate = useNavigate();
 
-  const baseline = resultData.comparisons.at(-1).cost;
-  const maxDifference = Math.max(...resultData.comparisons.map(
-    (item) => Math.abs(item.cost - baseline),
-  ));
+  const maxCost = Math.max(...resultData.comparisons.map((item) => item.cost));
 
   const handleSimulation = () => {
     navigate("/simulation");
@@ -129,6 +126,7 @@ const AnalysisResult = () => {
               <Highlight>Top 3</Highlight>
             </CardTitle>
 
+            <ChartNote>영향 점수 · 100점 기준 (예시)</ChartNote>
             <FactorList>
               {resultData.factors.map(
                 (factor, index) => (
@@ -144,6 +142,7 @@ const AnalysisResult = () => {
                         $score={factor.score}
                       />
                     </FactorTrack>
+                    <FactorScore>{factor.score}점</FactorScore>
                   </FactorItem>
                 )
               )}
@@ -156,9 +155,6 @@ const AnalysisResult = () => {
               유사 집단과 의료비 비교
             </CardTitle>
 
-            <ChartNote>
-              전체 평균 218만원 대비 차이 · 막대는 0원부터 표시
-            </ChartNote>
             <ChartContainer>
               <ChartArea>
                 {resultData.comparisons.map(
@@ -171,12 +167,9 @@ const AnalysisResult = () => {
                       <ChartTrack>
                         <ChartBar
                           $active={index === 0}
-                          $width={maxDifference === 0 ? 0 : Math.abs(item.cost - baseline) / maxDifference * 100}
+                          $width={maxCost === 0 ? 0 : item.cost / maxCost * 100}
                         />
                       </ChartTrack>
-                      <ChartDifference $active={index === 0}>
-                        {item.cost === baseline ? "기준" : `${item.cost > baseline ? "+" : "−"}${formatCost(Math.abs(item.cost - baseline))}원`}
-                      </ChartDifference>
                     </ChartItem>
                   )
                 )}
