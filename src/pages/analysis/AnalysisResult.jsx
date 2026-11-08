@@ -1,6 +1,8 @@
 
 import { useNavigate } from "react-router-dom";
 
+import { DEMO_PREDICTED_COST } from "../../utils/demoPrediction";
+
 import Header from "../../components/Header";
 
 import {
@@ -24,6 +26,9 @@ import {
   ChartValue,
   ChartBar,
   ChartLabel,
+  ChartNote,
+  ChartTrack,
+  ChartDifference,
   SimulationBanner,
   SimulationText,
   SimulationTitle,
@@ -33,13 +38,13 @@ import {
 
 // 임시 결과 데이터 (추후 API 연동)
 const resultData = {
-  predictedCost: 2840000,
+  predictedCost: DEMO_PREDICTED_COST,
   differencePercent: 22.9,
 
   factors: [
     {
-      icon: "🚬",
-      name: "흡연",
+      icon: "🏃",
+      name: "운동",
       score: 78,
     },
     {
@@ -48,8 +53,8 @@ const resultData = {
       score: 53,
     },
     {
-      icon: "⌛",
-      name: "연령",
+      icon: "❤️",
+      name: "건강 상태",
       score: 31,
     },
   ],
@@ -57,14 +62,14 @@ const resultData = {
   comparisons: [
     {
       label: "나",
-      cost: 2840000,
+      cost: DEMO_PREDICTED_COST,
     },
     {
-      label: "동일 연령·성별",
+      label: "비교 집단 1",
       cost: 2310000,
     },
     {
-      label: "동일 연령대",
+      label: "비교 집단 2",
       cost: 2250000,
     },
     {
@@ -81,9 +86,10 @@ const formatCost = (value) => {
 const AnalysisResult = () => {
   const navigate = useNavigate();
 
-  const maxCost = Math.max(
-    ...resultData.comparisons.map((item) => item.cost)
-  );
+  const baseline = resultData.comparisons.at(-1).cost;
+  const maxDifference = Math.max(...resultData.comparisons.map(
+    (item) => Math.abs(item.cost - baseline),
+  ));
 
   const handleSimulation = () => {
     navigate("/simulation");
@@ -94,6 +100,7 @@ const AnalysisResult = () => {
       <Header />
 
       <ResultContent>
+        <ChartNote>예시 결과 · 실제 AI 분석 전입니다.</ChartNote>
         {/* 예상 연간 의료비 */}
         <ResultHeading>
           예상 연간 의료비
@@ -107,7 +114,7 @@ const AnalysisResult = () => {
         </ResultAmount>
 
         <ResultDescription>
-          동일 연령·성별 평균보다{" "}
+          비교 집단 평균보다{" "}
           <Highlight>
             +{resultData.differencePercent}%
           </Highlight>{" "}
@@ -149,29 +156,27 @@ const AnalysisResult = () => {
               유사 집단과 의료비 비교
             </CardTitle>
 
+            <ChartNote>
+              전체 평균 218만원 대비 차이 · 막대는 0원부터 표시
+            </ChartNote>
             <ChartContainer>
               <ChartArea>
                 {resultData.comparisons.map(
                   (item, index) => (
                     <ChartItem key={item.label}>
-                      <ChartValue
-                        $active={index === 0}
-                      >
+                      <ChartLabel $active={index === 0}>{item.label}</ChartLabel>
+                      <ChartValue $active={index === 0}>
                         {formatCost(item.cost)}원
                       </ChartValue>
-
-                      <ChartBar
-                        $active={index === 0}
-                        $height={
-                          (item.cost / maxCost) * 100
-                        }
-                      />
-
-                      <ChartLabel
-                        $active={index === 0}
-                      >
-                        {item.label}
-                      </ChartLabel>
+                      <ChartTrack>
+                        <ChartBar
+                          $active={index === 0}
+                          $width={maxDifference === 0 ? 0 : Math.abs(item.cost - baseline) / maxDifference * 100}
+                        />
+                      </ChartTrack>
+                      <ChartDifference $active={index === 0}>
+                        {item.cost === baseline ? "기준" : `${item.cost > baseline ? "+" : "−"}${formatCost(Math.abs(item.cost - baseline))}원`}
+                      </ChartDifference>
                     </ChartItem>
                   )
                 )}
@@ -188,8 +193,7 @@ const AnalysisResult = () => {
             </SimulationTitle>
 
             <SimulationDescription>
-              생활습관을 조금만 바꿔도 미래의
-              의료비는 달라질 수 있습니다.
+              BMI와 운동 조건을 바꿔 예시 의료비를 비교해보세요.
             </SimulationDescription>
           </SimulationText>
 

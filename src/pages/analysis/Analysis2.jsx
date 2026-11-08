@@ -55,30 +55,6 @@ const Analysis2 = () => {
             />
           </FormField>
 
-          {/* 만성질환 */}
-          <FormField
-            icon="🩹"
-            title="만성질환"
-            description="6개월 이상 지속되거나 관리가 필요한 질환을 기준으로 선택해주세요."
-          >
-            <OptionButtons
-              value={formData.chronicDisease}
-              onChange={(value) =>
-                updateField("chronicDisease", value)
-              }
-              options={[
-                {
-                  value: "none",
-                  label: "없음",
-                },
-                {
-                  value: "yes",
-                  label: "있음",
-                },
-              ]}
-            />
-          </FormField>
-
           {/* 몸무게 */}
           <FormField
             icon="⚖️"
@@ -142,6 +118,7 @@ const Analysis2 = () => {
           </PreviousButton>
 
           <Button
+            disabled={!Number(formData.height) || Number(formData.height) <= 0 || !Number(formData.weight) || Number(formData.weight) <= 0}
             onClick={() => navigate("/analysis/3")}
           >
             다음으로 →

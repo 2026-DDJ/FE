@@ -1,501 +1,85 @@
-
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import Header from "../../components/Header";
-
+import { readAssessment, getBMI } from "../../utils/assessment";
+import { DEMO_PREDICTED_COST } from "../../utils/demoPrediction";
 import {
-  SimulationContainer,
-  SimulationContent,
-  PageTitle,
-  PageDescription,
-  SimulationGrid,
-  ConditionCard,
-  ConditionRow,
-  ConditionInfo,
-  ConditionIcon,
-  ConditionName,
-  ConditionSub,
-  ConditionControl,
-  BMIControl,
-  BMIValues,
-  BMISlider,
-  BMISliderLabels,
-  OptionGroup,
-  OptionButton,
-  ConditionHelp,
-  PredictButton,
-  ResultCard,
-  ResultHeading,
-  CostComparison,
-  CostBox,
-  CostLabel,
-  CostAmount,
-  CostBar,
-  CostBarFill,
-  ResultArrow,
-  DifferenceBox,
-  DifferenceAmount,
-  DifferencePercent,
-  RiskSection,
-  RiskTitle,
-  RiskComparison,
-  RiskGroup,
-  RiskLabel,
-  RiskGrade,
-  RiskScale,
-  RiskLevel,
-  RiskArrow,
-  ExpectationBox,
-  ExpectationTitle,
-  ExpectationItem,
-  Notice,
+  SimulationContainer, SimulationContent, PageTitle, PageDescription,
+  SimulationGrid, ConditionCard, ConditionRow, CardTitle, ConditionName,
+  BMIValues, BMISlider, BMISliderLabels, OptionGroup, OptionButton,
+  PredictButton, ResultCard, CostBox, CostLabel, CostAmount,
+  DifferenceBox, DifferenceAmount, DifferencePercent, Notice,
 } from "../../styles/Simulation.styles";
 
-const BASE_COST = 3600000;
-
-const initialConditions = {
-  bmi: 27.8,
-  smoking: "current",
-  drinking: "high",
-  exercise: "none",
-};
+const money = (value) => value.toLocaleString("ko-KR");
 
 const Simulation = () => {
-  const [conditions, setConditions] = useState({
-    ...initialConditions,
+  const [initial] = useState(() => {
+    const assessment = readAssessment();
+    return { bmi: getBMI(assessment), exercise: assessment.exercise };
   });
+  const [conditions, setConditions] = useState(initial);
+  const [applied, setApplied] = useState(null);
+  const pending = !applied || conditions.bmi !== applied.bmi || conditions.exercise !== applied.exercise;
 
-  const [appliedConditions, setAppliedConditions] = useState({
-    ...initialConditions,
-  });
-
-  const [hasPredicted, setHasPredicted] = useState(false);
-
-  const updateCondition = (field, value) => {
-    setConditions((prev) => ({
-      ...prev,
-      [field]: value,
-    }));
-  };
-
-  const handlePredict = () => {
-    setAppliedConditions({ ...conditions });
-    setHasPredicted(true);
-  };
-
-  // 프론트엔드 시연용 계산
-  // 실제 의료비 예측 모델이 아님
-  const result = useMemo(() => {
-    if (!hasPredicted) {
-      return {
-        cost: BASE_COST,
-        reduction: 0,
-        percent: 0,
-        grade: "C",
-      };
-    }
-
-    let reductionRate = 0;
-
-    if (appliedConditions.bmi < initialConditions.bmi) {
-      reductionRate += Math.min(
-        (initialConditions.bmi - appliedConditions.bmi) * 0.025,
-        0.12
-      );
-    }
-
-    if (appliedConditions.smoking === "past") {
-      reductionRate += 0.06;
-    } else if (appliedConditions.smoking === "never") {
-      reductionRate += 0.1;
-    }
-
-    if (appliedConditions.drinking === "moderate") {
-      reductionRate += 0.03;
-    } else if (appliedConditions.drinking === "none") {
-      reductionRate += 0.05;
-    }
-
-    if (appliedConditions.exercise === "sometimes") {
-      reductionRate += 0.04;
-    } else if (appliedConditions.exercise === "regular") {
-      reductionRate += 0.08;
-    }
-
-    reductionRate = Math.min(reductionRate, 0.4);
-
-    const cost = Math.round(
-      (BASE_COST * (1 - reductionRate)) / 10000
-    ) * 10000;
-
-    const reduction = BASE_COST - cost;
-    const percent = Math.round(
-      (reduction / BASE_COST) * 100
-    );
-
-    return {
-      cost,
-      reduction,
-      percent,
-      grade: percent >= 15 ? "B" : "C",
-    };
-  }, [appliedConditions, hasPredicted]);
-
-  const formatMoney = (value) =>
-    value.toLocaleString("ko-KR");
+  // UI demonstration only: this formula is not AI inference or a causal estimate.
+  const bmiChange = applied ? Math.max(-0.12, Math.min(0.12, (initial.bmi - applied.bmi) * 0.025)) : 0;
+  const exerciseChange = applied && applied.exercise !== initial.exercise
+    ? (applied.exercise === "regular" ? 0.08 : -0.08) : 0;
+  const cost = applied
+    ? Math.round(DEMO_PREDICTED_COST * (1 - bmiChange - exerciseChange) / 10000) * 10000
+    : DEMO_PREDICTED_COST;
+  const difference = DEMO_PREDICTED_COST - cost;
+  const percent = Math.abs(difference / DEMO_PREDICTED_COST * 100).toFixed(1);
+  const direction = difference > 0 ? "감소" : difference < 0 ? "증가" : "변화 없음";
 
   return (
     <SimulationContainer>
       <Header />
-
       <SimulationContent>
-        <PageTitle>
-          조건을 바꿔, 더 건강한 내일을 만들어보세요.
-        </PageTitle>
-
-        <PageDescription>
-          생활습관과 건강 상태에 따른 예상 의료비 변화를
-          확인할 수 있습니다. 변경 내용은 기존 분석 결과에
-          영향을 주지 않습니다.
-        </PageDescription>
-
+        <PageTitle>조건을 바꿔 의료비를 비교해보세요.</PageTitle>
+        <PageDescription>BMI와 운동 조건을 조절하고 변경 전후의 예시 금액을 확인하세요.</PageDescription>
         <SimulationGrid>
-          {/* 왼쪽: 조건 변경 */}
-          <ConditionCard>
+          <ConditionCard aria-labelledby="conditions-heading">
+            <CardTitle id="conditions-heading">조건 변경</CardTitle>
             <ConditionRow>
-              <ConditionInfo>
-                <ConditionIcon>♧</ConditionIcon>
-
-                <div>
-                  <ConditionName>BMI</ConditionName>
-                  <ConditionSub>체질량지수</ConditionSub>
-                </div>
-              </ConditionInfo>
-
-              <ConditionControl>
-                <BMIControl>
-                  <BMIValues>
-                    <span>
-                      현재
-                      <strong>27.8</strong>
-                    </span>
-
-                    <span className="selected">
-                      {conditions.bmi.toFixed(1)}
-                    </span>
-
-                    <span>
-                      변경 후
-                      <strong>
-                        {conditions.bmi.toFixed(1)}
-                      </strong>
-                    </span>
-                  </BMIValues>
-
-                  <BMISlider
-                    type="range"
-                    min="15"
-                    max="40"
-                    step="0.1"
-                    value={conditions.bmi}
-                    onChange={(e) =>
-                      updateCondition(
-                        "bmi",
-                        Number(e.target.value)
-                      )
-                    }
-                  />
-
-                  <BMISliderLabels>
-                    <span>15</span>
-                    <span>20</span>
-                    <span>25</span>
-                    <span>30</span>
-                    <span>35</span>
-                    <span>40</span>
-                  </BMISliderLabels>
-                </BMIControl>
-              </ConditionControl>
-
-              <ConditionHelp>
-                현재 BMI를 기준으로 변경할 값을 설정해
-                보세요.
-              </ConditionHelp>
+              <ConditionName as="label" htmlFor="bmi">BMI</ConditionName>
+              <BMIValues>
+                <span>입력 기준 <strong>{initial.bmi.toFixed(1)}</strong></span>
+                <span>변경 후 <output htmlFor="bmi">{conditions.bmi.toFixed(1)}</output></span>
+              </BMIValues>
+              <BMISlider id="bmi" type="range" min={Math.min(15, initial.bmi)} max={Math.max(40, initial.bmi)} step="0.1"
+                value={conditions.bmi}
+                onChange={(event) => setConditions({ ...conditions, bmi: Number(event.target.value) })} />
+              <BMISliderLabels><span>{Math.min(15, initial.bmi)}</span><span>{Math.max(40, initial.bmi)}</span></BMISliderLabels>
             </ConditionRow>
-
             <ConditionRow>
-              <ConditionInfo>
-                <ConditionIcon>♧</ConditionIcon>
-
-                <div>
-                  <ConditionName>흡연</ConditionName>
-                  <ConditionSub>흡연 여부</ConditionSub>
-                </div>
-              </ConditionInfo>
-
-              <ConditionControl>
-                <OptionGroup>
-                  <OptionButton
-                    $active={conditions.smoking === "current"}
-                    onClick={() =>
-                      updateCondition("smoking", "current")
-                    }
-                  >
-                    흡연
+              <ConditionName id="exercise-label">운동</ConditionName>
+              <OptionGroup role="group" aria-labelledby="exercise-label">
+                {[{ value: "none", label: "안 함" }, { value: "regular", label: "규칙적으로 함" }].map((option) => (
+                  <OptionButton key={option.value} type="button" $active={conditions.exercise === option.value}
+                    aria-pressed={conditions.exercise === option.value}
+                    onClick={() => setConditions({ ...conditions, exercise: option.value })}>
+                    {option.label}
                   </OptionButton>
-
-                  <OptionButton
-                    $active={conditions.smoking === "past"}
-                    onClick={() =>
-                      updateCondition("smoking", "past")
-                    }
-                  >
-                    비흡연
-                  </OptionButton>
-                </OptionGroup>
-              </ConditionControl>
-
-              <ConditionHelp>
-                금연은 장기적인 건강 위험 감소와 관련이
-                있습니다.
-              </ConditionHelp>
+                ))}
+              </OptionGroup>
             </ConditionRow>
-
-            <ConditionRow>
-              <ConditionInfo>
-                <ConditionIcon>♧</ConditionIcon>
-
-                <div>
-                  <ConditionName>음주</ConditionName>
-                  <ConditionSub>음주 빈도</ConditionSub>
-                </div>
-              </ConditionInfo>
-
-              <ConditionControl>
-                <OptionGroup>
-                  <OptionButton
-                    $active={conditions.drinking === "high"}
-                    onClick={() =>
-                      updateCondition("drinking", "high")
-                    }
-                  >
-                    거의 매일
-                  </OptionButton>
-
-                  <OptionButton
-                    $active={conditions.drinking === "moderate"}
-                    onClick={() =>
-                      updateCondition("drinking", "moderate")
-                    }
-                  >
-                    가끔
-                  </OptionButton>
-
-                  <OptionButton
-                    $active={conditions.drinking === "none"}
-                    onClick={() =>
-                      updateCondition("drinking", "none")
-                    }
-                  >
-                    거의 안함
-                  </OptionButton>
-                </OptionGroup>
-              </ConditionControl>
-
-              <ConditionHelp>
-                음주 빈도를 줄이는 경우를 비교할 수
-                있습니다.
-              </ConditionHelp>
-            </ConditionRow>
-
-            <ConditionRow>
-              <ConditionInfo>
-                <ConditionIcon>♧</ConditionIcon>
-
-                <div>
-                  <ConditionName>운동</ConditionName>
-                  <ConditionSub>활동 빈도</ConditionSub>
-                </div>
-              </ConditionInfo>
-
-              <ConditionControl>
-                <OptionGroup>
-                  <OptionButton
-                    $active={conditions.exercise === "none"}
-                    onClick={() =>
-                      updateCondition("exercise", "none")
-                    }
-                  >
-                    거의 안함
-                  </OptionButton>
-
-                  <OptionButton
-                    $active={conditions.exercise === "sometimes"}
-                    onClick={() =>
-                      updateCondition("exercise", "sometimes")
-                    }
-                  >
-                    주 1~2회
-                  </OptionButton>
-
-                  <OptionButton
-                    $active={conditions.exercise === "regular"}
-                    onClick={() =>
-                      updateCondition("exercise", "regular")
-                    }
-                  >
-                    주 3회 이상
-                  </OptionButton>
-                </OptionGroup>
-              </ConditionControl>
-
-              <ConditionHelp>
-                규칙적인 운동은 건강 관리에 도움이
-                됩니다.
-              </ConditionHelp>
-            </ConditionRow>
-
-            <PredictButton
-              type="button"
-              onClick={handlePredict}
-            >
-              이 조건으로 다시 예측하기 →
-            </PredictButton>
+            <PredictButton type="button" onClick={() => setApplied({ ...conditions })}>이 조건으로 비교하기 →</PredictButton>
           </ConditionCard>
-
-          {/* 오른쪽: 시뮬레이션 결과 */}
-          <ResultCard>
-            <ResultHeading>
-              시뮬레이션 결과
-            </ResultHeading>
-
-            <CostComparison>
-              <CostBox>
-                <CostLabel>현재 예상 의료비</CostLabel>
-
-                <CostAmount $pink>
-                  {formatMoney(BASE_COST)}
-                  <small> 원</small>
-                </CostAmount>
-
-                <CostBar>
-                  <CostBarFill $width={100} $pink />
-                </CostBar>
-              </CostBox>
-
-              <ResultArrow>➜</ResultArrow>
-
-              <CostBox>
-                <CostLabel>변경 후 예상 의료비</CostLabel>
-
-                <CostAmount>
-                  {formatMoney(result.cost)}
-                  <small> 원</small>
-                </CostAmount>
-
-                <CostBar>
-                  <CostBarFill
-                    $width={(result.cost / BASE_COST) * 100}
-                  />
-                </CostBar>
-              </CostBox>
-            </CostComparison>
-
-            <DifferenceBox>
-              <DifferenceAmount>
-                - {formatMoney(result.reduction)} 원
-              </DifferenceAmount>
-
-              <DifferencePercent>
-                ↓ 약 {result.percent}% 감소
-              </DifferencePercent>
-            </DifferenceBox>
-
-            <RiskSection>
-              <RiskTitle>
-                의료비 위험 등급 변화 ⓘ
-              </RiskTitle>
-
-              <RiskComparison>
-                <RiskGroup>
-                  <RiskLabel>현재</RiskLabel>
-
-                  <RiskGrade>
-                    C 등급
-                    <small>(높은 수준)</small>
-                  </RiskGrade>
-
-                  <RiskScale>
-                    {["A", "B", "C", "D"].map(
-                      (grade) => (
-                        <RiskLevel
-                          key={grade}
-                          $active={grade === "C"}
-                        >
-                          {grade}
-                        </RiskLevel>
-                      )
-                    )}
-                  </RiskScale>
-                </RiskGroup>
-
-                <RiskArrow>→</RiskArrow>
-
-                <RiskGroup>
-                  <RiskLabel>변경 후</RiskLabel>
-
-                  <RiskGrade>
-                    {result.grade} 등급
-                    <small>
-                      {result.grade === "B"
-                        ? "(보통 수준)"
-                        : "(높은 수준)"}
-                    </small>
-                  </RiskGrade>
-
-                  <RiskScale>
-                    {["A", "B", "C", "D"].map(
-                      (grade) => (
-                        <RiskLevel
-                          key={grade}
-                          $active={grade === result.grade}
-                        >
-                          {grade}
-                        </RiskLevel>
-                      )
-                    )}
-                  </RiskScale>
-                </RiskGroup>
-              </RiskComparison>
-            </RiskSection>
-
-            <ExpectationBox>
-              <ExpectationTitle>
-                이런 변화를 기대할 수 있어요!
-              </ExpectationTitle>
-
-              <ExpectationItem>
-                ✓ 예시 계산상 의료비가 약{" "}
-                {result.percent}% 감소합니다.
-              </ExpectationItem>
-
-              <ExpectationItem>
-                ✓ 의료비 위험 등급이 C에서{" "}
-                {result.grade}로 표시됩니다.
-              </ExpectationItem>
-
-              <ExpectationItem>
-                ✓ BMI, 흡연, 운동 등의 조건 변화를
-                비교할 수 있습니다.
-              </ExpectationItem>
-            </ExpectationBox>
+          <ResultCard aria-labelledby="result-heading">
+            <CardTitle id="result-heading">시뮬레이션 결과</CardTitle>
+            <div role="status" aria-live="polite" aria-atomic="true">
+              <CostBox><CostLabel>변경 전 · 예시 연간 의료비</CostLabel><CostAmount>{money(DEMO_PREDICTED_COST)}<small>원</small></CostAmount></CostBox>
+              <CostBox $highlight><CostLabel>변경 후 · 예시 연간 의료비</CostLabel><CostAmount $highlight>{applied ? money(cost) : "—"}{applied && <small>원</small>}</CostAmount></CostBox>
+              <DifferenceBox>
+                <DifferenceAmount>{!applied ? "조건을 선택하고 비교해보세요." : difference === 0 ? "금액 변화 없음" : `${money(Math.abs(difference))}원 ${direction}`}</DifferenceAmount>
+                {applied && difference !== 0 && <DifferencePercent>약 {percent}% {direction}</DifferencePercent>}
+                {applied && pending && <Notice>조건이 변경됐어요. 비교 버튼을 눌러 결과를 갱신하세요.</Notice>}
+              </DifferenceBox>
+            </div>
           </ResultCard>
         </SimulationGrid>
-
-        <Notice>
-          시뮬레이션 결과는 임시
-          계산값이며, 실제 의료비 감소를 보장하지
-          않습니다.
-        </Notice>
+        <Notice>AI 연동 전 예시 계산입니다. 실제 의료비나 생활습관 개선 효과를 의미하지 않습니다.</Notice>
       </SimulationContent>
     </SimulationContainer>
   );

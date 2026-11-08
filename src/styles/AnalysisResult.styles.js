@@ -164,19 +164,19 @@ export const FactorItem = styled.div`
 `;
 
 export const FactorLabel = styled.div`
-  width: 145px;
+  width: 172px;
   flex-shrink: 0;
 
   color: #202020;
 
-  font-size: 27px;
+  font-size: 24px;
   font-weight: 600;
 
   white-space: nowrap;
 
   @media (max-width: 480px) {
-    width: 105px;
-    font-size: 18px;
+    width: 116px;
+    font-size: 16px;
   }
 `;
 
@@ -205,94 +205,60 @@ export const FactorFill = styled.div`
 // 의료비 비교 그래프
 // ==========================================
 
+export const ChartNote = styled.p`
+  margin-top: 12px;
+  color: #38594f;
+  font-size: 16px;
+  line-height: 1.5;
+`;
+
 export const ChartContainer = styled.div`
-  margin-top: 30px;
-
-  padding: 16px 10px 0;
-
-  @media (max-width: 480px) {
-    padding: 12px 6px 0;
-  }
+  margin-top: 24px;
 `;
 
 export const ChartArea = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-
-  align-items: end;
-
-  gap: 16px;
-  height: 210px;
-
-  @media (max-width: 480px) {
-    gap: 5px;
-    height: 180px;
-  }
+  gap: 20px;
 `;
 
 export const ChartItem = styled.div`
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr auto;
   align-items: center;
-  justify-content: flex-end;
-
-  min-width: 0;
-  height: 100%;
+  gap: 8px 12px;
 `;
 
 export const ChartValue = styled.div`
-  margin-bottom: 10px;
-
-  color: ${({ $active }) =>
-    $active ? COLORS.pink : "#202020"};
-
-  font-size: 15px;
+  color: ${({ $active }) => $active ? COLORS.pink : "#202020"};
+  font-size: 16px;
   font-weight: 600;
+`;
 
-  white-space: nowrap;
-
-  @media (max-width: 480px) {
-    font-size: 10px;
-  }
+export const ChartTrack = styled.div`
+  height: 12px;
+  background: #d7e9e3;
+  border-radius: 8px;
+  overflow: hidden;
 `;
 
 export const ChartBar = styled.div`
-  width: 70%;
-  max-width: 85px;
-
-  height: ${({ $height }) => $height}%;
-  max-height: 140px;
-
-  background: ${({ $active }) =>
-    $active ? COLORS.pink : "#202020"};
-
-  border-radius: 6px 6px 0 0;
+  width: ${({ $width }) => $width}%;
+  height: 100%;
+  background: ${({ $active }) => $active ? COLORS.pink : "#526c63"};
+  border-radius: inherit;
 `;
 
 export const ChartLabel = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: ${({ $active }) => $active ? COLORS.pink : "#202020"};
+  font-size: 16px;
+  font-weight: 600;
+`;
 
-  width: 100%;
-  min-height: 48px;
-
-  padding: 8px 0;
-
-  border-top: 1px solid #29AE89;
-
-  color: ${({ $active }) =>
-    $active ? COLORS.pink : "#202020"};
-
-  font-size: 14px;
-  font-weight: 500;
-  text-align: center;
-  white-space: nowrap;
-
-  @media (max-width: 480px) {
-    font-size: 10px;
-    white-space: normal;
-  }
+export const ChartDifference = styled.div`
+  color: ${({ $active }) => $active ? COLORS.pink : "#38594f"};
+  font-size: 16px;
+  font-weight: 700;
+  text-align: right;
 `;
 
 // ==========================================

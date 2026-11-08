@@ -1,7 +1,6 @@
 
 import styled from "styled-components";
 
-import { COLORS } from "./Common.styles";
 
 /* =========================
    Form Field Card
@@ -20,6 +19,7 @@ export const FieldContainer = styled.div`
   border-radius: 8px;
 
   background: rgba(234, 247, 244, 0.2);
+  @media (max-width: 600px) { padding: 24px; }
 `;
 
 export const FieldHeader = styled.div`
@@ -34,7 +34,8 @@ export const FieldTitle = styled.h3`
 
   color: #202020;
 
-  font-size: 36px;
+  font-size: 32px;
+  @media (max-width: 600px) { font-size: 28px; }
   font-weight: 700;
 `;
 
@@ -43,7 +44,8 @@ export const FieldDescription = styled.p`
 
   color: rgba(32, 32, 32, 0.9);
 
-  font-size: 24px;
+  font-size: 20px;
+  line-height: 1.5;
   font-weight: 400;
 `;
 
@@ -163,6 +165,7 @@ export const OptionButtonContainer = styled.div`
     `repeat(${$count}, minmax(0, 1fr))`};
 
   gap: 12px;
+  @media (max-width: 600px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 `;
 
 export const OptionButton = styled.button`
@@ -175,7 +178,7 @@ export const OptionButton = styled.button`
     $active ? "#29AE89" : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? "#FFFFFF" : "rgba(41, 174, 137, 0.5)"};
+    $active ? "#FFFFFF" : "#21735d"};
 
   font-size: 18px;
   font-weight: 700;

@@ -17,6 +17,7 @@ const OptionButtons = ({
           key={option.value}
           type="button"
           $active={value === option.value}
+          aria-pressed={value === option.value}
           onClick={() => onChange(option.value)}
         >
           {option.label}
