@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 import {
   PageContainer,
-  COLORS,
 } from "./Common.styles";
 
 export const AnalysisContainer = styled(PageContainer)`
@@ -22,6 +21,8 @@ export const AnalysisContent = styled.main`
 
   padding-top: 150px;
   padding-bottom: 70px;
+
+  @media (max-width: 600px) { width: 90%; padding-top: 132px; }
 `;
 
 export const Title = styled.h1`
@@ -33,6 +34,7 @@ export const Title = styled.h1`
   font-size: 64px;
   font-weight: 700;
   line-height: 1.2;
+  @media (max-width: 600px) { font-size: 40px; }
 `;
 
 export const FormGrid = styled.div`
@@ -41,7 +43,8 @@ export const FormGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
 
-  gap: 18px;
+  gap: 20px;
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
 `;
 
 /* =========================
@@ -72,10 +75,12 @@ export const NavigationArea = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  @media (max-width: 600px) { flex-direction: column; align-items: stretch; }
 `;
 
 export const PreviousButton = styled.button`
-  min-width: 220px;
+  min-width: 0;
   height: 74px;
 
   padding: 0 36px;

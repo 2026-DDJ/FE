@@ -14,10 +14,12 @@ export const HeaderContainer = styled.header`
   align-items: center;
 
   z-index: 100;
+  @media (max-width: 600px) { top: 32px; left: 5%; right: 5%; }
 `;
 
 export const HeaderLogo = styled.img`
   width: 300px;
+  @media (max-width: 600px) { width: 148px; }
   height: auto;
 
   display: block;
@@ -32,6 +34,7 @@ export const Navigation = styled.nav`
   align-items: center;
 
   gap: 70px;
+  @media (max-width: 600px) { gap: 16px; }
 `;
 
 export const NavItem = styled.button`
@@ -43,6 +46,7 @@ export const NavItem = styled.button`
   color: ${COLORS.pink};
 
   font-size: 18px;
+  @media (max-width: 600px) { font-size: 16px; }
   font-weight: 600;
 
   white-space: nowrap;

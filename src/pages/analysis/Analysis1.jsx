@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 import Header from "../../components/Header";
 import Button from "../../components/Button";
@@ -7,7 +6,6 @@ import Button from "../../components/Button";
 import AnalysisSteps from "../../components/analysis/AnalysisSteps";
 import FormField from "../../components/analysis/FormField";
 import SelectInput from "../../components/analysis/SelectInput";
-import OptionButtons from "../../components/analysis/OptionButtons";
 
 import {
   AnalysisContainer,
@@ -20,10 +18,7 @@ import {
 const Analysis1 = () => {
   const navigate = useNavigate();
 
-  const [birthYear, setBirthYear] = useState("2005");
-  const [gender, setGender] = useState("female");
-  const [region, setRegion] = useState("서울특별시");
-  const [income, setIncome] = useState("300-500");
+  const { formData, updateField } = useOutletContext();
 
   return (
     <AnalysisContainer>
@@ -36,52 +31,13 @@ const Analysis1 = () => {
 
         <FormGrid>
           <FormField
-            icon="🎂"
-            title="출생년도"
-            description="태어난 연도를 선택해주세요."
-          >
-            <SelectInput
-              value={birthYear}
-              onChange={setBirthYear}
-              options={Array.from({ length: 100 }, (_, i) => {
-                const year = 2026 - i;
-                return {
-                  value: year.toString(),
-                  label: year.toString(),
-                };
-              })}
-            />
-          </FormField>
-
-          <FormField
-            icon="🚻"
-            title="성별"
-            description="성별을 선택해주세요."
-          >
-            <OptionButtons
-              value={gender}
-              onChange={setGender}
-              options={[
-                {
-                  value: "female",
-                  label: "여성",
-                },
-                {
-                  value: "male",
-                  label: "남성",
-                },
-              ]}
-            />
-          </FormField>
-
-          <FormField
             icon="📍"
             title="거주 지역"
             description="거주하는 지역을 선택해주세요."
           >
             <SelectInput
-  value={region}
-  onChange={setRegion}
+  value={formData.region}
+  onChange={(value) => updateField("region", value)}
   options={[
     { value: "서울특별시", label: "서울특별시" },
     { value: "부산광역시", label: "부산광역시" },
@@ -110,8 +66,8 @@ const Analysis1 = () => {
             description="연 평균 소득을 선택해주세요."
           >
 <SelectInput
-  value={income}
-  onChange={setIncome}
+  value={formData.income}
+  onChange={(value) => updateField("income", value)}
   options={[
     {
       value: "none",

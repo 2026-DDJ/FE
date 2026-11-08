@@ -1,462 +1,179 @@
-
 import styled from "styled-components";
 import { COLORS } from "./Common.styles";
 
-const BG = "#FFFFFF";
-const CARD = "#EAF7F4";
-const PINK = "#29AE89";
-const WHITE = "#202020";
-const MUTED = "#202020";
-
-// 전체 페이지
-
 export const SimulationContainer = styled.div`
-  position: relative;
   width: 100%;
   min-height: 100dvh;
-  background: ${BG};
-  color: ${WHITE};
-  overflow-x: hidden;
+  background: #fff;
+  color: #202020;
 `;
 
 export const SimulationContent = styled.main`
   width: 87%;
   max-width: 1380px;
   margin: 0 auto;
-  padding: 120px 0 30px;
-
-  @media (max-width: 900px) {
-    padding-top: 150px;
-  }
+  padding: 160px 0 64px;
+  @media (max-width: 600px) { width: 90%; padding-top: 132px; }
 `;
 
 export const PageTitle = styled.h1`
-  color: ${PINK};
-  font-size: clamp(30px, 4vw, 58px);
+  color: ${COLORS.pink};
+  font-size: 48px;
   font-weight: 800;
   line-height: 1.3;
-  letter-spacing: -1.5px;
+  @media (max-width: 600px) { font-size: 32px; }
 `;
 
 export const PageDescription = styled.p`
-  margin-top: 18px;
-  margin-bottom: 32px;
+  margin: 20px 0 32px;
   font-size: 20px;
-  line-height: 1.5;
+  line-height: 1.6;
+  @media (max-width: 600px) { font-size: 16px; }
 `;
-
-// 좌우 레이아웃
 
 export const SimulationGrid = styled.div`
   display: grid;
-  grid-template-columns: 2fr 1fr;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
   gap: 24px;
   align-items: stretch;
-
-  @media (max-width: 1050px) {
-    grid-template-columns: 1fr;
-  }
+  @media (max-width: 900px) { grid-template-columns: 1fr; }
 `;
 
 export const ConditionCard = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 0;
   min-width: 0;
-  padding: 24px 44px 28px;
-  background: ${CARD};
-  border: 1px solid ${PINK};
+  padding: 32px;
+  background: #eaf7f4;
+  border: 1px solid ${COLORS.pink};
   border-radius: 8px;
+  @media (max-width: 600px) { padding: 24px; }
+`;
 
-  @media (max-width: 600px) {
-    padding: 28px 18px;
-  }
+export const CardTitle = styled.h2`
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1.4;
+  margin-bottom: 24px;
+  @media (max-width: 600px) { font-size: 24px; }
 `;
 
 export const ConditionRow = styled.div`
-  display: grid;
-  grid-template-columns: 120px minmax(0, 1fr) 170px;
-  align-items: center;
-  gap: 20px;
-  min-height: 112px;
-  padding: 16px 0;
-  border-bottom: 1px solid rgba(41, 174, 137, 0.1);
-
-  @media (max-width: 750px) {
-    grid-template-columns: 1fr;
-    gap: 12px;
-  }
-`;
-
-export const ConditionInfo = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 12px;
-`;
-
-export const ConditionIcon = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 36px;
-  height: 36px;
-  flex-shrink: 0;
-  border: 2px solid ${PINK};
-  border-radius: 50%;
-  color: ${PINK};
-  font-size: 22px;
+  padding: 24px 0;
+  border-top: 1px solid #c9e3da;
 `;
 
 export const ConditionName = styled.h3`
-  font-size: 22px;
+  display: block;
+  margin-bottom: 20px;
+  font-size: 24px;
   font-weight: 700;
-`;
-
-export const ConditionSub = styled.p`
-  margin-top: 4px;
-  color: ${MUTED};
-  font-size: 12px;
-`;
-
-export const ConditionControl = styled.div`
-  min-width: 0;
-`;
-
-export const ConditionHelp = styled.div`
-  padding: 12px;
-  background: #FFFFFF;
-  border-radius: 8px;
-  color: #202020;
-  font-size: 12px;
-  line-height: 1.5;
-
-  @media (max-width: 750px) {
-    grid-column: 1;
-  }
-`;
-
-// BMI 슬라이더
-
-export const BMIControl = styled.div`
-  width: 100%;
 `;
 
 export const BMIValues = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  gap: 12px;
-  margin-bottom: 12px;
-
-  span {
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    color: #202020;
-    font-size: 12px;
-  }
-
-  strong {
-    color: ${WHITE};
-    font-size: 20px;
-  }
-
-  .selected {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-width: 50px;
-    padding: 6px 10px;
-    background: ${PINK};
-    border-radius: 20px;
-    color: #FFFFFF;
-    font-size: 14px;
-    font-weight: 800;
-  }
+  gap: 16px;
+  margin-bottom: 24px;
+  span { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
+  strong, output { font-size: 28px; font-weight: 700; }
+  output { color: ${COLORS.pink}; }
 `;
 
 export const BMISlider = styled.input`
   width: 100%;
-  height: 7px;
-  appearance: none;
-  -webkit-appearance: none;
-  background: #FFFFFF;
-  border-radius: 10px;
-  outline: none;
+  height: 24px;
+  accent-color: ${COLORS.pink};
   cursor: pointer;
-
-  &::-webkit-slider-thumb {
-    appearance: none;
-    -webkit-appearance: none;
-    width: 20px;
-    height: 20px;
-    background: ${PINK};
-    border-radius: 50%;
-    box-shadow: 0 0 10px rgba(41, 174, 137, 0.5);
-  }
-
-  &::-moz-range-thumb {
-    width: 20px;
-    height: 20px;
-    background: ${PINK};
-    border: none;
-    border-radius: 50%;
-  }
+  &:focus-visible { outline: 2px solid #174f40; outline-offset: 4px; }
 `;
 
 export const BMISliderLabels = styled.div`
   display: flex;
   justify-content: space-between;
-  margin-top: 10px;
-  color: #202020;
-  font-size: 10px;
+  margin-top: 8px;
+  font-size: 16px;
 `;
 
-// 선택 버튼
-
 export const OptionGroup = styled.div`
-  display: flex;
-  width: 100%;
-  border: 1px solid #29AE89;
-  border-radius: 8px;
-  overflow: hidden;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
 `;
 
 export const OptionButton = styled.button`
-  flex: 1;
-  min-width: 0;
-  min-height: 42px;
-  padding: 8px 10px;
-  background: ${({ $active }) =>
-    $active ? PINK : "#FFFFFF"};
-  color: ${({ $active }) =>
-    $active ? "#FFFFFF" : "#202020"};
-  font-size: 14px;
-  font-weight: ${({ $active }) =>
-    $active ? 700 : 500};
+  min-height: 56px;
+  padding: 12px;
+  border: 1px solid ${COLORS.pink};
+  border-radius: 4px;
+  background: ${({ $active }) => $active ? COLORS.pink : "#fff"};
+  color: ${({ $active }) => $active ? "#fff" : "#202020"};
+  font-size: 20px;
+  font-weight: 700;
   cursor: pointer;
-  transition: background 0.2s ease;
-
-  &:hover {
-    background: ${({ $active }) =>
-      $active ? PINK : "#EAF7F4"};
-  }
+  &:hover { box-shadow: inset 0 0 0 1px #174f40; }
+  &:focus-visible { outline: 2px solid #174f40; outline-offset: 4px; }
+  @media (max-width: 600px) { font-size: 16px; }
 `;
 
 export const PredictButton = styled.button`
-  align-self: center;
-  width: min(100%, 465px);
-  min-height: 74px;
-  margin-top: 24px;
-  padding: 15px 25px;
-  background: #29AE89;
-  color: #FFFFFF;
+  width: 100%;
+  min-height: 64px;
+  margin-top: 8px;
+  padding: 16px;
   border-radius: 8px;
-  font-size: 27px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: background 0.2s ease;
-
-  &:hover {
-    background: #202020;
-  }
-
-  @media (max-width: 600px) {
-    margin-top: 36px;
-    font-size: 18px;
-  }
-`;
-
-// 오른쪽 결과 카드
-
-export const ResultCard = styled.section`
-  min-width: 0;
-  padding: 34px 22px;
-  background: ${CARD};
-  border: 1px solid ${PINK};
-  border-radius: 8px;
-`;
-
-export const ResultHeading = styled.h2`
-  margin-bottom: 24px;
+  background: ${COLORS.pink};
+  color: #fff;
   font-size: 24px;
   font-weight: 700;
+  cursor: pointer;
+  &:hover { background: #21876c; }
+  &:focus-visible { outline: 2px solid #174f40; outline-offset: 4px; }
+  @media (max-width: 600px) { font-size: 20px; }
 `;
 
-export const CostComparison = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 8px;
-`;
+export const ResultCard = styled(ConditionCard)``;
 
 export const CostBox = styled.div`
-  flex: 1;
-  min-width: 0;
-  padding: 14px 10px;
-  background: #FFFFFF;
-  border: 1px solid #29AE89;
+  padding: 24px;
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid ${({ $highlight }) => $highlight ? COLORS.pink : "#c9e3da"};
   border-radius: 8px;
+  @media (max-width: 600px) { padding: 20px; }
 `;
 
 export const CostLabel = styled.p`
   margin-bottom: 12px;
-  color: #202020;
-  font-size: 12px;
-  white-space: nowrap;
+  font-size: 16px;
+  line-height: 1.5;
 `;
 
 export const CostAmount = styled.div`
-  margin-bottom: 14px;
-  color: ${({ $pink }) => ($pink ? PINK : WHITE)};
-  font-size: clamp(14px, 1.4vw, 23px);
+  color: ${({ $highlight }) => $highlight ? COLORS.pink : "#202020"};
+  font-size: 36px;
   font-weight: 800;
-  white-space: nowrap;
-
-  small {
-    font-size: 11px;
-    font-weight: 500;
-  }
-`;
-
-export const CostBar = styled.div`
-  width: 100%;
-  height: 7px;
-  background: #EAF7F4;
-  border-radius: 10px;
-  overflow: hidden;
-`;
-
-export const CostBarFill = styled.div`
-  width: ${({ $width }) => $width}%;
-  height: 100%;
-  background: ${PINK};
-  border-radius: inherit;
-  transition: width 0.4s ease;
-`;
-
-export const ResultArrow = styled.div`
-  flex-shrink: 0;
-  color: ${PINK};
-  font-size: 24px;
+  overflow-wrap: anywhere;
+  small { margin-left: 8px; font-size: 20px; font-weight: 500; }
+  @media (max-width: 600px) { font-size: 32px; }
 `;
 
 export const DifferenceBox = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-top: 14px;
-  padding: 15px 12px;
-  background: #FFFFFF;
-  border: 1px solid #29AE89;
-  border-radius: 8px;
-  color: ${PINK};
+  margin-top: 24px;
+  line-height: 1.5;
 `;
 
-export const DifferenceAmount = styled.strong`
-  font-size: clamp(14px, 1.4vw, 21px);
-`;
-
-export const DifferencePercent = styled.span`
-  font-size: 13px;
-  font-weight: 700;
-  white-space: nowrap;
-`;
-
-// 위험 등급
-
-export const RiskSection = styled.div`
-  margin-top: 26px;
-`;
-
-export const RiskTitle = styled.h3`
-  margin-bottom: 18px;
-  color: ${PINK};
-  font-size: 17px;
-`;
-
-export const RiskComparison = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-export const RiskGroup = styled.div`
-  flex: 1;
-  min-width: 0;
-  text-align: center;
-`;
-
-export const RiskLabel = styled.p`
-  margin-bottom: 5px;
-  color: #202020;
-  font-size: 12px;
-`;
-
-export const RiskGrade = styled.div`
-  font-size: 19px;
-  font-weight: 700;
-
-  small {
-    display: block;
-    margin-top: 3px;
-    color: #202020;
-    font-size: 11px;
-    font-weight: 400;
-  }
-`;
-
-export const RiskScale = styled.div`
-  display: flex;
-  gap: 5px;
-  margin-top: 12px;
-`;
-
-export const RiskLevel = styled.span`
-  flex: 1;
-  padding: 5px 0;
-  background: ${({ $active }) =>
-    $active ? PINK : "#FFFFFF"};
-  color: ${({ $active }) =>
-    $active ? "#FFFFFF" : "#202020"};
-  border-radius: 5px;
-  font-size: 11px;
+export const DifferenceAmount = styled.p`
+  font-size: 24px;
   font-weight: 700;
 `;
 
-export const RiskArrow = styled.span`
-  color: ${PINK};
-  font-size: 27px;
-`;
-
-// 기대 변화
-
-export const ExpectationBox = styled.div`
-  margin-top: 28px;
-  padding: 18px 14px;
-  background: #FFFFFF;
-  border: 1px solid #29AE89;
-  border-radius: 8px;
-`;
-
-export const ExpectationTitle = styled.h3`
-  margin-bottom: 16px;
-  color: ${PINK};
-  font-size: 15px;
-  font-weight: 700;
-`;
-
-export const ExpectationItem = styled.p`
-  margin-top: 10px;
-  color: #202020;
-  font-size: 12px;
-  line-height: 1.6;
+export const DifferencePercent = styled.p`
+  margin-top: 8px;
+  font-size: 20px;
 `;
 
 export const Notice = styled.p`
-  margin-top: 28px;
-  color: #202020;
-  font-size: 13px;
-  text-align: center;
+  margin-top: 24px;
+  color: #38594f;
+  font-size: 16px;
   line-height: 1.6;
 `;
