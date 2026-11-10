@@ -14,7 +14,7 @@ import {
 const Simulation = () => {
   const [initial] = useState(() => {
     const assessment = readAssessment();
-    return { bmi: getBMI(assessment), exercise: assessment.exercise };
+    return { bmi: getBMI(assessment), exercise: assessment.exercise || "regular" };
   });
   const [conditions, setConditions] = useState(initial);
   const [applied, setApplied] = useState(null);

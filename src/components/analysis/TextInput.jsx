@@ -10,10 +10,12 @@ const TextInput = ({
   placeholder,
   suffix,
   type = "text",
+  ...inputProps
 }) => {
   return (
     <InputWrapper>
       <Input
+        {...inputProps}
         type={type}
         value={value}
         placeholder={placeholder}

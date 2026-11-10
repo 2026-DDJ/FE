@@ -7,10 +7,13 @@ const OptionButtons = ({
   value,
   onChange,
   options,
+  "aria-label": label,
 }) => {
   return (
     <OptionButtonContainer
       $count={options.length}
+      role="group"
+      aria-label={label}
     >
       {options.map((option) => (
         <OptionButton

@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { getTopModelFactors } from "../../utils/modelFactors";
 
 import { useNavigate } from "react-router-dom";
 
@@ -16,6 +18,8 @@ import {
   ResultGrid,
   ResultCard,
   CardTitle,
+  FactorTabs,
+  FactorTab,
   FactorList,
   FactorItem,
   FactorLabel,
@@ -27,7 +31,6 @@ import {
   ChartValue,
   ChartBar,
   ChartLabel,
-  ChartNote,
   ChartTrack,
   FactorScore,
   SimulationBanner,
@@ -37,28 +40,16 @@ import {
   SimulationButton,
 } from "../../styles/AnalysisResult.styles";
 
+const FACTOR_TABS = [
+  { key: "low_model", label: "일반 의료비" },
+  { key: "high_model", label: "고액 의료비" },
+  { key: "classifier", label: "고비용군 확률" },
+];
+
 // 임시 결과 데이터 (추후 API 연동)
 const resultData = {
   predictedCost: DEMO_PREDICTED_COST,
   differencePercent: 22.9,
-
-  factors: [
-    {
-      icon: "🏃",
-      name: "운동",
-      score: 78,
-    },
-    {
-      icon: "⚖️",
-      name: "BMI",
-      score: 53,
-    },
-    {
-      icon: "❤️",
-      name: "건강 상태",
-      score: 31,
-    },
-  ],
 
   comparisons: [
     {
@@ -82,6 +73,8 @@ const resultData = {
 
 const AnalysisResult = () => {
   const navigate = useNavigate();
+  const [factorModel, setFactorModel] = useState("low_model");
+  const factors = getTopModelFactors(factorModel);
 
   const maxCost = Math.max(...resultData.comparisons.map((item) => item.cost));
 
@@ -117,22 +110,51 @@ const AnalysisResult = () => {
               주요 영향요인{" "}
               <Highlight>Top 3</Highlight>
             </CardTitle>
-            <FactorList>
-              {resultData.factors.map(
+            <FactorTabs
+              role="tablist"
+              aria-label="영향요인 모델 선택"
+              onKeyDown={(event) => {
+                const current = FACTOR_TABS.findIndex(({ key }) => key === factorModel);
+                const next = event.key === "ArrowRight" ? (current + 1) % FACTOR_TABS.length
+                  : event.key === "ArrowLeft" ? (current + FACTOR_TABS.length - 1) % FACTOR_TABS.length
+                  : event.key === "Home" ? 0 : event.key === "End" ? FACTOR_TABS.length - 1 : null;
+                if (next === null) return;
+                event.preventDefault();
+                setFactorModel(FACTOR_TABS[next].key);
+                event.currentTarget.querySelectorAll("button")[next].focus();
+              }}
+            >
+              {FACTOR_TABS.map(({ key, label }) => (
+                <FactorTab
+                  key={key}
+                  id={`factor-tab-${key}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={factorModel === key}
+                  aria-controls="model-factor-panel"
+                  tabIndex={factorModel === key ? 0 : -1}
+                  $active={factorModel === key}
+                  onClick={() => setFactorModel(key)}
+                >
+                  {label}
+                </FactorTab>
+              ))}
+            </FactorTabs>
+            <FactorList role="tabpanel" id="model-factor-panel" aria-labelledby={`factor-tab-${factorModel}`} tabIndex={0}>
+              {factors.map(
                 (factor, index) => (
-                  <FactorItem key={factor.name}>
+                  <FactorItem key={factor.feature}>
                     <FactorLabel>
                       {index + 1}.{" "}
-                      {factor.icon}{" "}
                       {factor.name}
                     </FactorLabel>
 
-                    <FactorTrack>
+                    <FactorTrack role="meter" aria-label={`${factor.name} 중요도 비중`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Number(factor.score.toFixed(1))}>
                       <FactorFill
-                        $score={factor.score}
+                        $score={factors[0].score > 0 ? factor.score / factors[0].score * 100 : 0}
                       />
                     </FactorTrack>
-                    <FactorScore>{factor.score}점</FactorScore>
+                    <FactorScore>{factor.score.toFixed(1)}%</FactorScore>
                   </FactorItem>
                 )
               )}

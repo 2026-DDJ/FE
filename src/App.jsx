@@ -14,6 +14,7 @@ import AnalysisLayout from "./pages/analysis/AnalysisLayout";
 import Analysis1 from "./pages/analysis/Analysis1";
 import Analysis2 from "./pages/analysis/Analysis2";
 import Analysis3 from "./pages/analysis/Analysis3";
+import Analysis4 from "./pages/analysis/Analysis4";
 import AnalysisLoading from "./pages/analysis/AnalysisLoading";
 import AnalysisResult from "./pages/analysis/AnalysisResult";
 import Simulation from "./pages/simulation/Simulation";
@@ -72,6 +73,7 @@ const App = () => {
           path="3"
           element={<Analysis3 />}
         />
+        <Route path="4" element={<Analysis4 />} />
       </Route>
 
       <Route
