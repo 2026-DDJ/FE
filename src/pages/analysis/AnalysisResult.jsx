@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { MODEL_IMPORTANCE, getTopModelFactors } from "../../utils/modelFactors";
-import SelectInput from "../../components/analysis/SelectInput";
+import { getTopModelFactors } from "../../utils/modelFactors";
 
 import { useNavigate } from "react-router-dom";
 
@@ -19,6 +18,8 @@ import {
   ResultGrid,
   ResultCard,
   CardTitle,
+  FactorTabs,
+  FactorTab,
   FactorList,
   FactorItem,
   FactorLabel,
@@ -38,6 +39,12 @@ import {
   SimulationDescription,
   SimulationButton,
 } from "../../styles/AnalysisResult.styles";
+
+const FACTOR_TABS = [
+  { key: "low_model", label: "일반 의료비" },
+  { key: "high_model", label: "고액 의료비" },
+  { key: "classifier", label: "고비용군 확률" },
+];
 
 // 임시 결과 데이터 (추후 API 연동)
 const resultData = {
@@ -103,13 +110,37 @@ const AnalysisResult = () => {
               주요 영향요인{" "}
               <Highlight>Top 3</Highlight>
             </CardTitle>
-            <SelectInput
+            <FactorTabs
+              role="tablist"
               aria-label="영향요인 모델 선택"
-              value={factorModel}
-              onChange={setFactorModel}
-              options={MODEL_IMPORTANCE.models.map(({ key, label }) => ({ value: key, label }))}
-            />
-            <FactorList>
+              onKeyDown={(event) => {
+                const current = FACTOR_TABS.findIndex(({ key }) => key === factorModel);
+                const next = event.key === "ArrowRight" ? (current + 1) % FACTOR_TABS.length
+                  : event.key === "ArrowLeft" ? (current + FACTOR_TABS.length - 1) % FACTOR_TABS.length
+                  : event.key === "Home" ? 0 : event.key === "End" ? FACTOR_TABS.length - 1 : null;
+                if (next === null) return;
+                event.preventDefault();
+                setFactorModel(FACTOR_TABS[next].key);
+                event.currentTarget.querySelectorAll("button")[next].focus();
+              }}
+            >
+              {FACTOR_TABS.map(({ key, label }) => (
+                <FactorTab
+                  key={key}
+                  id={`factor-tab-${key}`}
+                  type="button"
+                  role="tab"
+                  aria-selected={factorModel === key}
+                  aria-controls="model-factor-panel"
+                  tabIndex={factorModel === key ? 0 : -1}
+                  $active={factorModel === key}
+                  onClick={() => setFactorModel(key)}
+                >
+                  {label}
+                </FactorTab>
+              ))}
+            </FactorTabs>
+            <FactorList role="tabpanel" id="model-factor-panel" aria-labelledby={`factor-tab-${factorModel}`} tabIndex={0}>
               {factors.map(
                 (factor, index) => (
                   <FactorItem key={factor.feature}>

@@ -139,6 +139,37 @@ export const CardTitle = styled.h2`
 // 주요 영향요인 TOP 3
 // ==========================================
 
+export const FactorTabs = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  margin-top: 16px;
+  background: #d7eee7;
+  border-radius: 8px;
+`;
+
+export const FactorTab = styled.button`
+  min-width: 0;
+  min-height: 48px;
+  padding: 10px 6px;
+  border: 0;
+  border-radius: 6px;
+  background: ${({ $active }) => $active ? "#29AE89" : "transparent"};
+  color: ${({ $active }) => $active ? "#fff" : "#21735d"};
+  font-size: 16px;
+  font-weight: 700;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+
+  &:hover { background: ${({ $active }) => $active ? "#239b79" : "#c7e7dc"}; }
+  &:focus-visible { outline: 2px solid #185c49; outline-offset: 2px; }
+
+  @media (max-width: 1100px) { font-size: 14px; }
+  @media (max-width: 480px) { font-size: 12px; padding-inline: 2px; }
+`;
+
 export const FactorList = styled.div`
   display: flex;
   flex-direction: column;
