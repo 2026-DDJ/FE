@@ -120,7 +120,7 @@ const AnalysisResult = () => {
 
                     <FactorTrack role="meter" aria-label={`${factor.name} 중요도 비중`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Number(factor.score.toFixed(1))}>
                       <FactorFill
-                        $score={factor.score}
+                        $score={factors[0].score > 0 ? factor.score / factors[0].score * 100 : 0}
                       />
                     </FactorTrack>
                     <FactorScore>{factor.score.toFixed(1)}%</FactorScore>

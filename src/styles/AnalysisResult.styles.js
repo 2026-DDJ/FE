@@ -144,11 +144,11 @@ export const FactorList = styled.div`
   flex-direction: column;
 
   gap: 32px;
-  margin-top: 52px;
+  margin-top: 32px;
 
   @media (max-width: 480px) {
     gap: 28px;
-    margin-top: 40px;
+    margin-top: 28px;
   }
 `;
 
@@ -164,20 +164,22 @@ export const FactorItem = styled.div`
 `;
 
 export const FactorLabel = styled.div`
-  width: 172px;
+  width: 210px;
   flex-shrink: 0;
-
   color: #202020;
-
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 600;
-
-  overflow-wrap: anywhere;
+  white-space: nowrap;
   line-height: 1.4;
 
+  @media (max-width: 1100px) {
+    width: 180px;
+    font-size: 18px;
+  }
+
   @media (max-width: 480px) {
-    width: 116px;
-    font-size: 16px;
+    width: 150px;
+    font-size: 15px;
   }
 `;
 
