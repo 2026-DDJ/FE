@@ -30,7 +30,6 @@ import {
   ChartValue,
   ChartBar,
   ChartLabel,
-  ChartNote,
   ChartTrack,
   FactorScore,
   SimulationBanner,
@@ -89,7 +88,6 @@ const AnalysisResult = () => {
           {formatMedicalCost(resultData.predictedCost)}
         </ResultAmount>
 
-        <ChartNote>의료비와 비교 집단은 예시 데이터입니다.</ChartNote>
         <ResultDescription>
           비교 집단 평균보다{" "}
           <Highlight>
@@ -111,7 +109,6 @@ const AnalysisResult = () => {
               onChange={setFactorModel}
               options={MODEL_IMPORTANCE.models.map(({ key, label }) => ({ value: key, label }))}
             />
-            <ChartNote>학습 모델 전체의 변수 중요도입니다. 개인별 영향이나 의료비 증감 방향을 의미하지 않습니다.</ChartNote>
             <FactorList>
               {factors.map(
                 (factor, index) => (
@@ -131,9 +128,6 @@ const AnalysisResult = () => {
                 )
               )}
             </FactorList>
-            <ChartNote>전체 변수의 중요도 합은 100%입니다. 의료이용 상세 항목은 직접 입력한 답변 대신 대표값을 사용합니다.
-              {" "}<a href={`${MODEL_IMPORTANCE.repository}/tree/${MODEL_IMPORTANCE.commit}`} target="_blank" rel="noreferrer">모델 출처</a>
-            </ChartNote>
           </ResultCard>
 
           {/* 유사 집단 의료비 비교 */}
