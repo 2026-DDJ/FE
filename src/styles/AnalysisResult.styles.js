@@ -129,6 +129,7 @@ export const CardTitle = styled.h2`
   font-size: 32px;
   font-weight: 700;
   line-height: 1.4;
+  margin-bottom: 12px;
 
   @media (max-width: 480px) {
     font-size: 23px;
