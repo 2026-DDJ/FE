@@ -8,13 +8,16 @@ const SelectInput = ({
   value,
   onChange,
   options,
+  ...selectProps
 }) => {
   return (
     <SelectContainer>
       <Select
+        {...selectProps}
         value={value}
         onChange={(e) => onChange(e.target.value)}
       >
+        <option value="" disabled>선택해주세요</option>
         {options.map((option) => (
           <option
             key={option.value}

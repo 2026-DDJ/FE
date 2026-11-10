@@ -1,3 +1,6 @@
+import { useState } from "react";
+import { MODEL_IMPORTANCE, getTopModelFactors } from "../../utils/modelFactors";
+import SelectInput from "../../components/analysis/SelectInput";
 
 import { useNavigate } from "react-router-dom";
 
@@ -42,24 +45,6 @@ const resultData = {
   predictedCost: DEMO_PREDICTED_COST,
   differencePercent: 22.9,
 
-  factors: [
-    {
-      icon: "🏃",
-      name: "운동",
-      score: 78,
-    },
-    {
-      icon: "⚖️",
-      name: "BMI",
-      score: 53,
-    },
-    {
-      icon: "❤️",
-      name: "건강 상태",
-      score: 31,
-    },
-  ],
-
   comparisons: [
     {
       label: "나",
@@ -82,6 +67,8 @@ const resultData = {
 
 const AnalysisResult = () => {
   const navigate = useNavigate();
+  const [factorModel, setFactorModel] = useState("low_model");
+  const factors = getTopModelFactors(factorModel);
 
   const maxCost = Math.max(...resultData.comparisons.map((item) => item.cost));
 
@@ -102,6 +89,7 @@ const AnalysisResult = () => {
           {formatMedicalCost(resultData.predictedCost)}
         </ResultAmount>
 
+        <ChartNote>의료비와 비교 집단은 예시 데이터입니다.</ChartNote>
         <ResultDescription>
           비교 집단 평균보다{" "}
           <Highlight>
@@ -117,26 +105,35 @@ const AnalysisResult = () => {
               주요 영향요인{" "}
               <Highlight>Top 3</Highlight>
             </CardTitle>
+            <SelectInput
+              aria-label="영향요인 모델 선택"
+              value={factorModel}
+              onChange={setFactorModel}
+              options={MODEL_IMPORTANCE.models.map(({ key, label }) => ({ value: key, label }))}
+            />
+            <ChartNote>학습 모델 전체의 변수 중요도입니다. 개인별 영향이나 의료비 증감 방향을 의미하지 않습니다.</ChartNote>
             <FactorList>
-              {resultData.factors.map(
+              {factors.map(
                 (factor, index) => (
-                  <FactorItem key={factor.name}>
+                  <FactorItem key={factor.feature}>
                     <FactorLabel>
                       {index + 1}.{" "}
-                      {factor.icon}{" "}
                       {factor.name}
                     </FactorLabel>
 
-                    <FactorTrack>
+                    <FactorTrack role="meter" aria-label={`${factor.name} 중요도 비중`} aria-valuemin={0} aria-valuemax={100} aria-valuenow={Number(factor.score.toFixed(1))}>
                       <FactorFill
                         $score={factor.score}
                       />
                     </FactorTrack>
-                    <FactorScore>{factor.score}점</FactorScore>
+                    <FactorScore>{factor.score.toFixed(1)}%</FactorScore>
                   </FactorItem>
                 )
               )}
             </FactorList>
+            <ChartNote>전체 변수의 중요도 합은 100%입니다. 의료이용 상세 항목은 직접 입력한 답변 대신 대표값을 사용합니다.
+              {" "}<a href={`${MODEL_IMPORTANCE.repository}/tree/${MODEL_IMPORTANCE.commit}`} target="_blank" rel="noreferrer">모델 출처</a>
+            </ChartNote>
           </ResultCard>
 
           {/* 유사 집단 의료비 비교 */}

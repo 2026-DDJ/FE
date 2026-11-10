@@ -1,0 +1,364 @@
+{
+  "repository": "https://github.com/2026-DDJ/AI",
+  "commit": "9de9035ce05f5d3768221e87dc2574ff54340a9c",
+  "method": "XGBoost normalized gain; sum one-hot category importances by original feature, then normalize across all 28 features. Each model is ranked separately.",
+  "models": [
+    {
+      "key": "low_model",
+      "label": "일반 의료비 예측",
+      "sha256": "99d553deb136ee4febdc1569100540356c38aae17c1c6d260a0ff8fa4ba6b05f",
+      "factors": [
+        {
+          "feature": "eco9",
+          "importance": 0.13970083057563337
+        },
+        {
+          "feature": "ms_total_days",
+          "importance": 0.12342329381425181
+        },
+        {
+          "feature": "health_ins",
+          "importance": 0.1031989499097938
+        },
+        {
+          "feature": "region1",
+          "importance": 0.09708526477574639
+        },
+        {
+          "feature": "ms_facility_nunique",
+          "importance": 0.07626174141540115
+        },
+        {
+          "feature": "ms_in_sat7_mean",
+          "importance": 0.052246395173218906
+        },
+        {
+          "feature": "ms_dent_trt_10_count",
+          "importance": 0.05162478201769445
+        },
+        {
+          "feature": "ingun",
+          "importance": 0.05150760672902131
+        },
+        {
+          "feature": "ougun",
+          "importance": 0.046405370573117645
+        },
+        {
+          "feature": "ms_in_dsc_nunique",
+          "importance": 0.02997597129509877
+        },
+        {
+          "feature": "self_rated_health",
+          "importance": 0.02734737369315488
+        },
+        {
+          "feature": "ougun_dent",
+          "importance": 0.02545442597812788
+        },
+        {
+          "feature": "ms_in_trt_1_count",
+          "importance": 0.021470473613822223
+        },
+        {
+          "feature": "ms_mtype_1_count",
+          "importance": 0.01834708757885056
+        },
+        {
+          "feature": "ms_in_treatment_nunique",
+          "importance": 0.018194847992961297
+        },
+        {
+          "feature": "activity_limitation",
+          "importance": 0.016540422715025056
+        },
+        {
+          "feature": "indemnity_insurance",
+          "importance": 0.01631846385100173
+        },
+        {
+          "feature": "ms_mtype_3_count",
+          "importance": 0.01404273880760779
+        },
+        {
+          "feature": "ms_in_choice_1_count",
+          "importance": 0.010254763734109343
+        },
+        {
+          "feature": "anxiety_depression",
+          "importance": 0.010059748499584315
+        },
+        {
+          "feature": "exercise",
+          "importance": 0.00893141364127633
+        },
+        {
+          "feature": "income",
+          "importance": 0.00879001022707854
+        },
+        {
+          "feature": "ms_dent_trt_5_count",
+          "importance": 0.008730083340792519
+        },
+        {
+          "feature": "dent_share",
+          "importance": 0.008116112618812704
+        },
+        {
+          "feature": "ms_in_care2_2_count",
+          "importance": 0.00772154428022253
+        },
+        {
+          "feature": "bmi",
+          "importance": 0.005661343127103849
+        },
+        {
+          "feature": "ms_in_reason_2_count",
+          "importance": 0.0025889400214908495
+        },
+        {
+          "feature": "hospitalized_year",
+          "importance": 0.0
+        }
+      ]
+    },
+    {
+      "key": "high_model",
+      "label": "고액 의료비 예측",
+      "sha256": "7ea7ae6baef7fb0dec4c5ad515d01d804c797680049c6bbc847a8026e13366e4",
+      "factors": [
+        {
+          "feature": "region1",
+          "importance": 0.1381898191927111
+        },
+        {
+          "feature": "eco9",
+          "importance": 0.11517113976356738
+        },
+        {
+          "feature": "ms_in_reason_2_count",
+          "importance": 0.10016132926159071
+        },
+        {
+          "feature": "ingun",
+          "importance": 0.08055318920134982
+        },
+        {
+          "feature": "indemnity_insurance",
+          "importance": 0.05875874890046689
+        },
+        {
+          "feature": "ms_in_choice_1_count",
+          "importance": 0.05069127696574879
+        },
+        {
+          "feature": "health_ins",
+          "importance": 0.049310425002979205
+        },
+        {
+          "feature": "anxiety_depression",
+          "importance": 0.038180325313635376
+        },
+        {
+          "feature": "self_rated_health",
+          "importance": 0.0337530513075869
+        },
+        {
+          "feature": "ms_total_days",
+          "importance": 0.031341672053124076
+        },
+        {
+          "feature": "exercise",
+          "importance": 0.027174095718099603
+        },
+        {
+          "feature": "ms_mtype_1_count",
+          "importance": 0.02600953550779797
+        },
+        {
+          "feature": "income",
+          "importance": 0.025912884713311976
+        },
+        {
+          "feature": "activity_limitation",
+          "importance": 0.024927446705734286
+        },
+        {
+          "feature": "ms_in_trt_1_count",
+          "importance": 0.024724789050145038
+        },
+        {
+          "feature": "ms_in_care2_2_count",
+          "importance": 0.01989757090305527
+        },
+        {
+          "feature": "ougun",
+          "importance": 0.017218668073946616
+        },
+        {
+          "feature": "ms_in_sat7_mean",
+          "importance": 0.016531299857415607
+        },
+        {
+          "feature": "ms_in_dsc_nunique",
+          "importance": 0.01569183921333812
+        },
+        {
+          "feature": "ms_in_treatment_nunique",
+          "importance": 0.014824753678955907
+        },
+        {
+          "feature": "ms_dent_trt_10_count",
+          "importance": 0.013315113307844545
+        },
+        {
+          "feature": "ougun_dent",
+          "importance": 0.01310396012769998
+        },
+        {
+          "feature": "dent_share",
+          "importance": 0.012894756205710895
+        },
+        {
+          "feature": "ms_mtype_3_count",
+          "importance": 0.012679971798835224
+        },
+        {
+          "feature": "ms_dent_trt_5_count",
+          "importance": 0.011515180620534278
+        },
+        {
+          "feature": "bmi",
+          "importance": 0.011009804011589628
+        },
+        {
+          "feature": "ms_facility_nunique",
+          "importance": 0.010156800074584782
+        },
+        {
+          "feature": "hospitalized_year",
+          "importance": 0.0063005534686400326
+        }
+      ]
+    },
+    {
+      "key": "classifier",
+      "label": "고비용군 분류",
+      "sha256": "83e08275bc853a062228afce13519dbe3756aeebf74ca073c00325e0e5ee0492",
+      "factors": [
+        {
+          "feature": "ingun",
+          "importance": 0.17148463140546963
+        },
+        {
+          "feature": "region1",
+          "importance": 0.1150050143989825
+        },
+        {
+          "feature": "ms_total_days",
+          "importance": 0.07793830949544016
+        },
+        {
+          "feature": "ms_dent_trt_10_count",
+          "importance": 0.07574130467759121
+        },
+        {
+          "feature": "ms_in_dsc_nunique",
+          "importance": 0.07356510933100062
+        },
+        {
+          "feature": "eco9",
+          "importance": 0.04988555992214002
+        },
+        {
+          "feature": "ms_in_treatment_nunique",
+          "importance": 0.0498011513646499
+        },
+        {
+          "feature": "health_ins",
+          "importance": 0.046993764260888325
+        },
+        {
+          "feature": "ms_in_trt_1_count",
+          "importance": 0.039327654328292445
+        },
+        {
+          "feature": "ougun_dent",
+          "importance": 0.03914555096568548
+        },
+        {
+          "feature": "ms_facility_nunique",
+          "importance": 0.03680381489687723
+        },
+        {
+          "feature": "ms_in_sat7_mean",
+          "importance": 0.035657863466216674
+        },
+        {
+          "feature": "self_rated_health",
+          "importance": 0.025859363409254196
+        },
+        {
+          "feature": "ms_dent_trt_5_count",
+          "importance": 0.020484724669973326
+        },
+        {
+          "feature": "indemnity_insurance",
+          "importance": 0.0196536869241238
+        },
+        {
+          "feature": "ougun",
+          "importance": 0.016828406320036095
+        },
+        {
+          "feature": "ms_mtype_1_count",
+          "importance": 0.015238477593015323
+        },
+        {
+          "feature": "ms_in_care2_2_count",
+          "importance": 0.013059193049496529
+        },
+        {
+          "feature": "income",
+          "importance": 0.011496121802432284
+        },
+        {
+          "feature": "dent_share",
+          "importance": 0.010526115829618569
+        },
+        {
+          "feature": "anxiety_depression",
+          "importance": 0.009873113429438285
+        },
+        {
+          "feature": "ms_mtype_3_count",
+          "importance": 0.009393117233108627
+        },
+        {
+          "feature": "exercise",
+          "importance": 0.009168916693850886
+        },
+        {
+          "feature": "activity_limitation",
+          "importance": 0.009029290953160043
+        },
+        {
+          "feature": "ms_in_reason_2_count",
+          "importance": 0.006438560675928283
+        },
+        {
+          "feature": "bmi",
+          "importance": 0.006435840748394715
+        },
+        {
+          "feature": "ms_in_choice_1_count",
+          "importance": 0.005165342154934855
+        },
+        {
+          "feature": "hospitalized_year",
+          "importance": 0.0
+        }
+      ]
+    }
+  ]
+}

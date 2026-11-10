@@ -172,7 +172,8 @@ export const FactorLabel = styled.div`
   font-size: 24px;
   font-weight: 600;
 
-  white-space: nowrap;
+  overflow-wrap: anywhere;
+  line-height: 1.4;
 
   @media (max-width: 480px) {
     width: 116px;
