@@ -169,13 +169,14 @@ export const OptionButtonContainer = styled.div`
 `;
 
 export const OptionButton = styled.button`
-  height: 58px;
+  min-height: 58px;
+  padding: 10px 8px;
 
-  border: 1px solid #29AE89;
+  border: 1px solid #21735d;
   border-radius: 4px;
 
   background: ${({ $active }) =>
-    $active ? "#29AE89" : "transparent"};
+    $active ? "#21735d" : "transparent"};
 
   color: ${({ $active }) =>
     $active ? "#FFFFFF" : "#21735d"};
@@ -189,10 +190,12 @@ export const OptionButton = styled.button`
     background 0.2s ease,
     color 0.2s ease;
 
+  &:focus-visible { outline: 3px solid #1558a6; outline-offset: 3px; }
+
   &:hover {
     background: ${({ $active }) =>
       $active
-        ? "#29AE89"
+        ? "#21735d"
         : "rgba(41, 174, 137, 0.08)"};
   }
 `;
