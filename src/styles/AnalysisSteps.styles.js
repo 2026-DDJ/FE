@@ -18,14 +18,14 @@ export const StepCircle = styled.div`
   justify-content: center;
   align-items: center;
 
-  border: 1.5px solid #29AE89;
+  border: 1.5px solid ${COLORS.pink};
   border-radius: 50%;
 
   background: ${({ $active }) =>
-    $active ? "#29AE89" : "transparent"};
+    $active ? COLORS.pink : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? "#FFFFFF" : "#29AE89"};
+    $active ? COLORS.background : COLORS.pink};
 
   font-family: "Akira Expanded", sans-serif;
   font-size: 22px;

@@ -14,7 +14,7 @@ export const ResultContainer = styled.div`
   min-height: 100vh;
   min-height: 100dvh;
 
-  background: #FFFFFF;
+  background: ${COLORS.background};
 
   overflow-x: hidden;
 `;
@@ -41,7 +41,7 @@ export const ResultContent = styled.main`
 // ==========================================
 
 export const ResultHeading = styled.h1`
-  color: #202020;
+  color: ${COLORS.white};
 
   font-size: 48px;
   font-weight: 600;
@@ -74,7 +74,7 @@ export const ResultDescription = styled.p`
   margin-top: 24px;
   margin-bottom: 48px;
 
-  color: #202020;
+  color: ${COLORS.white};
 
   font-size: 28px;
   font-weight: 400;
@@ -112,7 +112,7 @@ export const ResultCard = styled.section`
 
   padding: 36px 38px;
 
-  background: #EAF7F4;
+  background: ${COLORS.button};
 
   border: 1px solid ${COLORS.pink};
   border-radius: 8px;
@@ -124,7 +124,7 @@ export const ResultCard = styled.section`
 `;
 
 export const CardTitle = styled.h2`
-  color: #202020;
+  color: ${COLORS.white};
 
   font-size: 32px;
   font-weight: 700;
@@ -146,7 +146,7 @@ export const FactorTabs = styled.div`
   gap: 4px;
   padding: 4px;
   margin-top: 16px;
-  background: #d7eee7;
+  background: ${COLORS.button};
   border-radius: 8px;
 `;
 
@@ -156,16 +156,16 @@ export const FactorTab = styled.button`
   padding: 10px 6px;
   border: 0;
   border-radius: 6px;
-  background: ${({ $active }) => $active ? "#29AE89" : "transparent"};
-  color: ${({ $active }) => $active ? "#fff" : "#21735d"};
+  background: ${({ $active }) => $active ? COLORS.pink : "transparent"};
+  color: ${({ $active }) => $active ? COLORS.background : COLORS.primaryText};
   font-size: 16px;
   font-weight: 700;
   white-space: nowrap;
   cursor: pointer;
   transition: background 0.2s ease, color 0.2s ease;
 
-  &:hover { background: ${({ $active }) => $active ? "#239b79" : "#c7e7dc"}; }
-  &:focus-visible { outline: 2px solid #185c49; outline-offset: 2px; }
+  &:hover { background: ${({ $active }) => $active ? COLORS.primaryText : COLORS.button}; }
+  &:focus-visible { outline: 2px solid ${COLORS.focus}; outline-offset: 2px; }
 
   @media (max-width: 1100px) { font-size: 14px; }
   @media (max-width: 480px) { font-size: 12px; padding-inline: 2px; }
@@ -198,7 +198,7 @@ export const FactorItem = styled.div`
 export const FactorLabel = styled.div`
   width: 210px;
   flex-shrink: 0;
-  color: #202020;
+  color: ${COLORS.white};
   font-size: 22px;
   font-weight: 600;
   white-space: nowrap;
@@ -220,7 +220,7 @@ export const FactorTrack = styled.div`
   min-width: 0;
   height: 13px;
 
-  background: #EAF7F4;
+  background: ${COLORS.button};
 
   border-radius: 20px;
   overflow: hidden;
@@ -243,7 +243,7 @@ export const FactorFill = styled.div`
 
 export const ChartNote = styled.p`
   margin-top: 12px;
-  color: #38594f;
+  color: ${COLORS.primaryText};
   font-size: 16px;
   line-height: 1.5;
 `;
@@ -265,7 +265,7 @@ export const ChartItem = styled.div`
 `;
 
 export const ChartValue = styled.div`
-  color: ${({ $active }) => $active ? COLORS.pink : "#202020"};
+  color: ${({ $active }) => $active ? COLORS.pink : COLORS.white};
   font-size: 16px;
   font-weight: 600;
 `;
@@ -273,7 +273,7 @@ export const ChartValue = styled.div`
 export const ChartTrack = styled.div`
   grid-column: 1 / -1;
   height: 12px;
-  background: #d7e9e3;
+  background: ${COLORS.button};
   border-radius: 8px;
   overflow: hidden;
 `;
@@ -281,18 +281,18 @@ export const ChartTrack = styled.div`
 export const ChartBar = styled.div`
   width: ${({ $width }) => $width}%;
   height: 100%;
-  background: ${({ $active }) => $active ? COLORS.pink : "#526c63"};
+  background: ${({ $active }) => $active ? COLORS.pink : COLORS.primaryText};
   border-radius: inherit;
 `;
 
 export const ChartLabel = styled.div`
-  color: ${({ $active }) => $active ? COLORS.pink : "#202020"};
+  color: ${({ $active }) => $active ? COLORS.pink : COLORS.white};
   font-size: 16px;
   font-weight: 600;
 `;
 
 export const FactorScore = styled.span`
-  color: ${({ $active }) => $active ? COLORS.pink : "#38594f"};
+  color: ${({ $active }) => $active ? COLORS.pink : COLORS.primaryText};
   font-size: 16px;
   font-weight: 700;
   text-align: right;
@@ -314,7 +314,7 @@ export const SimulationBanner = styled.section`
   margin-top: 28px;
   padding: 30px 38px;
 
-  background: #EAF7F4;
+  background: ${COLORS.button};
 
   border: 1px solid ${COLORS.pink};
   border-radius: 8px;
@@ -338,7 +338,7 @@ export const SimulationText = styled.div`
 `;
 
 export const SimulationTitle = styled.h2`
-  color: #202020;
+  color: ${COLORS.white};
 
   font-size: 32px;
   font-weight: 700;
@@ -350,7 +350,7 @@ export const SimulationTitle = styled.h2`
 `;
 
 export const SimulationDescription = styled.p`
-  color: #202020;
+  color: ${COLORS.white};
 
   font-size: 20px;
   font-weight: 400;
@@ -369,8 +369,8 @@ export const SimulationButton = styled.button`
 
   padding: 0 36px;
 
-  background: #29AE89;
-  color: #FFFFFF;
+  background: ${COLORS.pink};
+  color: ${COLORS.background};
 
   border-radius: 8px;
 

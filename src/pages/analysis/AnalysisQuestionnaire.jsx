@@ -15,6 +15,9 @@ export default function AnalysisQuestionnaire({ step }) {
   const navigate = useNavigate();
   const { formData, updateField } = useOutletContext();
   const { title, fields } = ASSESSMENT_STEPS[step - 1];
+  const displayedFields = step === 1
+    ? ["householdSize", "income", "occupation", "region"].map((name) => fields.find((field) => field.name === name))
+    : fields;
   const buttonLabels = [
     "다음: 건강 상태 입력 →",
     "다음: 병원 이용 횟수 입력 →",
@@ -40,7 +43,7 @@ export default function AnalysisQuestionnaire({ step }) {
             </Button>
           </TitleRow>
           <FormGrid>
-            {fields.map((field) => {
+            {displayedFields.map((field) => {
               const props = { value: formData[field.name], onChange: (value) => updateField(field.name, value), "aria-label": field.title };
               return (
                 <FormField count={field.name === "householdSize" ? Number(formData.householdSize) : undefined} key={field.name} title={field.title} description={field.description || (field.type === "number" ? "숫자로 입력해주세요." : "해당하는 항목을 선택해주세요.")}>

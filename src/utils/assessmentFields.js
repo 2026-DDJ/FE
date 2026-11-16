@@ -2,7 +2,7 @@ const options = (entries) => entries.map(([value, label]) => ({ value: String(va
 
 export const ASSESSMENT_STEPS = [
   { title: "1단계: 생활·경제 정보", fields: [
-    { name: "householdSize", title: "가구원 수", type: "number", min: 1, max: 10, step: 1, suffix: "명", description: "함께 사는 사람은 본인을 포함해 몇 명인가요? (1~10명)" },
+    { name: "householdSize", title: "가구원 수", type: "number", min: 1, max: 10, step: 1, suffix: "명", description: "함께 사는 사람은 본인을 포함해 몇 명인가요?" },
     { name: "region", title: "거주 지역", type: "select", description: "현재 거주하는 지역을 선택하세요.", options: options([
       ["서울특별시", "서울"], ["부산광역시", "부산"], ["대구광역시", "대구"], ["인천광역시", "인천"], ["광주광역시", "광주"], ["대전광역시", "대전"], ["울산광역시", "울산"], ["세종특별자치시", "세종"], ["경기도", "경기"], ["강원특별자치도", "강원"], ["충청북도", "충북"], ["충청남도", "충남"], ["전북특별자치도", "전북"], ["전라남도", "전남"], ["경상북도", "경북"], ["경상남도", "경남"], ["제주특별자치도", "제주"],
     ]) },
@@ -14,7 +14,7 @@ export const ASSESSMENT_STEPS = [
     { name: "weight", title: "몸무게", description: "몸무게를 킬로그램(kg) 단위로 입력하세요. 예: 50", type: "number", min: 0.1, step: "any", suffix: "kg" },
     { name: "exercise", title: "평소 규칙적으로 운동하시나요?", type: "buttons", options: options([["regular", "예"], ["none", "아니오"]]) },
     { name: "healthStatus", title: "주관적 건강상태", type: "buttons", options: options([["very-good", "매우 좋음"], ["good", "좋음"], ["normal", "보통"], ["bad", "나쁨"], ["very-bad", "매우 나쁨"]]) },
-    { name: "activityLimitation", title: "평소 하던 일을 할 때 어려움이 있나요?", description: "건강 때문에 집안일, 일, 여가 활동 등을 하는 데\n얼마나 어려움이 있는지 선택해주세요.", type: "buttons", options: options([[1, "어려움이 없어요"], [2, "조금 어려워요"], [3, "많이 어려워요"]]) },
+    { name: "activityLimitation", title: "하던 일을 할 때 어려움이 있나요?", description: "건강 때문에 집안일, 일, 여가 활동 등을 하는 데\n얼마나 어려움이 있는지 선택해주세요.", type: "buttons", options: options([[1, "어려움이 없어요"], [2, "조금 어려워요"], [3, "많이 어려워요"]]) },
     { name: "anxietyDepression", title: "불안하거나 우울한 마음이 드시나요?", description: "걱정으로 마음이 불안하거나,\n기분이 가라앉는 정도를 선택해주세요.", type: "buttons", options: options([[1, "그렇지 않아요"], [2, "조금 그래요"], [3, "많이 그래요"]]) },
   ] },
   { title: "3단계: 지난 1년간 병원 이용", fields: [

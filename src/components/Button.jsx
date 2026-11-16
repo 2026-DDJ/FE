@@ -34,11 +34,11 @@ const ButtonContainer = styled.button`
   border: none;
   border-radius: 0.5rem;
 
-  background: rgba(41, 174, 137, 0.8);
+  background: color-mix(in srgb, ${COLORS.pink} 80%, transparent);
 
-  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.25);
+  box-shadow: 0 0 20px 0 color-mix(in srgb, ${COLORS.white} 25%, transparent);
 
-  color: #FFFFFF;
+  color: ${COLORS.background};
 
   font-size: 28px;
   font-weight: 700;
@@ -51,7 +51,7 @@ const ButtonContainer = styled.button`
     opacity 0.2s ease;
 
   &:hover {
-    background: rgba(41, 174, 137, 0.95);
+    background: color-mix(in srgb, ${COLORS.pink} 95%, transparent);
   }
 
   &:active {

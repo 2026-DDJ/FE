@@ -22,8 +22,8 @@ const FormField = ({
         <FieldTitle>{title}</FieldTitle>
       </FieldHeader>
 
-      <FieldDescription>
-        {description}
+      <FieldDescription $withCount={count != null}>
+        <span>{description}</span>
         {count != null && <FieldCount aria-live="polite">{count}명</FieldCount>}
       </FieldDescription>
 
