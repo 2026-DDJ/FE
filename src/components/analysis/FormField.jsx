@@ -3,6 +3,7 @@ import {
   FieldHeader,
   FieldTitle,
   FieldDescription,
+  FieldCount,
   FieldControl,
 } from "../../styles/AnalysisForm.styles.js";
 
@@ -10,6 +11,7 @@ const FormField = ({
   icon,
   title,
   description,
+  count,
   children,
 }) => {
   return (
@@ -22,6 +24,7 @@ const FormField = ({
 
       <FieldDescription>
         {description}
+        {count != null && <FieldCount aria-live="polite">{count}명</FieldCount>}
       </FieldDescription>
 
       <FieldControl>

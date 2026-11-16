@@ -43,7 +43,7 @@ export default function AnalysisQuestionnaire({ step }) {
             {fields.map((field) => {
               const props = { value: formData[field.name], onChange: (value) => updateField(field.name, value), "aria-label": field.title };
               return (
-                <FormField key={field.name} title={field.title} description={field.description || (field.type === "number" ? "숫자로 입력해주세요." : "해당하는 항목을 선택해주세요.")}>
+                <FormField count={field.name === "householdSize" ? Number(formData.householdSize) : undefined} key={field.name} title={field.title} description={field.description || (field.type === "number" ? "숫자로 입력해주세요." : "해당하는 항목을 선택해주세요.")}>
                   {field.name === "householdSize" ? <HouseholdSizeInput {...props} /> :
                     field.name === "income" ? <IncomeSlider {...props} options={field.options} /> :
                     field.type === "number" ? <TextInput {...props} type="number" min={field.min} max={field.max} step={field.step} suffix={field.suffix} required /> :

@@ -2,6 +2,8 @@
 import styled from "styled-components";
 
 export const COLORS = {
+  primaryText: "#21735d",
+  focus: "#1558a6",
   background: "#FFFFFF",
   pink: "#29AE89",
   button: "#EAF7F4",

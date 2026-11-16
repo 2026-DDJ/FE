@@ -14,8 +14,8 @@ export const ASSESSMENT_STEPS = [
     { name: "weight", title: "몸무게", description: "몸무게를 킬로그램(kg) 단위로 입력하세요. 예: 50", type: "number", min: 0.1, step: "any", suffix: "kg" },
     { name: "exercise", title: "평소 규칙적으로 운동하시나요?", type: "buttons", options: options([["regular", "예"], ["none", "아니오"]]) },
     { name: "healthStatus", title: "주관적 건강상태", type: "buttons", options: options([["very-good", "매우 좋음"], ["good", "좋음"], ["normal", "보통"], ["bad", "나쁨"], ["very-bad", "매우 나쁨"]]) },
-    { name: "activityLimitation", title: "평소 하던 일을 하는 데 어려움이 있나요?", description: "건강 때문에 집안일, 일, 여가 활동 등을 하는 데 얼마나 어려움이 있는지 선택해주세요.", type: "buttons", options: options([[1, "어려움이 없어요"], [2, "조금 어려워요"], [3, "많이 어려워요"]]) },
-    { name: "anxietyDepression", title: "불안하거나 우울한 마음이 드시나요?", description: "걱정으로 마음이 불안하거나, 기분이 가라앉는 정도를 선택해주세요.", type: "buttons", options: options([[1, "그렇지 않아요"], [2, "조금 그래요"], [3, "많이 그래요"]]) },
+    { name: "activityLimitation", title: "평소 하던 일을 할 때 어려움이 있나요?", description: "건강 때문에 집안일, 일, 여가 활동 등을 하는 데\n얼마나 어려움이 있는지 선택해주세요.", type: "buttons", options: options([[1, "어려움이 없어요"], [2, "조금 어려워요"], [3, "많이 어려워요"]]) },
+    { name: "anxietyDepression", title: "불안하거나 우울한 마음이 드시나요?", description: "걱정으로 마음이 불안하거나,\n기분이 가라앉는 정도를 선택해주세요.", type: "buttons", options: options([[1, "그렇지 않아요"], [2, "조금 그래요"], [3, "많이 그래요"]]) },
   ] },
   { title: "3단계: 지난 1년간 병원 이용", fields: [
     { name: "outpatientVisits", title: "병원 외래 방문 횟수", description: "입원하지 않고 병원 지료를 받은 횟수를 적으세요. 예: 5", type: "number", min: 0, step: 1, suffix: "회" },
