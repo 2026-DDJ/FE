@@ -1,5 +1,6 @@
 
 import styled from "styled-components";
+import { COLORS } from "./Common.styles";
 
 
 /* =========================
@@ -46,7 +47,17 @@ export const FieldDescription = styled.p`
 
   font-size: 20px;
   line-height: 1.5;
+  white-space: pre-line;
   font-weight: 400;
+`;
+
+export const FieldCount = styled.span`
+  display: inline-block;
+  margin-left: 12px;
+  color: ${COLORS.pink};
+  font-size: 24px;
+  font-weight: 700;
+  white-space: nowrap;
 `;
 
 export const FieldControl = styled.div`
@@ -172,14 +183,14 @@ export const OptionButton = styled.button`
   min-height: 58px;
   padding: 10px 8px;
 
-  border: 1px solid #21735d;
+  border: 1px solid ${COLORS.primaryText};
   border-radius: 4px;
 
   background: ${({ $active }) =>
-    $active ? "#21735d" : "transparent"};
+    $active ? COLORS.primaryText : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? "#FFFFFF" : "#21735d"};
+    $active ? "#FFFFFF" : COLORS.primaryText};
 
   font-size: 18px;
   font-weight: 700;
@@ -190,12 +201,12 @@ export const OptionButton = styled.button`
     background 0.2s ease,
     color 0.2s ease;
 
-  &:focus-visible { outline: 3px solid #1558a6; outline-offset: 3px; }
+  &:focus-visible { outline: 3px solid ${COLORS.focus}; outline-offset: 3px; }
 
   &:hover {
     background: ${({ $active }) =>
       $active
-        ? "#21735d"
+        ? COLORS.primaryText
         : "rgba(41, 174, 137, 0.08)"};
   }
 `;
