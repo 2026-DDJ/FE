@@ -184,17 +184,19 @@ export const OptionButton = styled.button`
   min-height: 58px;
   padding: 10px 8px;
 
-  border: 1px solid ${COLORS.primaryText};
+  border: 1px solid ${COLORS.pink};
   border-radius: 4px;
 
   background: ${({ $active }) =>
-    $active ? COLORS.primaryText : "transparent"};
+    $active ? COLORS.pink : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? COLORS.background : COLORS.primaryText};
+    $active ? COLORS.background : COLORS.pink};
 
   font-size: 18px;
   font-weight: 700;
+
+  > span { white-space: pre; line-height: 1.3; }
 
   cursor: pointer;
 
@@ -207,7 +209,7 @@ export const OptionButton = styled.button`
   &:hover {
     background: ${({ $active }) =>
       $active
-        ? COLORS.primaryText
+        ? COLORS.pink
         : `color-mix(in srgb, ${COLORS.pink} 8%, transparent)`};
   }
 `;

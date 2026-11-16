@@ -20,10 +20,11 @@ const OptionButtons = ({
           key={option.value}
           type="button"
           $active={value === option.value}
+          aria-label={option.label}
           aria-pressed={value === option.value}
           onClick={() => onChange(option.value)}
         >
-          {option.label}
+          <span>{option.displayLabel || option.label}</span>
         </OptionButton>
       ))}
     </OptionButtonContainer>
