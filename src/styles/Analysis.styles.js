@@ -25,13 +25,28 @@ export const AnalysisContent = styled.main`
   @media (max-width: 600px) { width: 90%; padding-top: 132px; }
 `;
 
+export const TitleRow = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  margin: 28px 0;
+
+  > button { margin-left: auto; flex-shrink: 0; font-size: 22px; padding: 0 24px; }
+  @media (max-width: 1100px) { flex-wrap: wrap; }
+  @media (max-width: 600px) {
+    align-items: stretch;
+    flex-direction: column;
+    > button { width: 100%; height: auto; min-height: 60px; padding: 16px; }
+  }
+`;
+
 export const Title = styled.h1`
-  margin-top: 28px;
-  margin-bottom: 28px;
+  margin: 0;
 
   color: #29AE89;
 
-  font-size: 64px;
+  font-size: clamp(36px, 4vw, 54px);
   font-weight: 700;
   line-height: 1.2;
   @media (max-width: 600px) { font-size: 40px; }
