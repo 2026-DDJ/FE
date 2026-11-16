@@ -40,11 +40,11 @@ const resultData = {
       cost: DEMO_PREDICTED_COST,
     },
     {
-      label: "비교 집단 1",
+      label: "동일 연령·성별",
       cost: 2310000,
     },
     {
-      label: "비교 집단 2",
+      label: "동일 소득 구간·지역",
       cost: 2250000,
     },
     {
