@@ -36,7 +36,7 @@ const IntroProgress = () => {
       </ProgressStep>
 
       <ProgressStep $position="bottom">
-        <ProgressLabel>결과 확인하기</ProgressLabel>
+        <ProgressLabel>나의 예상 의료비 확인하기</ProgressLabel>
 
         <ProgressDot>
           <Check $step={3}>✓</Check>
