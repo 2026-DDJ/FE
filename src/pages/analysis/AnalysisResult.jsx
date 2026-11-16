@@ -88,7 +88,7 @@ const AnalysisResult = () => {
 
       <ResultContent>
         <ResultHeading>
-          예상 연간 의료비
+          앞으로 1년간 예상되는 의료비
         </ResultHeading>
 
         <ResultAmount>
@@ -96,19 +96,19 @@ const AnalysisResult = () => {
         </ResultAmount>
 
         <ResultDescription>
-          비교 집단 평균보다{" "}
+          비슷한 조건의 사람들 평균보다 약{" "}
           <Highlight>
             +{resultData.differencePercent}%
           </Highlight>{" "}
-          높은 수준입니다.
+          높게 예측됐어요.
         </ResultDescription>
 
         <ResultGrid>
           {/* 주요 영향요인 */}
           <ResultCard>
             <CardTitle>
-              주요 영향요인{" "}
-              <Highlight>Top 3</Highlight>
+              예상 의료비에 영향을 준 요인{" "}
+              <Highlight>3가지</Highlight>
             </CardTitle>
             <FactorTabs
               role="tablist"
@@ -164,7 +164,7 @@ const AnalysisResult = () => {
           {/* 유사 집단 의료비 비교 */}
           <ResultCard>
             <CardTitle>
-              유사 집단과 의료비 비교
+              비슷한 사람들과 의료비 비교
             </CardTitle>
 
             <ChartContainer>
@@ -206,7 +206,7 @@ const AnalysisResult = () => {
             type="button"
             onClick={handleSimulation}
           >
-            시뮬레이션 해보기 →
+            조건을 바꿔서 결과 비교하기 →
           </SimulationButton>
         </SimulationBanner>
       </ResultContent>

@@ -35,13 +35,13 @@ const Simulation = () => {
     <SimulationContainer>
       <Header />
       <SimulationContent>
-        <PageTitle>조건을 바꿔 의료비를 비교해보세요.</PageTitle>
-        <PageDescription>BMI와 운동 조건을 조절하고 변경 전후의 예시 금액을 확인하세요.</PageDescription>
+        <PageTitle>생활 습관을 바꿨을 때의 예상 의료비는?</PageTitle>
+        <PageDescription>체질량지수(BMI)와 운동 조건을 바꾸어 예측 결과를 비교합니다.</PageDescription>
         <SimulationGrid>
           <ConditionCard aria-labelledby="conditions-heading">
             <CardTitle id="conditions-heading">조건 변경</CardTitle>
             <ConditionRow>
-              <ConditionName as="label" htmlFor="bmi">BMI</ConditionName>
+              <ConditionName as="label" htmlFor="bmi">체질량지수(BMI)</ConditionName>
               <BMIValues>
                 <span>입력 기준 <strong>{initial.bmi.toFixed(1)}</strong></span>
                 <span>변경 후 <output htmlFor="bmi">{conditions.bmi.toFixed(1)}</output></span>
@@ -54,7 +54,7 @@ const Simulation = () => {
             <ConditionRow>
               <ConditionName id="exercise-label">운동</ConditionName>
               <OptionGroup role="group" aria-labelledby="exercise-label">
-                {[{ value: "none", label: "안 함" }, { value: "regular", label: "규칙적으로 함" }].map((option) => (
+                {[{ value: "none", label: "운동 안 함" }, { value: "regular", label: "규칙적으로 운동함" }].map((option) => (
                   <OptionButton key={option.value} type="button" $active={conditions.exercise === option.value}
                     aria-pressed={conditions.exercise === option.value}
                     onClick={() => setConditions({ ...conditions, exercise: option.value })}>
@@ -63,10 +63,10 @@ const Simulation = () => {
                 ))}
               </OptionGroup>
             </ConditionRow>
-            <PredictButton type="button" onClick={() => setApplied({ ...conditions })}>이 조건으로 비교하기 →</PredictButton>
+            <PredictButton type="button" onClick={() => setApplied({ ...conditions })}>바뀐 조건으로 의료비 다시 계산하기 →</PredictButton>
           </ConditionCard>
           <ResultCard aria-labelledby="result-heading">
-            <CardTitle id="result-heading">시뮬레이션 결과</CardTitle>
+            <CardTitle id="result-heading">예상 금액 비교</CardTitle>
             <div role="status" aria-live="polite" aria-atomic="true">
               <CostBox><CostLabel>변경 전 · 예시 연간 의료비</CostLabel><CostAmount>{formatMedicalCost(DEMO_PREDICTED_COST)}</CostAmount></CostBox>
               <CostBox $highlight><CostLabel>변경 후 · 예시 연간 의료비</CostLabel><CostAmount $highlight>{applied ? formatMedicalCost(cost) : "—"}</CostAmount></CostBox>

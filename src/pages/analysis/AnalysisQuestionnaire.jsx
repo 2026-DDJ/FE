@@ -13,6 +13,12 @@ export default function AnalysisQuestionnaire({ step }) {
   const navigate = useNavigate();
   const { formData, updateField } = useOutletContext();
   const { title, fields } = ASSESSMENT_STEPS[step - 1];
+  const buttonLabels = [
+  "다음: 건강 상태 입력 →",
+  "다음: 병원 이용 횟수 입력 →",
+  "다음: 보험 정보 입력 →",
+  "예상 의료비 확인하기 →",
+];
   const missingStep = ASSESSMENT_STEPS.findIndex((_, index) => index < step - 1 && !isStepValid(index + 1, formData));
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -40,7 +46,9 @@ export default function AnalysisQuestionnaire({ step }) {
           </FormGrid>
           <NavigationArea>
             {step > 1 ? <PreviousButton type="button" onClick={() => navigate(`/analysis/${step - 1}`)}>← 이전으로</PreviousButton> : <span />}
-            <Button type="submit" disabled={!isStepValid(step, formData)}>{step === 4 ? "결과 확인하기 →" : "다음으로 →"}</Button>
+            <Button type="submit" disabled={!isStepValid(step, formData)}>
+  {buttonLabels[step - 1]}
+</Button>
           </NavigationArea>
           {missingStep !== -1 && <p role="status">아직 입력하지 않은 {missingStep + 1}단계로 돌아가 입력을 완료해주세요.</p>}
         </form>
