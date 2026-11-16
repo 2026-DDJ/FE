@@ -18,7 +18,7 @@ export default function HouseholdSizeInput({ value, onChange, "aria-label": labe
         <Choice key={index} type="button" $active={selected[index]}
           aria-label={`${index + 1}번째 사람`}
           aria-pressed={selected[index]} onClick={() => togglePerson(index)}>
-          <svg width="24" height="28" viewBox="0 0 24 28" fill="currentColor" aria-hidden="true">
+          <svg width="40" height="48" viewBox="0 0 24 28" fill="currentColor" aria-hidden="true">
             <circle cx="12" cy="5" r="4" />
             <path d="M7 11h10a3 3 0 0 1 3 3v7h-4v7H8v-7H4v-7a3 3 0 0 1 3-3Z" />
           </svg>
@@ -41,13 +41,14 @@ const Choice = styled.button`
   gap: 6px;
   min-width: 44px;
   min-height: 76px;
-  border: 2px solid ${COLORS.pink};
+  border: none;
   border-radius: 8px;
-  background: ${({ $active }) => $active ? COLORS.pink : COLORS.background};
-  color: ${({ $active }) => $active ? COLORS.background : COLORS.pink};
+  background: transparent;
+  color: ${COLORS.pink};
+  svg { opacity: ${({ $active }) => $active ? 1 : 0.3}; }
   font-size: 18px;
   font-weight: 700;
   cursor: pointer;
-  &:hover { box-shadow: inset 0 0 0 2px ${COLORS.pink}; }
+  &:hover svg { opacity: 0.7; }
   &:focus-visible { outline: 3px solid ${COLORS.focus}; outline-offset: 3px; }
 `;

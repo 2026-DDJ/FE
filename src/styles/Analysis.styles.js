@@ -1,3 +1,4 @@
+import { COLORS } from "./Common.styles";
 
 import styled from "styled-components";
 
@@ -44,7 +45,7 @@ export const TitleRow = styled.div`
 export const Title = styled.h1`
   margin: 0;
 
-  color: #29AE89;
+  color: ${COLORS.pink};
 
   font-size: clamp(36px, 4vw, 54px);
   font-weight: 700;
@@ -104,12 +105,12 @@ export const PreviousButton = styled.button`
   justify-content: center;
   align-items: center;
 
-  border: 1px solid #29AE89;
+  border: 1px solid ${COLORS.pink};
   border-radius: 8px;
 
   background: transparent;
 
-  color: #29AE89;
+  color: ${COLORS.pink};
 
   font-size: 24px;
   font-weight: 700;
@@ -121,7 +122,7 @@ export const PreviousButton = styled.button`
     transform 0.2s ease;
 
   &:hover {
-    background: rgba(41, 174, 137, 0.08);
+    background: color-mix(in srgb, ${COLORS.pink} 8%, transparent);
   }
 
   &:active {

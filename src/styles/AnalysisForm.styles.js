@@ -16,10 +16,10 @@ export const FieldContainer = styled.div`
   display: flex;
   flex-direction: column;
 
-  border: 1px solid rgba(41, 174, 137, 0.8);
+  border: 1px solid color-mix(in srgb, ${COLORS.pink} 80%, transparent);
   border-radius: 8px;
 
-  background: rgba(234, 247, 244, 0.2);
+  background: color-mix(in srgb, ${COLORS.button} 20%, transparent);
   @media (max-width: 600px) { padding: 24px; }
 `;
 
@@ -33,7 +33,7 @@ export const FieldHeader = styled.div`
 export const FieldTitle = styled.h3`
   margin: 0;
 
-  color: #202020;
+  color: ${COLORS.white};
 
   font-size: 32px;
   @media (max-width: 600px) { font-size: 28px; }
@@ -41,9 +41,10 @@ export const FieldTitle = styled.h3`
 `;
 
 export const FieldDescription = styled.p`
+  ${({ $withCount }) => $withCount && "display: flex; align-items: baseline; gap: 8px;"}
   margin-top: 8px;
 
-  color: rgba(32, 32, 32, 0.9);
+  color: color-mix(in srgb, ${COLORS.white} 90%, transparent);
 
   font-size: 20px;
   line-height: 1.5;
@@ -53,7 +54,7 @@ export const FieldDescription = styled.p`
 
 export const FieldCount = styled.span`
   display: inline-block;
-  margin-left: 12px;
+  flex-shrink: 0;
   color: ${COLORS.pink};
   font-size: 24px;
   font-weight: 700;
@@ -88,9 +89,9 @@ export const Select = styled.select`
 
   outline: none;
 
-  background: #29AE89;
+  background: ${COLORS.pink};
 
-  color: #FFFFFF;
+  color: ${COLORS.background};
 
   font-size: 18px;
   font-weight: 700;
@@ -108,7 +109,7 @@ export const SelectArrow = styled.span`
 
   transform: translateY(-50%);
 
-  color: #FFFFFF;
+  color: ${COLORS.background};
 
   font-size: 18px;
 
@@ -141,22 +142,22 @@ export const Input = styled.input`
 
   outline: none;
 
-  background: #29AE89;
+  background: ${COLORS.pink};
 
-  color: #FFFFFF;
+  color: ${COLORS.background};
 
   font-size: 18px;
   font-weight: 700;
 
   &::placeholder {
-    color: rgba(255, 255, 255, 0.45);
+    color: color-mix(in srgb, ${COLORS.background} 45%, transparent);
   }
 `;
 
 export const InputSuffix = styled.span`
   width: 44px;
 
-  color: #29AE89;
+  color: ${COLORS.pink};
 
   font-size: 18px;
   font-weight: 700;
@@ -190,7 +191,7 @@ export const OptionButton = styled.button`
     $active ? COLORS.primaryText : "transparent"};
 
   color: ${({ $active }) =>
-    $active ? "#FFFFFF" : COLORS.primaryText};
+    $active ? COLORS.background : COLORS.primaryText};
 
   font-size: 18px;
   font-weight: 700;
@@ -207,6 +208,6 @@ export const OptionButton = styled.button`
     background: ${({ $active }) =>
       $active
         ? COLORS.primaryText
-        : "rgba(41, 174, 137, 0.08)"};
+        : `color-mix(in srgb, ${COLORS.pink} 8%, transparent)`};
   }
 `;

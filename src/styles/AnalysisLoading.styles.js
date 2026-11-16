@@ -1,3 +1,4 @@
+import { COLORS } from "./Common.styles";
 
 import styled, { keyframes } from "styled-components";
 
@@ -16,7 +17,7 @@ export const LoadingContainer = styled.div`
   min-height: 100vh;
   min-height: 100dvh;
 
-  background: #FFFFFF;
+  background: ${COLORS.background};
 
   display: flex;
   flex-direction: column;
@@ -37,7 +38,7 @@ export const LoadingContent = styled.main`
 export const LoadingTitle = styled.h1`
   margin: 0;
 
-  color: #29AE89;
+  color: ${COLORS.pink};
 
   font-size: 48px;
   font-weight: 700;
