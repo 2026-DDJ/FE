@@ -1,4 +1,4 @@
-const API_BASE_URL = (import.meta.env.VITE_API_BASE_URL || "https://medicast-be.onrender.com").replace(/\/$/, "");
+const API_BASE_URL = (import.meta.env?.VITE_API_BASE_URL || "https://medicast-be.onrender.com").replace(/\/$/, "");
 
 export async function apiRequest(path, { method = "GET", body, signal } = {}) {
   let response;
