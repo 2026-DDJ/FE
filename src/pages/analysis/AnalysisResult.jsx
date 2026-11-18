@@ -56,9 +56,9 @@ const AnalysisResult = () => {
   }, [id]);
 
   const comparisons = result ? [
-    { label: "나", cost: Number(result.predictedAnnualMedicalCost) },
+    { label: "내 예상 의료비", cost: Number(result.predictedAnnualMedicalCost) },
     { label: "동일 소득 구간 평균", cost: result.sameIncomeGroupAverageAnnualMedicalCost ?? result.comparison?.sameIncomeGroup?.mean },
-    { label: "동일 외래 이용횟수 구간 평균 의료비", cost: result.sameOutpatientVisitsGroupAverageAnnualMedicalCost ?? result.comparison?.sameOutpatientVisitsGroup?.mean },
+    { label: "동일 외래 이용횟수 구간 평균 의료비", cost: result.sameOutpatientVisitsGroupAverageAnnualMedicalCost ?? result.comparison?.sameOutpatientGroup?.mean },
     { label: "전체 평균 의료비", cost: result.overallAverageAnnualMedicalCost ?? result.comparison?.overall?.mean },
   ].map((item) => ({ ...item, cost: isCost(item.cost) ? Number(item.cost) : null })) : [];
 
