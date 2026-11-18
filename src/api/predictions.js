@@ -1,5 +1,5 @@
-import { apiRequest } from "./client";
-import { isAssessmentValid } from "../utils/assessmentFields";
+import { apiRequest } from "./client.js";
+import { isAssessmentValid } from "../utils/assessmentFields.js";
 
 const HEALTH = ["VERY_GOOD", "GOOD", "FAIR", "POOR", "VERY_POOR"];
 const DEGREE = { 1: "NONE", 2: "SOME", 3: "SEVERE" };
