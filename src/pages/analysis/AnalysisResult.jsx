@@ -57,16 +57,17 @@ const AnalysisResult = () => {
 
   const comparisons = result ? [
     { label: "나", cost: Number(result.predictedAnnualMedicalCost) },
-    { label: "동일 연령대·성별", cost: result.sameAgeGenderAverageAnnualMedicalCost },
-    { label: "동일 소득 구간·지역", cost: result.sameIncomeRegionAverageAnnualMedicalCost },
-    { label: "전체 평균", cost: result.overallAverageAnnualMedicalCost },
+    { label: "동일 소득 구간 평균", cost: result.sameIncomeGroupAverageAnnualMedicalCost ?? result.comparison?.sameIncomeGroup?.mean },
+    { label: "동일 외래 이용횟수 구간 평균 의료비", cost: result.sameOutpatientVisitsGroupAverageAnnualMedicalCost ?? result.comparison?.sameOutpatientVisitsGroup?.mean },
+    { label: "전체 평균 의료비", cost: result.overallAverageAnnualMedicalCost ?? result.comparison?.overall?.mean },
   ].map((item) => ({ ...item, cost: isCost(item.cost) ? Number(item.cost) : null })) : [];
 
   const availableComparisons = comparisons.filter((item) => item.cost !== null);
   const hasPeerComparison = comparisons.slice(1).some((item) => item.cost !== null);
   const maxCost = Math.max(1, ...availableComparisons.map((item) => item.cost));
-  const peer = comparisons.find((item) => item.label === "동일 소득 구간·지역" && item.cost !== null)
-    || comparisons.find((item) => item.label === "동일 연령대·성별" && item.cost !== null);
+  const peer = comparisons.find((item) => item.label === "동일 소득 구간 평균" && item.cost !== null)
+    || comparisons.find((item) => item.label === "동일 외래 이용횟수 구간 평균 의료비" && item.cost !== null)
+    || comparisons.find((item) => item.label === "전체 평균 의료비" && item.cost !== null);
   const differencePercent = peer && peer.cost > 0
     ? (Number(result.predictedAnnualMedicalCost) - peer.cost) / peer.cost * 100
     : null;
@@ -91,7 +92,7 @@ const AnalysisResult = () => {
               {differencePercent === null ? (
                 "입력하신 조건을 바탕으로 AI가 예측한 연간 의료비입니다."
               ) : (
-                <>동일 소득·지역 또는 유사 집단 평균보다 약{" "}
+                <>{peer.label}보다 약{" "}
                   <Highlight>{differencePercent > 0 ? "+" : ""}{differencePercent.toFixed(1)}%</Highlight>
                   {differencePercent >= 0 ? " 높게" : " 낮게"} 예측됐어요.</>
               )}
