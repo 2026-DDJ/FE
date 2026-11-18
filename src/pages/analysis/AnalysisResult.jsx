@@ -7,7 +7,7 @@ import {
   ResultContainer, ResultContent, ResultHeading, ResultAmount,
   ResultDescription, Highlight, ResultGrid, ResultCard, CardTitle,
   ChartContainer, ChartArea, ChartItem, ChartValue, ChartBar, ChartLabel,
-  ChartTrack, SimulationBanner, SimulationText, SimulationTitle,
+  ChartTrack, ChartNote, SimulationBanner, SimulationText, SimulationTitle,
   SimulationDescription, SimulationButton,
 } from "../../styles/AnalysisResult.styles";
 
@@ -63,6 +63,7 @@ const AnalysisResult = () => {
   ].map((item) => ({ ...item, cost: isCost(item.cost) ? Number(item.cost) : null })) : [];
 
   const availableComparisons = comparisons.filter((item) => item.cost !== null);
+  const hasPeerComparison = comparisons.slice(1).some((item) => item.cost !== null);
   const maxCost = Math.max(1, ...availableComparisons.map((item) => item.cost));
   const peer = comparisons.find((item) => item.label === "동일 소득 구간·지역" && item.cost !== null)
     || comparisons.find((item) => item.label === "동일 연령대·성별" && item.cost !== null);
@@ -106,13 +107,18 @@ const AnalysisResult = () => {
                         <ChartValue $active={index === 0}>
                           {item.cost === null ? "비교 데이터 없음" : formatMedicalCost(item.cost)}
                         </ChartValue>
-                        <ChartTrack>
-                          <ChartBar $active={index === 0}
-                            $width={item.cost === null ? 0 : item.cost / maxCost * 100} />
-                        </ChartTrack>
+                        {hasPeerComparison && item.cost !== null && (
+                          <ChartTrack>
+                            <ChartBar $active={index === 0}
+                              $width={item.cost / maxCost * 100} />
+                          </ChartTrack>
+                        )}
                       </ChartItem>
                     ))}
                   </ChartArea>
+                  {!hasPeerComparison && (
+                    <ChartNote role="status">비교 집단의 의료비 통계가 아직 제공되지 않아 막대 비교를 표시할 수 없습니다.</ChartNote>
+                  )}
                 </ChartContainer>
               </ResultCard>
             </ResultGrid>
