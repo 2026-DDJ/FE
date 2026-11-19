@@ -18,7 +18,7 @@ test("manual mobile breaks never erase the desktop space between words", () => {
     const breaks = jsx.matchAll(/<span className="mobile-break"\s*\/>/g);
     for (const match of breaks) {
       const prefix = jsx.slice(0, match.index);
-      assert.ok(prefix.endsWith('{" "}') || prefix.endsWith('{" "}'),
+      assert.ok(prefix.endsWith('{" "}'),
         `${path}: missing explicit desktop space before mobile break at ${match.index}`);
     }
   }
