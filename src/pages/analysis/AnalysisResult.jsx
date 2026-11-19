@@ -121,8 +121,8 @@ const AnalysisResult = () => {
             </ResultGrid>
             <SimulationBanner>
               <SimulationText>
-                <SimulationTitle>건강한 변화를<span className="mobile-break" />시작해보세요.</SimulationTitle>
-                <SimulationDescription>BMI와 운동 조건을 바꿔<span className="mobile-break" />예측비를 비교해보세요.</SimulationDescription>
+                <SimulationTitle>건강한 변화를 시작해보세요.</SimulationTitle>
+                <SimulationDescription>BMI와 운동 조건을 바꿔 예측비를<span className="mobile-break" />비교해보세요.</SimulationDescription>
               </SimulationText>
               <SimulationButton type="button" onClick={() => navigate("/simulation")}>
                 조건을 바꿔서 결과 비교하기 →

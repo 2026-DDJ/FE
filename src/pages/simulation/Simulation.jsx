@@ -104,7 +104,7 @@ const Simulation = () => {
               </OptionGroup>
             </ConditionRow>
             <PredictButton type="button" disabled={!baseline || busy} onClick={handleSimulate}>
-              {busy ? "AI 모델로 다시 계산 중..." : "바뀐 조건으로 의료비 다시 계산하기 →"}
+              {busy ? "AI 모델로 다시 계산 중..." : "바뀐 조건으로 의료비<span className="mobile-break" />{" "}다시 계산하기 →"}
             </PredictButton>
           </ConditionCard>
           <ResultCard aria-labelledby="result-heading">
