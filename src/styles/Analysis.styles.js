@@ -24,6 +24,11 @@ export const AnalysisContent = styled.main`
   padding-bottom: 70px;
 
   @media (max-width: 600px) { width: 90%; padding-top: 110px; padding-bottom: 40px; }
+  @media (max-width: 768px) {
+    width: calc(100% - 32px);
+    padding-top: 105px;
+  }
+
 `;
 
 export const TitleRow = styled.div`
@@ -40,6 +45,11 @@ export const TitleRow = styled.div`
     flex-direction: column;
     > button { width: 100%; height: auto; min-height: 60px; padding: 16px; }
   }
+  @media (max-width: 768px) {
+    margin: 18px 0 24px;
+    > button { display: none; }
+  }
+
 `;
 
 export const Title = styled.h1`
@@ -61,6 +71,12 @@ export const FormGrid = styled.div`
 
   gap: 20px;
   @media (max-width: 900px) { grid-template-columns: 1fr; }
+  @media (max-width: 768px) {
+    grid-template-columns: minmax(0, 1fr);
+    width: 100%;
+    > * { min-width: 0; max-width: 100%; }
+  }
+
 `;
 
 /* =========================
@@ -93,6 +109,18 @@ export const NavigationArea = styled.div`
   align-items: center;
   gap: 16px;
   @media (max-width: 600px) { flex-direction: column; align-items: stretch; }
+  ${({ $top }) => $top && `
+    margin: 16px 0 20px;
+    justify-content: flex-start;
+  `}
+  ${({ $bottom }) => $bottom && `
+    margin-top: 24px;
+    justify-content: flex-end;
+  `}
+  @media (max-width: 768px) {
+    > button { width: 100%; min-width: 0; }
+  }
+
 `;
 
 export const PreviousButton = styled.button`

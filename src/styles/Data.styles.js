@@ -27,6 +27,8 @@ export const DataContent = styled.main`
   display: grid;
   grid-template-columns: 520px 1fr;
   @media (max-width: 1200px) { display: flex; flex-direction: column-reverse; align-items: center; gap: 36px; padding: 110px 5% 60px; }
+  @media (max-width: 768px) { padding-bottom: 125px; }
+
 `;
 
 export const LeftSection = styled.section`
@@ -388,6 +390,17 @@ export const DataDescription = styled.p`
   text-align: right;
   word-break: keep-all;
   @media (max-width: 1200px) { margin-top: 20px; text-align: left; font-size: clamp(16px, 3vw, 24px); line-height: 1.6; br { display: none; } }
+  @media (max-width: 768px) {
+    margin-top: 20px;
+    font-size: clamp(15px, 4vw, 19px);
+    word-break: keep-all;
+    line-height: 1.6;
+    br { display: initial; }
+    .mobile-copy { display: block; }
+    .desktop-copy { display: none; }
+  }
+  .mobile-copy { display: none; }
+
 `;
 
 
@@ -410,6 +423,24 @@ export const ButtonArea = styled.div`
   margin-top: 240px;
   @media (max-width: 1200px) { margin-top: 28px; }
   @media (max-width: 600px) { width: 100%; > button { width: 100%; } }
+  @media (max-width: 768px) {
+    position: fixed;
+    left: 50%;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    width: min(360px, calc(100% - 32px));
+    margin: 0;
+    z-index: 200;
+    > button {
+      width: 100%;
+      height: 48px;
+      min-height: 48px;
+      padding: 6px 12px;
+      font-size: 20px;
+      box-shadow: 0 4px 18px rgba(32, 32, 32, 0.12);
+    }
+  }
+
 `;
 
 export const ViewTransitionStyles = styled.div`

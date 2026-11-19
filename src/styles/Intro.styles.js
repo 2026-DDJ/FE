@@ -22,6 +22,17 @@ export const IntroContent = styled.main`
   height: 100vh;
   min-height: 760px;
   @media (max-width: 1024px) { height: auto; min-height: 100dvh; display: flex; flex-direction: column; align-items: center; padding: 120px 6% 44px; gap: 28px; }
+  @media (max-width: 768px) {
+    display: grid;
+    grid-template-columns: minmax(0, 45%) minmax(0, 55%);
+    align-items: center;
+    column-gap: 0;
+    row-gap: 14px;
+    padding: 104px 5% 120px;
+    height: auto;
+    min-height: 100dvh;
+  }
+
 `;
 
 export const LeftSection = styled.section`
@@ -30,6 +41,8 @@ export const LeftSection = styled.section`
   top: 16.5%;
   left: 6.5%;
   @media (max-width: 1024px) { position: static; width: 100%; }
+  @media (max-width: 768px) { grid-column: 1 / -1; align-self: start; }
+
 `;
 
 export const Title = styled.h1`
@@ -59,6 +72,15 @@ export const Description = styled.div`
   p {
     margin: 0 0 24px;
   }
+  @media (max-width: 768px) {
+    margin-top: 22px;
+    font-size: clamp(15px, 4vw, 19px);
+    line-height: 1.6;
+    word-break: keep-all;
+    br { display: initial; }
+    p { margin: 0 0 18px; }
+  }
+
 `;
 
 export const MedicastText = styled.span`
@@ -91,6 +113,15 @@ export const SkeletonSection = styled.div`
       transform: translateX(0);
     }
   }
+  @media (max-width: 768px) {
+    grid-column: 1;
+    justify-self: stretch;
+    width: 100%;
+    height: clamp(260px, 42vh, 385px);
+    min-width: 0;
+    animation: none;
+  }
+
 `;
 
 export const ProgressSection = styled.div`
@@ -102,6 +133,15 @@ export const ProgressSection = styled.div`
   width: 250px;
   height: 390px;
   @media (max-width: 1024px) { position: static; width: min(100%, 360px); height: 190px; align-self: center; }
+  @media (max-width: 768px) {
+    grid-column: 2;
+    justify-self: stretch;
+    align-self: center;
+    width: 100%;
+    height: clamp(230px, 36vh, 320px);
+    min-width: 0;
+  }
+
 `;
 
 export const ButtonArea = styled.div`
@@ -110,6 +150,23 @@ export const ButtonArea = styled.div`
   left: 6.5%;
   bottom: 10%;
   @media (max-width: 1024px) { position: static; width: 100%; display: flex; justify-content: center; > button { width: min(100%, 360px); } }
+  @media (max-width: 768px) {
+    position: fixed;
+    left: 50%;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    transform: translateX(-50%);
+    width: min(360px, calc(100% - 32px));
+    z-index: 200;
+    > button {
+      width: 100%;
+      min-height: 48px;
+      height: 48px;
+      padding: 6px 12px;
+      font-size: 20px;
+      box-shadow: 0 4px 18px rgba(32, 32, 32, 0.12);
+    }
+  }
+
 `;
 
 /* =========================
@@ -122,6 +179,8 @@ export const ProgressContainer = styled.div`
   width: 270px;
   height: 390px;
   @media (max-width: 1024px) { width: 100%; height: 190px; }
+  @media (max-width: 768px) { width: 100%; height: 100%; }
+
 `;
 
 export const ProgressAxis = styled.div`
@@ -256,6 +315,8 @@ export const ProgressStep = styled.div`
     `
       bottom: 0;
     `}
+  @media (max-width: 768px) { gap: 8px; max-width: 100%; }
+
 `;
 
 export const ProgressLabel = styled.span`
@@ -270,6 +331,15 @@ export const ProgressLabel = styled.span`
   text-align: right;
 
   white-space: nowrap;
+  @media (max-width: 768px) {
+    width: auto;
+    min-width: 0;
+    font-size: clamp(12px, 3.1vw, 17px);
+    line-height: 1.25;
+    white-space: normal;
+    word-break: keep-all;
+  }
+
 `;
 
 export const ProgressDot = styled.div`
@@ -292,6 +362,8 @@ export const ProgressDot = styled.div`
   z-index: 3;
 
   overflow: hidden;
+  @media (max-width: 768px) { width: 22px; height: 22px; }
+
 `;
 
 export const Check = styled.span`

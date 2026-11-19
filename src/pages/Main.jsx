@@ -8,6 +8,7 @@ import logo from "../assets/medicast-logo.svg";
 
 import {
   MainContainer,
+  HeroActions,
   HeroSection,
   SkeletonArea,
   MainLogo,
@@ -26,6 +27,7 @@ const Main = () => {
           <SkeletonViewer />
         </SkeletonArea>
 
+        <HeroActions>
         <MainLogo
           src={logo}
           alt="MEDICAST"
@@ -36,6 +38,7 @@ const Main = () => {
             의료비 예측하기
           </Button>
         </ButtonArea>
+        </HeroActions>
       </HeroSection>
     </MainContainer>
   );

@@ -6,6 +6,21 @@ import {
   COLORS,
 } from "./Common.styles";
 
+export const HeroActions = styled.div`
+  @media (max-width: 768px) {
+    position: absolute;
+    top: 59%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(90%, 440px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    z-index: 5;
+  }
+`;
+
 export const MainContainer = styled(PageContainer)`
   position: relative;
 
@@ -83,6 +98,15 @@ export const MainLogo = styled.img`
 
   pointer-events: none;
   @media (max-width: 768px) { top: 66%; width: 90%; }
+  @media (max-width: 768px) {
+    position: static;
+    transform: none;
+    width: 100%;
+    max-width: 100%;
+    top: auto;
+    left: auto;
+  }
+
 `;
 
 export const ButtonArea = styled.div`
@@ -95,4 +119,20 @@ export const ButtonArea = styled.div`
 
   z-index: 3;
   @media (max-width: 768px) { top: auto; bottom: max(8%, env(safe-area-inset-bottom)); width: calc(100% - 40px); display: flex; justify-content: center; > button { width: min(100%, 360px); } }
+  @media (max-width: 768px) {
+    position: static;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    transform: none;
+    width: 100%;
+    > button {
+      width: 100%;
+      height: 52px;
+      min-height: 52px;
+      padding: 8px 16px;
+      font-size: 20px;
+    }
+  }
+
 `;
