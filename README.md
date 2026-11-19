@@ -1,9 +1,20 @@
+<div align="center">
+
+<img src="docs/intro.gif" width="100%" alt="MEDICAST Intro" />
+
+<br/>
+<br>
+
+---
+<br>
+<br>
+
+</div>
 
 <div align="center">
 
 <img src="https://raw.githubusercontent.com/2026-DDJ/FE/main/src/assets/medicast-logo.svg" width="320" alt="MEDICAST Logo" />
 
-<br/><br/>
 
 ### Predict Your Health. Prepare Your Future.
 
@@ -22,6 +33,7 @@ MEDICAST는 개인의 건강 및 생활 데이터를 기반으로
 <img src="https://img.shields.io/badge/Spring%20Boot-6DB33F?style=flat-square&logo=springboot&logoColor=white"/>
 <img src="https://img.shields.io/badge/Render-000000?style=flat-square&logo=render&logoColor=white"/>
 <img src="https://img.shields.io/badge/XGBoost-337AB7?style=flat-square"/>
+
 
 <br/><br/>
 
