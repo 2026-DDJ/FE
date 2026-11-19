@@ -342,6 +342,7 @@ export const SimulationText = styled.div`
 `;
 
 export const SimulationTitle = styled.h2`
+  @media (max-width: 480px) { font-size: clamp(16px, 4.7vw, 22px); white-space: nowrap; }
   color: ${COLORS.white};
 
   font-size: 32px;
