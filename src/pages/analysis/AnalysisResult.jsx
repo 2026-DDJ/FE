@@ -82,7 +82,7 @@ const AnalysisResult = () => {
           </>
         ) : (
           <>
-            <ResultHeading>앞으로 1년간<span className="mobile-break" />예상되는 의료비</ResultHeading>
+            <ResultHeading>1년간<span className="mobile-break" />예상되는 의료비</ResultHeading>
             <ResultAmount>{formatMedicalCost(Number(result.predictedAnnualMedicalCost))}</ResultAmount>
             <ResultDescription>
               {differencePercent === null ? (
@@ -122,7 +122,7 @@ const AnalysisResult = () => {
             <SimulationBanner>
               <SimulationText>
                 <SimulationTitle>건강한 변화를<span className="mobile-break" />시작해보세요.</SimulationTitle>
-                <SimulationDescription>BMI와 운동 조건을 바꿔 AI 예측비를<span className="mobile-break" />비교해보세요.</SimulationDescription>
+                <SimulationDescription>BMI와 운동 조건을 바꿔<span className="mobile-break" />예측비를 비교해보세요.</SimulationDescription>
               </SimulationText>
               <SimulationButton type="button" onClick={() => navigate("/simulation")}>
                 조건을 바꿔서 결과 비교하기 →

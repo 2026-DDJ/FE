@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useNavigate, useOutletContext } from "react-router-dom";
 import Header from "../../components/Header";
 import Button from "../../components/Button";
@@ -15,6 +16,9 @@ export default function AnalysisQuestionnaire({ step }) {
   const navigate = useNavigate();
   const { formData, updateField } = useOutletContext();
   const { title, fields } = ASSESSMENT_STEPS[step - 1];
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [step]);
   const displayedFields = step === 1
     ? ["householdSize", "income", "occupation", "region"].map((name) => fields.find((field) => field.name === name))
     : fields;
@@ -36,15 +40,15 @@ export default function AnalysisQuestionnaire({ step }) {
       <AnalysisContent>
         <AnalysisSteps currentStep={step} />
         <form onSubmit={handleSubmit}>
+          <TitleRow>
+            <Title>{title}</Title>
+
+          </TitleRow>
           {step > 1 && (
             <NavigationArea $top>
               <PreviousButton type="button" onClick={() => navigate(`/analysis/${step - 1}`)}>← 이전으로</PreviousButton>
             </NavigationArea>
           )}
-          <TitleRow>
-            <Title>{title}</Title>
-
-          </TitleRow>
           <FormGrid>
             {displayedFields.map((field) => {
               const props = { value: formData[field.name], onChange: (value) => updateField(field.name, value), "aria-label": field.title };
