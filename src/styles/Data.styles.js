@@ -377,6 +377,7 @@ export const RightSection = styled.section`
 `;
 
 export const DataDescription = styled.p`
+  .mobile-copy { display: none; }
   max-width: 700px;
 
   margin-top: 55px;
@@ -399,7 +400,6 @@ export const DataDescription = styled.p`
     .mobile-copy { display: block; }
     .desktop-copy { display: none; }
   }
-  .mobile-copy { display: none; }
 
 `;
 
