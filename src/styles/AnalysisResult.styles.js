@@ -66,7 +66,8 @@ export const ResultAmount = styled.div`
   }
 
   @media (max-width: 480px) {
-    font-size: 58px;
+    font-size: clamp(36px, 10vw, 58px);
+    overflow-wrap: anywhere;
   }
 `;
 
@@ -236,6 +237,7 @@ export const FactorFill = styled.div`
 // ==========================================
 
 export const ChartNote = styled.p`
+  @media (max-width: 600px) { font-size: 15px; }
   margin-top: 12px;
   color: ${COLORS.primaryText};
   font-size: 24px;
@@ -259,6 +261,7 @@ export const ChartItem = styled.div`
 `;
 
 export const ChartValue = styled.div`
+  @media (max-width: 600px) { font-size: 16px; text-align: right; overflow-wrap: anywhere; }
   color: ${({ $active }) => $active ? COLORS.pink : COLORS.white};
   font-size: 24px;
   font-weight: 600;
@@ -280,6 +283,7 @@ export const ChartBar = styled.div`
 `;
 
 export const ChartLabel = styled.div`
+  @media (max-width: 600px) { font-size: 16px; overflow-wrap: anywhere; }
   color: ${({ $active }) => $active ? COLORS.pink : COLORS.white};
   font-size: 24px;
   font-weight: 600;

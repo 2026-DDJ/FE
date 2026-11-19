@@ -26,6 +26,7 @@ export const LoadingContainer = styled.div`
 `;
 
 export const LoadingContent = styled.main`
+  @media (max-width: 600px) { padding: 110px 16px 32px; }
   flex: 1;
 
   display: flex;
@@ -36,6 +37,7 @@ export const LoadingContent = styled.main`
 `;
 
 export const LoadingTitle = styled.h1`
+  @media (max-width: 600px) { padding-top: 0; font-size: 30px; }
   margin: 0;
 
   color: ${COLORS.pink};
@@ -49,6 +51,7 @@ export const LoadingTitle = styled.h1`
 `;
 
 export const SkeletonContainer = styled.div`
+  @media (max-width: 600px) { width: min(100%, 300px); height: 465px; }
   position: relative;
 
   width: 400px;
@@ -57,6 +60,7 @@ export const SkeletonContainer = styled.div`
 
 // 회색 스켈레톤 (기준)
 export const SkeletonBackground = styled.img`
+  @media (max-width: 600px) { width: 100%; height: 100%; }
   position: absolute;
 
   top: 0px;
@@ -70,6 +74,7 @@ export const SkeletonBackground = styled.img`
 
 // 핑크 스켈레톤 (수동 조정)
 export const SkeletonOverlay = styled.div`
+  @media (max-width: 600px) { width: 100%; height: 100%; img { width: 100%; height: 100%; } }
   position: absolute;
 
   top: 0px;

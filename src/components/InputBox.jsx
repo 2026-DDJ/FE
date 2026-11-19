@@ -39,7 +39,9 @@ const InputBox = ({
 export default InputBox;
 
 const InputBoxContainer = styled.div`
-  width: 580px;
+  width: min(580px, 100%);
+  min-width: 0;
+  @media (max-width: 600px) { padding: 22px 18px; gap: 14px; }
   padding: 34px 38px 40px;
 
   display: flex;
@@ -56,6 +58,7 @@ const Label = styled.label`
   color: ${COLORS.pink};
 
   font-size: 27px;
+  @media (max-width: 600px) { font-size: 20px; }
   font-weight: 600;
 `;
 

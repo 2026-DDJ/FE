@@ -20,7 +20,7 @@ export const FieldContainer = styled.div`
   border-radius: 8px;
 
   background: color-mix(in srgb, ${COLORS.button} 20%, transparent);
-  @media (max-width: 600px) { padding: 24px; }
+  @media (max-width: 600px) { min-height: 190px; padding: 20px; }
 `;
 
 export const FieldHeader = styled.div`
@@ -36,11 +36,12 @@ export const FieldTitle = styled.h3`
   color: ${COLORS.white};
 
   font-size: 32px;
-  @media (max-width: 600px) { font-size: 28px; }
+  @media (max-width: 600px) { font-size: 24px; }
   font-weight: 700;
 `;
 
 export const FieldDescription = styled.p`
+  @media (max-width: 600px) { font-size: 16px; }
   ${({ $withCount }) => $withCount && "display: flex; align-items: baseline; gap: 8px;"}
   margin-top: 8px;
 
@@ -196,7 +197,8 @@ export const OptionButton = styled.button`
   font-size: 18px;
   font-weight: 700;
 
-  > span { white-space: pre; line-height: 1.3; }
+  > span { white-space: pre-line; line-height: 1.3; }
+  @media (max-width: 600px) { font-size: 16px; }
 
   cursor: pointer;
 

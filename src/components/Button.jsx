@@ -23,6 +23,7 @@ export default Button;
 
 const ButtonContainer = styled.button`
   min-width: 194px;
+  max-width: 100%;
   height: 74px;
 
   padding: 0 40px;
@@ -57,6 +58,8 @@ const ButtonContainer = styled.button`
   &:active {
     transform: scale(0.98);
   }
+
+  @media (max-width: 600px) { min-width: 0; min-height: 56px; height: auto; padding: 15px 24px; font-size: 20px; }
 
   &:disabled {
     opacity: 0.5;
