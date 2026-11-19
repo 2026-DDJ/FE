@@ -21,6 +21,12 @@ export const FieldContainer = styled.div`
 
   background: color-mix(in srgb, ${COLORS.button} 20%, transparent);
   @media (max-width: 600px) { min-height: 190px; padding: 20px; }
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 export const FieldHeader = styled.div`
@@ -51,6 +57,13 @@ export const FieldDescription = styled.p`
   line-height: 1.5;
   white-space: pre-line;
   font-weight: 400;
+  @media (max-width: 768px) {
+    font-size: 16px;
+    min-width: 0;
+    flex-wrap: wrap;
+    overflow-wrap: anywhere;
+  }
+
 `;
 
 export const FieldCount = styled.span`
@@ -67,6 +80,12 @@ export const FieldControl = styled.div`
 
   margin-top: auto;
   padding-top: 26px;
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 /* =========================
@@ -77,6 +96,12 @@ export const SelectContainer = styled.div`
   position: relative;
 
   width: 100%;
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 export const Select = styled.select`
@@ -100,6 +125,12 @@ export const Select = styled.select`
   cursor: pointer;
 
   appearance: none;
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 export const SelectArrow = styled.span`
@@ -128,6 +159,12 @@ export const InputWrapper = styled.div`
   align-items: center;
 
   gap: 20px;
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 export const Input = styled.input`
@@ -153,6 +190,12 @@ export const Input = styled.input`
   &::placeholder {
     color: color-mix(in srgb, ${COLORS.background} 45%, transparent);
   }
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 export const InputSuffix = styled.span`
@@ -179,6 +222,12 @@ export const OptionButtonContainer = styled.div`
 
   gap: 12px;
   @media (max-width: 600px) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  @media (max-width: 768px) {
+    min-width: 0;
+    max-width: 100%;
+    width: 100%;
+  }
+
 `;
 
 export const OptionButton = styled.button`

@@ -34,6 +34,11 @@ export const ResultContent = styled.main`
     width: 90%;
     padding-top: 130px;
   }
+  .mobile-break { display: none; }
+  @media (max-width: 768px) {
+    .mobile-break { display: block; }
+  }
+
 `;
 
 // ==========================================

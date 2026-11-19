@@ -14,6 +14,11 @@ export const SimulationContent = styled.main`
   margin: 0 auto;
   padding: 160px 0 64px;
   @media (max-width: 600px) { width: 90%; padding-top: 132px; }
+  .mobile-break { display: none; }
+  @media (max-width: 768px) {
+    .mobile-break { display: block; }
+  }
+
 `;
 
 export const PageTitle = styled.h1`

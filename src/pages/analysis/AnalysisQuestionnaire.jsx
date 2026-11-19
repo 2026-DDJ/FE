@@ -36,11 +36,14 @@ export default function AnalysisQuestionnaire({ step }) {
       <AnalysisContent>
         <AnalysisSteps currentStep={step} />
         <form onSubmit={handleSubmit}>
+          {step > 1 && (
+            <NavigationArea $top>
+              <PreviousButton type="button" onClick={() => navigate(`/analysis/${step - 1}`)}>← 이전으로</PreviousButton>
+            </NavigationArea>
+          )}
           <TitleRow>
             <Title>{title}</Title>
-            <Button type="submit" disabled={!isStepValid(step, formData)}>
-              {buttonLabels[step - 1]}
-            </Button>
+
           </TitleRow>
           <FormGrid>
             {displayedFields.map((field) => {
@@ -56,9 +59,9 @@ export default function AnalysisQuestionnaire({ step }) {
               );
             })}
           </FormGrid>
-          {step > 1 && <NavigationArea>
-            <PreviousButton type="button" onClick={() => navigate(`/analysis/${step - 1}`)}>← 이전으로</PreviousButton>
-          </NavigationArea>}
+          <NavigationArea $bottom>
+            <Button type="submit" disabled={!isStepValid(step, formData)}>{buttonLabels[step - 1]}</Button>
+          </NavigationArea>
           {missingStep !== -1 && <p role="status">아직 입력하지 않은 {missingStep + 1}단계로 돌아가 입력을 완료해주세요.</p>}
         </form>
       </AnalysisContent>
