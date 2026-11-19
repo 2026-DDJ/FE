@@ -32,6 +32,7 @@ const Choices = styled.div`
   display: grid;
   grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 8px;
+  @media (max-width: 420px) { gap: 4px; }
 `;
 const Choice = styled.button`
   display: flex;
@@ -39,8 +40,10 @@ const Choice = styled.button`
   align-items: center;
   justify-content: center;
   gap: 6px;
-  min-width: 44px;
+  min-width: 0;
+  width: 100%;
   min-height: 76px;
+  @media (max-width: 420px) { min-height: 60px; svg { width: min(100%, 32px); height: 40px; } }
   border: none;
   border-radius: 8px;
   background: transparent;
