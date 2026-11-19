@@ -43,11 +43,11 @@ export const TitleRow = styled.div`
   @media (max-width: 600px) {
     align-items: stretch;
     flex-direction: column;
-    > button { width: 100%; height: auto; min-height: 60px; padding: 16px; }
+    > button { width: 100%; height: 58px; min-height: 58px; margin-left: 0; padding: 0 16px; }
   }
   @media (max-width: 768px) {
     margin: 18px 0 24px;
-    > button { display: none; }
+    > button { display: flex; }
   }
 
 `;
@@ -124,7 +124,6 @@ export const NavigationArea = styled.div`
 `;
 
 export const PreviousButton = styled.button`
-  @media (max-width: 600px) { height: 58px; font-size: 20px; }
   min-width: 0;
   height: 74px;
 
@@ -157,4 +156,5 @@ export const PreviousButton = styled.button`
   &:active {
     transform: scale(0.98);
   }
+  @media (max-width: 600px) { height: 58px; font-size: 20px; }
 `;

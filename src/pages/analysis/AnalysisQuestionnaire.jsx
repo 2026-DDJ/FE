@@ -42,13 +42,10 @@ export default function AnalysisQuestionnaire({ step }) {
         <form onSubmit={handleSubmit}>
           <TitleRow>
             <Title>{title}</Title>
-
-          </TitleRow>
-          {step > 1 && (
-            <NavigationArea $top>
+            {step > 1 && (
               <PreviousButton type="button" onClick={() => navigate(`/analysis/${step - 1}`)}>← 이전으로</PreviousButton>
-            </NavigationArea>
-          )}
+            )}
+          </TitleRow>
           <FormGrid>
             {displayedFields.map((field) => {
               const props = { value: formData[field.name], onChange: (value) => updateField(field.name, value), "aria-label": field.title };
