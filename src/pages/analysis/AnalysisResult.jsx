@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { formatMedicalCost } from "../../utils/formatMedicalCost";
 import { getPrediction, getPredictionId } from "../../api/predictions";
 import Header from "../../components/Header";
+import { getPredictionComparisons } from "../../utils/predictionComparison.js";
 import {
   ResultContainer, ResultContent, ResultHeading, ResultAmount,
   ResultDescription, Highlight, ResultGrid, ResultCard, CardTitle,
@@ -55,12 +56,7 @@ const AnalysisResult = () => {
     return () => { controller.abort(); clearTimeout(timeout); };
   }, [id]);
 
-  const comparisons = result ? [
-    { label: "내 예상 의료비", cost: Number(result.predictedAnnualMedicalCost) },
-    { label: "동일 소득 구간 평균", cost: result.sameIncomeGroupAverageAnnualMedicalCost ?? result.comparison?.sameIncomeGroup?.mean },
-    { label: "동일 외래 이용횟수 구간 평균 의료비", cost: result.sameOutpatientVisitsGroupAverageAnnualMedicalCost ?? result.comparison?.sameOutpatientGroup?.mean },
-    { label: "전체 평균 의료비", cost: result.overallAverageAnnualMedicalCost ?? result.comparison?.overall?.mean },
-  ].map((item) => ({ ...item, cost: isCost(item.cost) ? Number(item.cost) : null })) : [];
+  const comparisons = result ? getPredictionComparisons(result) : [];
 
   const availableComparisons = comparisons.filter((item) => item.cost !== null);
   const hasPeerComparison = comparisons.slice(1).some((item) => item.cost !== null);
