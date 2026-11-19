@@ -7,10 +7,38 @@ import { createGlobalStyle } from "styled-components";
 const MobileResponsiveStyle = createGlobalStyle`
   @media (max-width: 1200px) {
     /* Data page: replace absolute desktop columns with a stacked flow. */
-    [data-mobile-page="data"] {
+
+    /* Data page: stacked cards and copy, independent of absolute positioning. */
+    main:has(> section > div > div) { min-width: 0; }
+    main:has(> section > div > div) > section { max-width: 100%; }
+  
+  }
+
+
+  @media (max-width: 1024px) {
+    /* Intro layout and its animated progress tracker. */
+    main:has(> section > h1 + div) {
+      height: auto;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column;
+      align-items: center;
+      padding: 120px 6% 40px;
+      gap: 28px;
     }
+    main:has(> section > h1 + div) > section:first-child {
+      position: static;
+      width: 100%;
+    }
+    main:has(> section > h1 + div) > section:first-child h1 {
+      font-size: clamp(34px, 6vw, 60px);
+      line-height: 1.15;
+    }
+    main:has(> section > h1 + div) > section:first-child div {
+      font-size: clamp(16px, 2.8vw, 24px);
+      margin-top: 24px;
+    }
+    main:has(> section > h1 + div) > section:first-child br { display: none; }
   }
 
   @media (max-width: 768px) {
