@@ -26,6 +26,7 @@ export const DataContent = styled.main`
 
   display: grid;
   grid-template-columns: 520px 1fr;
+  @media (max-width: 1200px) { display: flex; flex-direction: column-reverse; align-items: center; gap: 36px; padding: 110px 5% 60px; }
 `;
 
 export const LeftSection = styled.section`
@@ -40,6 +41,7 @@ export const LeftSection = styled.section`
   flex-direction: column;
 
   gap: 80px;
+  @media (max-width: 1200px) { position: static; width: min(100%, 620px); gap: 24px; }
 `;
 
 /* =========================
@@ -49,6 +51,7 @@ export const LeftSection = styled.section`
 export const DetailCardArea = styled.div`
   width: 100%;
   min-height: 315px;
+  @media (max-width: 600px) { min-height: 0; }
 `;
 
 export const DataCard = styled.div`
@@ -101,6 +104,7 @@ export const CardHeader = styled.div`
   min-height: 140px;
 
   padding: 36px;
+  @media (max-width: 600px) { min-height: 108px; padding: 22px 18px; gap: 8px; }
 
   display: flex;
   justify-content: space-between;
@@ -114,6 +118,7 @@ export const CardName = styled.h2`
 
   font-size: 36px;
   font-weight: normal;
+  @media (max-width: 600px) { font-size: clamp(20px, 6vw, 30px); }
 `;
 
 export const CardSummary = styled.p`
@@ -121,6 +126,7 @@ export const CardSummary = styled.p`
 
   font-size: 24px;
   font-weight: 600;
+  @media (max-width: 600px) { font-size: 15px; }
   line-height: 1.4;
 
   text-align: right;
@@ -145,6 +151,7 @@ export const CardList = styled.div`
 
 export const DetailArea = styled.div`
   padding: 0 36px 32px;
+  @media (max-width: 600px) { padding: 0 18px 24px; }
 
   animation: detailFade 0.45s ease both;
   animation-delay: 0.18s;
@@ -200,6 +207,7 @@ export const DetailDescription = styled.p`
 export const FeatureGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(5, 1fr);
+  @media (max-width: 600px) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
   gap: 8px;
 `;
@@ -359,6 +367,7 @@ export const RightSection = styled.section`
 
   width: 700px;
   min-height: calc(100vh - 225px);
+  @media (max-width: 1200px) { position: static; width: min(100%, 720px); min-height: 0; align-items: flex-start; }
 
   display: flex;
   flex-direction: column;
@@ -378,6 +387,7 @@ export const DataDescription = styled.p`
 
   text-align: right;
   word-break: keep-all;
+  @media (max-width: 1200px) { margin-top: 20px; text-align: left; font-size: clamp(16px, 3vw, 24px); line-height: 1.6; br { display: none; } }
 `;
 
 
@@ -392,11 +402,14 @@ export const DataTitle = styled.h1`
   line-height: 0.95;
 
   text-align: right;
-  letter-spacing: -3%;
+  letter-spacing: -0.03em;
+  @media (max-width: 1200px) { text-align: left; font-size: clamp(38px, 6vw, 64px); line-height: 1.15; }
 `;
 
 export const ButtonArea = styled.div`
   margin-top: 240px;
+  @media (max-width: 1200px) { margin-top: 28px; }
+  @media (max-width: 600px) { width: 100%; > button { width: 100%; } }
 `;
 
 export const ViewTransitionStyles = styled.div`
