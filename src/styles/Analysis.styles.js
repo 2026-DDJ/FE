@@ -23,7 +23,7 @@ export const AnalysisContent = styled.main`
   padding-top: 150px;
   padding-bottom: 70px;
 
-  @media (max-width: 600px) { width: 90%; padding-top: 132px; }
+  @media (max-width: 600px) { width: 90%; padding-top: 110px; padding-bottom: 40px; }
 `;
 
 export const TitleRow = styled.div`
@@ -50,7 +50,7 @@ export const Title = styled.h1`
   font-size: clamp(36px, 4vw, 54px);
   font-weight: 700;
   line-height: 1.2;
-  @media (max-width: 600px) { font-size: 40px; }
+  @media (max-width: 600px) { font-size: clamp(28px, 8vw, 40px); }
 `;
 
 export const FormGrid = styled.div`
@@ -96,6 +96,7 @@ export const NavigationArea = styled.div`
 `;
 
 export const PreviousButton = styled.button`
+  @media (max-width: 600px) { height: 58px; font-size: 20px; }
   min-width: 0;
   height: 74px;
 

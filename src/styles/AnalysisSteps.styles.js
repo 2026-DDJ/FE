@@ -13,6 +13,7 @@ export const StepsContainer = styled.div`
 export const StepCircle = styled.div`
   width: 62px;
   height: 62px;
+  @media (max-width: 600px) { width: 44px; height: 44px; font-size: 16px; }
 
   display: flex;
   justify-content: center;

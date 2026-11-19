@@ -4,22 +4,25 @@ import { PageContainer, COLORS } from "./Common.styles";
 
 export const LoginContainer = styled(PageContainer)`
   justify-content: center;
-  padding: 80px 0;
+  padding: 80px 20px;
 `;
 
 export const Logo = styled.img`
   width: 410px;
   height: auto;
   margin-bottom: 90px;
+  @media (max-width: 600px) { width: min(100%, 320px); margin-bottom: 48px; }
 `;
 
 export const LoginForm = styled.form`
+  width: min(100%, 580px);
   display: flex;
   flex-direction: column;
   align-items: center;
 `;
 
 export const InputSection = styled.div`
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;

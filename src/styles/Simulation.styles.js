@@ -75,6 +75,7 @@ export const BMIValues = styled.div`
   margin-bottom: 24px;
   span { display: flex; flex-direction: column; gap: 8px; font-size: 16px; }
   strong, output { font-size: 28px; font-weight: 700; }
+  @media (max-width: 600px) { gap: 8px; strong, output { font-size: 20px; } span { font-size: 13px; } }
   output { color: ${COLORS.pink}; }
 `;
 
