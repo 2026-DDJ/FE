@@ -82,13 +82,13 @@ const AnalysisResult = () => {
           </>
         ) : (
           <>
-            <ResultHeading>1년간<span className="mobile-break" />예상되는 의료비</ResultHeading>
+            <ResultHeading>앞으로 1년간{" "}<span className="mobile-break" />예상되는 의료비</ResultHeading>
             <ResultAmount>{formatMedicalCost(Number(result.predictedAnnualMedicalCost))}</ResultAmount>
             <ResultDescription>
               {differencePercent === null ? (
                 "입력하신 조건을 바탕으로 AI가 예측한 연간 의료비입니다."
               ) : (
-                <>{peer.label}보다<span className="mobile-break" />약{" "}
+                <>{peer.label}보다{" "}<span className="mobile-break" />약{" "}
                   <Highlight>{differencePercent > 0 ? "+" : ""}{differencePercent.toFixed(1)}%</Highlight>
                   {differencePercent >= 0 ? " 높게" : " 낮게"} 예측됐어요.</>
               )}
@@ -122,13 +122,13 @@ const AnalysisResult = () => {
             <SimulationBanner>
               <SimulationText>
                 <SimulationTitle>건강한 변화를 시작해보세요.</SimulationTitle>
-                <SimulationDescription>BMI와 운동 조건을 바꿔 예측비를<span className="mobile-break" />비교해보세요.</SimulationDescription>
+                <SimulationDescription>BMI와 운동 조건을 바꿔{" "}<span className="mobile-break" /><span className="mobile-nowrap">예측비를 비교해보세요.</span></SimulationDescription>
               </SimulationText>
               <SimulationButton type="button" onClick={() => navigate("/simulation")}>
                 조건을 바꿔서 결과 비교하기 →
               </SimulationButton>
             </SimulationBanner>
-            <p style={{ color: "white", marginTop: 20 }}>본 결과는 통계적 예측이며<span className="mobile-break" />실제 의료비나 생활 습관 변화의 인과적 효과를<span className="mobile-break" />보장하지 않습니다.</p>
+            <p style={{ color: "white", marginTop: 20 }}>본 결과는 통계적 예측이며{" "}<span className="mobile-break" />실제 의료비나 생활 습관 변화의 인과적 효과를{" "}<span className="mobile-break" />보장하지 않습니다.</p>
           </>
         )}
       </ResultContent>

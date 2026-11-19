@@ -35,8 +35,10 @@ export const ResultContent = styled.main`
     padding-top: 130px;
   }
   .mobile-break { display: none; }
+  .mobile-nowrap { white-space: normal; }
   @media (max-width: 768px) {
     .mobile-break { display: block; }
+    .mobile-nowrap { white-space: nowrap; }
   }
 
 `;
@@ -46,6 +48,7 @@ export const ResultContent = styled.main`
 // ==========================================
 
 export const ResultHeading = styled.h1`
+  @media (min-width: 769px) { white-space: nowrap; }
   color: ${COLORS.white};
 
   font-size: 48px;

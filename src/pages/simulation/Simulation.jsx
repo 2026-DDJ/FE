@@ -73,8 +73,8 @@ const Simulation = () => {
     <SimulationContainer>
       <Header />
       <SimulationContent>
-        <PageTitle>생활 습관을 바꿨을 때의<span className="mobile-break" />예상 의료비는?</PageTitle>
-        <PageDescription>체질량지수(BMI)와 운동 조건을 바꿔 AI 모델이 다시<span className="mobile-break" />계산한 예측 결과를 비교합니다.</PageDescription>
+        <PageTitle>생활 습관을 바꿨을 때의{" "}<span className="mobile-break" />예상 의료비는?</PageTitle>
+        <PageDescription>체질량지수(BMI)와 운동 조건을 바꿔 AI 모델이 다시{" "}<span className="mobile-break" />계산한 예측 결과를 비교합니다.</PageDescription>
         {!id && <Notice role="alert">저장된 의료비 예측이 없습니다. <Link to="/analysis">설문부터 진행해주세요.</Link></Notice>}
         {error && <Notice role="alert">{error}</Notice>}
         <SimulationGrid>
@@ -104,7 +104,7 @@ const Simulation = () => {
               </OptionGroup>
             </ConditionRow>
             <PredictButton type="button" disabled={!baseline || busy} onClick={handleSimulate}>
-              {busy ? "AI 모델로 다시 계산 중..." : (<>바뀐 조건으로 의료비<span className="mobile-break" />{" "}다시 계산하기 →</>)}
+              {busy ? "AI 모델로 다시 계산 중..." : (<>바뀐 조건으로 의료비{" "}<span className="mobile-break" />다시 계산하기 →</>)}
             </PredictButton>
           </ConditionCard>
           <ResultCard aria-labelledby="result-heading">
@@ -125,7 +125,7 @@ const Simulation = () => {
             </div>
           </ResultCard>
         </SimulationGrid>
-        <Notice>시뮬레이션은 조건 변화에 따른 모델 예측 비교이며<span className="mobile-break" />실제 의료비 절감이나<span className="mobile-break" />인과적 효과를 보장하지 않습니다.</Notice>
+        <Notice>시뮬레이션은 조건 변화에 따른 모델 예측 비교이며{" "}<span className="mobile-break" />실제 의료비 절감이나{" "}<span className="mobile-break" />인과적 효과를 보장하지 않습니다.</Notice>
       </SimulationContent>
     </SimulationContainer>
   );
