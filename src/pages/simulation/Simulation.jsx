@@ -74,7 +74,7 @@ const Simulation = () => {
       <Header />
       <SimulationContent>
         <PageTitle>생활 습관을 바꿨을 때의<span className="mobile-break" />예상 의료비는?</PageTitle>
-        <PageDescription>체질량지수(BMI)와 운동 조건을 바꿔 AI 모델이<span className="mobile-break" />다시 계산한<span className="mobile-break" />예측 결과를 비교합니다.</PageDescription>
+        <PageDescription>체질량지수(BMI)와 운동 조건을 바꿔 AI 모델이 다시<span className="mobile-break" />계산한 예측 결과를 비교합니다.</PageDescription>
         {!id && <Notice role="alert">저장된 의료비 예측이 없습니다. <Link to="/analysis">설문부터 진행해주세요.</Link></Notice>}
         {error && <Notice role="alert">{error}</Notice>}
         <SimulationGrid>
@@ -115,16 +115,17 @@ const Simulation = () => {
               <CostBox $highlight><CostLabel>변경 후 · AI 예측 연간 의료비</CostLabel>
                 <CostAmount $highlight>{afterCost == null ? "—" : formatMedicalCost(Number(afterCost))}</CostAmount></CostBox>
               <DifferenceBox>
-                <DifferenceAmount>{!simulation ? "조건을 선택하고 비교해보세요."
-                  : difference === 0 ? "금액 변화 없음"
-                  : `${formatMedicalCost(Math.abs(difference))} ${direction}`}</DifferenceAmount>
+                {simulation && (
+                  <DifferenceAmount>{difference === 0 ? "금액 변화 없음"
+                    : `${formatMedicalCost(Math.abs(difference))} ${direction}`}</DifferenceAmount>
+                )}
                 {percent !== null && difference !== 0 && <DifferencePercent>약 {percent}% {direction}</DifferencePercent>}
                 {simulation && pending && <Notice>조건이 변경됐어요. 비교 버튼을 눌러 결과를 갱신하세요.</Notice>}
               </DifferenceBox>
             </div>
           </ResultCard>
         </SimulationGrid>
-        <Notice>시뮬레이션은 조건 변화에 따른 모델 예측 비교이며<span className="mobile-break" />실제 의료비 절감이나 인과적 효과를<span className="mobile-break" />보장하지 않습니다.</Notice>
+        <Notice>시뮬레이션은 조건 변화에 따른 모델 예측 비교이며<span className="mobile-break" />실제 의료비 절감이나<span className="mobile-break" />인과적 효과를 보장하지 않습니다.</Notice>
       </SimulationContent>
     </SimulationContainer>
   );

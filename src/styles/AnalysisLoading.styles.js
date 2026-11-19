@@ -26,18 +26,19 @@ export const LoadingContainer = styled.div`
 `;
 
 export const LoadingContent = styled.main`
-  @media (max-width: 600px) { padding: 110px 16px 32px; }
+
   flex: 1;
 
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  padding-top: 80px;
+  padding: 112px 16px 32px;
+  @media (max-width: 600px) { padding-top: 112px; }
 `;
 
 export const LoadingTitle = styled.h1`
-  @media (max-width: 600px) { padding-top: 0; font-size: 30px; }
+
   margin: 0;
 
   color: ${COLORS.pink};
@@ -47,41 +48,43 @@ export const LoadingTitle = styled.h1`
   line-height: 1.2;
 
   text-align: center;
-  padding-top: 80px;
+  padding-top: 0;
+  margin-bottom: 20px;
+  @media (max-width: 600px) { font-size: 30px; }
 `;
 
 export const SkeletonContainer = styled.div`
-  @media (max-width: 600px) { width: min(100%, 300px); height: 465px; }
+
   position: relative;
 
-  width: 400px;
-  height: 620px;
+  width: min(400px, 75vw);
+  aspect-ratio: 400 / 620;
+  height: auto;
+  flex: 0 0 auto;
 `;
 
 // 회색 스켈레톤 (기준)
 export const SkeletonBackground = styled.img`
-  @media (max-width: 600px) { width: 100%; height: 100%; }
   position: absolute;
 
   top: 0px;
   left: 0px;
 
-  width: 400px;
-  height: 620px;
+  width: 100%;
+  height: 100%;
 
   object-fit: contain;
 `;
 
 // 핑크 스켈레톤 (수동 조정)
 export const SkeletonOverlay = styled.div`
-  @media (max-width: 600px) { width: 100%; height: 100%; img { width: 100%; height: 100%; } }
   position: absolute;
 
   top: 0px;
   left: 0px;
 
-  width: 400px;
-  height: 620px;
+  width: 100%;
+  height: 100%;
 
   overflow: hidden;
 
@@ -93,8 +96,8 @@ export const SkeletonOverlay = styled.div`
     top: 0px;
     left: 0px;
 
-    width: 400px;
-    height: 620px;
+    width: 100%;
+    height: 100%;
 
     object-fit: contain;
   }

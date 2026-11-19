@@ -71,7 +71,7 @@ export const ResultAmount = styled.div`
   }
 
   @media (max-width: 480px) {
-    font-size: clamp(36px, 10vw, 58px);
+    font-size: clamp(42px, 12vw, 64px);
     overflow-wrap: anywhere;
   }
 `;
@@ -255,7 +255,8 @@ export const ChartContainer = styled.div`
 
 export const ChartArea = styled.div`
   display: grid;
-  gap: 20px;
+  gap: 28px;
+  @media (max-width: 768px) { gap: 30px; }
 `;
 
 export const ChartItem = styled.div`

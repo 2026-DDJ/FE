@@ -9,7 +9,8 @@ import {
 export const HeroActions = styled.div`
   @media (max-width: 768px) {
     position: absolute;
-    top: 59%;
+    top: auto;
+    bottom: calc(7% + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
     width: min(90%, 440px);
@@ -78,7 +79,7 @@ export const SkeletonArea = styled.div`
 
   width: 620px;
   height: 90vh;
-  @media (max-width: 768px) { top: 10%; width: min(100vw, 500px); height: 68%; }
+  @media (max-width: 768px) { top: 10%; width: min(100vw, 500px); height: 62%; }
 
   z-index: 1;
 `;
