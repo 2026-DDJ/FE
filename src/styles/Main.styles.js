@@ -10,10 +10,10 @@ export const HeroActions = styled.div`
   @media (max-width: 768px) {
     position: absolute;
     top: auto;
-    bottom: calc(7% + env(safe-area-inset-bottom, 0px));
+    bottom: calc(16% + env(safe-area-inset-bottom, 0px));
     left: 50%;
     transform: translateX(-50%);
-    width: min(90%, 440px);
+    width: min(88%, 460px);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -79,7 +79,11 @@ export const SkeletonArea = styled.div`
 
   width: 620px;
   height: 90vh;
-  @media (max-width: 768px) { top: 10%; width: min(100vw, 500px); height: 62%; }
+  @media (max-width: 768px) {
+    top: 14%;
+    width: 100%;
+    height: 78%;
+  }
 
   z-index: 1;
 `;
@@ -128,7 +132,7 @@ export const ButtonArea = styled.div`
     transform: none;
     width: 100%;
     > button {
-      width: 100%;
+      width: min(60%, 280px);
       height: 52px;
       min-height: 52px;
       padding: 8px 16px;
