@@ -132,7 +132,7 @@ export const ProgressSection = styled.div`
   top: 21%;
   right: 8%;
 
-  width: 250px;
+  width: min(30%, 360px);
   height: 390px;
   @media (max-width: 1024px) { position: static; width: min(100%, 360px); height: 190px; align-self: center; }
   @media (max-width: 768px) {
@@ -179,7 +179,8 @@ export const ButtonArea = styled.div`
 export const ProgressContainer = styled.div`
   position: relative;
 
-  width: 270px;
+  --intro-progress-dot-size: 28px;
+  width: 100%;
   height: 390px;
   @media (max-width: 1024px) { width: 100%; height: 190px; }
   @media (max-width: 768px) {
@@ -193,11 +194,11 @@ export const ProgressContainer = styled.div`
 export const ProgressAxis = styled.div`
   position: absolute;
 
-  top: 13px;
-  right: 13px;
+  top: calc(var(--intro-progress-dot-size) / 2);
+  right: calc(var(--intro-progress-dot-size) / 2 - 1px);
 
   width: 2px;
-  height: calc(100% - 26px);
+  height: calc(100% - var(--intro-progress-dot-size));
 
   z-index: 1;
 `;
@@ -296,64 +297,32 @@ export const SecondLineFill = styled.div`
 
 export const ProgressStep = styled.div`
   position: absolute;
-
+  left: 0;
   right: 0;
-
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--intro-progress-dot-size);
   align-items: center;
-
   gap: 20px;
 
-  ${({ $position }) =>
-    $position === "top" &&
-    `
-      top: 0;
-    `}
+  top: ${({ $position }) => $position === "top" ? "calc(var(--intro-progress-dot-size) / 2)" : $position === "middle" ? "50%" : "calc(100% - var(--intro-progress-dot-size) / 2)"};
+  transform: translateY(-50%);
 
-  ${({ $position }) =>
-    $position === "middle" &&
-    `
-      top: 50%;
-      transform: translateY(-50%);
-    `}
-
-  ${({ $position }) =>
-    $position === "bottom" &&
-    `
-      bottom: 0;
-    `}
-  @media (max-width: 768px) {
-    left: 0;
-    right: 0;
-    gap: 8px;
-    width: 100%;
-    max-width: 100%;
-  }
-
+  @media (max-width: 768px) { gap: 8px; }
 `;
 
 export const ProgressLabel = styled.span`
-  width: 190px;
-
+  min-width: 0;
   color: #202020;
-
   font-size: 28px;
   font-weight: 700;
-  @media (max-width: 1024px) { width: auto; font-size: 18px; }
-
+  line-height: 1.25;
   text-align: right;
+  white-space: normal;
+  word-break: keep-all;
+  overflow-wrap: anywhere;
 
-  white-space: nowrap;
-  @media (max-width: 768px) {
-    flex: 1 1 0;
-    width: 0;
-    min-width: 0;
-    font-size: clamp(12px, 3.1vw, 17px);
-    line-height: 1.25;
-    white-space: normal;
-    word-break: keep-all;
-  }
-
+  @media (max-width: 1024px) { font-size: 18px; }
+  @media (max-width: 768px) { font-size: clamp(12px, 3.1vw, 17px); }
 `;
 
 export const ProgressDot = styled.div`
@@ -371,7 +340,7 @@ export const ProgressDot = styled.div`
   border: 1.5px solid #29AE89;
   border-radius: 50%;
 
-  background: transparent;
+  background: #FFFFFF;
 
   z-index: 3;
 
