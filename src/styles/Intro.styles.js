@@ -11,8 +11,9 @@ export const IntroContainer = styled(PageContainer)`
 
   width: 100%;
   min-height: 100vh;
+  min-height: 100dvh;
 
-  overflow-x: hidden;
+  overflow-x: clip;
 `;
 
 export const IntroContent = styled.main`
@@ -28,8 +29,9 @@ export const IntroContent = styled.main`
     align-items: center;
     column-gap: 0;
     row-gap: 14px;
-    padding: 104px 5% 120px;
+    padding: 104px 5% calc(72px + env(safe-area-inset-bottom, 0px));
     height: auto;
+    min-height: 100vh;
     min-height: 100dvh;
   }
 
@@ -140,6 +142,7 @@ export const ProgressSection = styled.div`
     width: 100%;
     height: clamp(230px, 36vh, 320px);
     min-width: 0;
+    padding-left: 8px;
   }
 
 `;
@@ -179,7 +182,11 @@ export const ProgressContainer = styled.div`
   width: 270px;
   height: 390px;
   @media (max-width: 1024px) { width: 100%; height: 190px; }
-  @media (max-width: 768px) { width: 100%; height: 100%; }
+  @media (max-width: 768px) {
+    width: 100%;
+    height: 100%;
+    --intro-progress-dot-size: 22px;
+  }
 
 `;
 
@@ -315,7 +322,13 @@ export const ProgressStep = styled.div`
     `
       bottom: 0;
     `}
-  @media (max-width: 768px) { gap: 8px; max-width: 100%; }
+  @media (max-width: 768px) {
+    left: 0;
+    right: 0;
+    gap: 8px;
+    width: 100%;
+    max-width: 100%;
+  }
 
 `;
 
@@ -332,7 +345,8 @@ export const ProgressLabel = styled.span`
 
   white-space: nowrap;
   @media (max-width: 768px) {
-    width: auto;
+    flex: 1 1 0;
+    width: 0;
     min-width: 0;
     font-size: clamp(12px, 3.1vw, 17px);
     line-height: 1.25;
@@ -362,7 +376,10 @@ export const ProgressDot = styled.div`
   z-index: 3;
 
   overflow: hidden;
-  @media (max-width: 768px) { width: 22px; height: 22px; }
+  @media (max-width: 768px) {
+    width: var(--intro-progress-dot-size, 22px);
+    height: var(--intro-progress-dot-size, 22px);
+  }
 
 `;
 
