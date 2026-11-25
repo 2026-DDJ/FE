@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "../../components/Header";
-import { getBMI } from "../../utils/assessment";
+import { readAssessment, getBMI } from "../../utils/assessment";
 import { formatMedicalCost } from "../../utils/formatMedicalCost";
 import { getPrediction, getPredictionId, simulatePrediction } from "../../api/predictions";
 import {
@@ -15,9 +15,8 @@ import {
 const boundBMI = (value) => Math.max(15, Math.min(40, value));
 
 const Simulation = () => {
-  const location = useLocation();
   const [initial] = useState(() => {
-    const assessment = location.state?.assessment ?? {};
+    const assessment = readAssessment();
     return {
       bmi: boundBMI(getBMI(assessment)),
       exercise: assessment.exercise || "regular",
