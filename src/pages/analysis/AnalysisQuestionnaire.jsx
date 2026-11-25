@@ -32,7 +32,7 @@ export default function AnalysisQuestionnaire({ step }) {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (missingStep !== -1) return navigate(`/analysis/${missingStep + 1}`);
-    if (isStepValid(step, formData)) navigate(step === 4 ? "/analysis/loading" : `/analysis/${step + 1}`);
+    if (isStepValid(step, formData)) navigate(step === 4 ? "/analysis/loading" : `/analysis/${step + 1}`, step === 4 ? { state: { assessment: formData } } : undefined);
   };
   return (
     <AnalysisContainer>

@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import Header from "../../components/Header";
-import { readAssessment } from "../../utils/assessment";
+import { isAssessmentValid } from "../../utils/assessmentFields";
 import { createPrediction } from "../../api/predictions";
 import skeletonBg from "../../assets/skeleton_bg.png";
 import skeletonOg from "../../assets/skeleton_og.png";
@@ -12,16 +12,22 @@ import {
 
 const AnalysisLoading = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+  const assessment = location.state?.assessment;
   const started = useRef(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
     if (started.current) return;
     started.current = true;
-    createPrediction(readAssessment())
+    if (!assessment || !isAssessmentValid(assessment)) {
+      navigate("/analysis/1", { replace: true });
+      return;
+    }
+    createPrediction(assessment)
       .then((response) => {
         if (response?.status === "COMPLETED" || response?.status === "PENDING") {
-          navigate("/analysis/result", { replace: true });
+          navigate("/analysis/result", { replace: true, state: { assessment } });
         } else {
           setError(response?.errorCode
             ? `예측에 실패했습니다. (${response.errorCode})`
@@ -29,7 +35,7 @@ const AnalysisLoading = () => {
         }
       })
       .catch((err) => setError(err.message));
-  }, [navigate]);
+  }, [assessment, navigate]);
 
   return (
     <LoadingContainer>
