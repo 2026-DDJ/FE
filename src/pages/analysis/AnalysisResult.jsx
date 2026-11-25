@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { formatMedicalCost } from "../../utils/formatMedicalCost";
 import { getPrediction, getPredictionId } from "../../api/predictions";
 import Header from "../../components/Header";
@@ -17,6 +17,7 @@ const isCost = (value) => value !== null && value !== undefined
 
 const AnalysisResult = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const [result, setResult] = useState(null);
   const [error, setError] = useState("");
   const [pending, setPending] = useState(true);
@@ -124,7 +125,7 @@ const AnalysisResult = () => {
                 <SimulationTitle>건강한 변화를 시작해보세요.</SimulationTitle>
                 <SimulationDescription>BMI와 운동 조건을 바꿔{" "}<span className="mobile-break" /><span className="mobile-nowrap">예측비를 비교해보세요.</span></SimulationDescription>
               </SimulationText>
-              <SimulationButton type="button" onClick={() => navigate("/simulation")}>
+              <SimulationButton type="button" onClick={() => navigate("/simulation", { state: { assessment: location.state?.assessment } })}>
                 조건을 바꿔서 결과 비교하기 →
               </SimulationButton>
             </SimulationBanner>
