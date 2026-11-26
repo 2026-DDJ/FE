@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import { readAssessment, getBMI } from "../../utils/assessment";
 import { formatMedicalCost } from "../../utils/formatMedicalCost";
-import { evaluateSimulation } from "../../utils/simulationResult.js";
-import { getPrediction, getPredictionId, simulatePrediction } from "../../api/predictions";
+import { calculateLifestyleScenario } from "../../utils/lifestyleScenario.js";
+import { getPrediction, getPredictionId } from "../../api/predictions";
 import {
   SimulationContainer, SimulationContent, PageTitle, PageDescription,
   SimulationGrid, ConditionCard, ConditionRow, CardTitle, ConditionName,
@@ -20,15 +20,13 @@ const Simulation = () => {
     const assessment = readAssessment();
     return {
       bmi: boundBMI(getBMI(assessment)),
-      exercise: assessment.exercise || "regular",
+      exercise: assessment.exercise,
     };
   });
   const [conditions, setConditions] = useState(initial);
   const [applied, setApplied] = useState(null);
   const [baseline, setBaseline] = useState(null);
-  const [initialConditions, setInitialConditions] = useState(initial);
   const [simulation, setSimulation] = useState(null);
-  const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
   const id = getPredictionId();
   const pending = !applied || conditions.bmi !== applied.bmi || conditions.exercise !== applied.exercise;
@@ -40,8 +38,6 @@ const Simulation = () => {
       .then((data) => {
         if (data.status === "COMPLETED") {
           setBaseline(data);
-          // Stored assessment can be out of sync with the prediction ID.
-          // The backend simulation response is the authoritative original condition.
         }
         else setError("완료된 예측 결과가 없습니다. 먼저 의료비 예측을 진행해주세요.");
       })
@@ -51,26 +47,21 @@ const Simulation = () => {
     return () => controller.abort();
   }, [id]);
 
-  const handleSimulate = async () => {
-    if (!id || busy || !baseline) return;
-    setBusy(true);
+  const handleSimulate = () => {
+    if (!id || !baseline) return;
     setError("");
     try {
-      const result = await simulatePrediction(id, conditions);
-      evaluateSimulation(result, baseline);
+      const result = calculateLifestyleScenario(baseline.predictedAnnualMedicalCost, initial, conditions);
       setSimulation(result);
-      setInitialConditions({ bmi: Number(result.before.bmi), exercise: result.before.exercises ? "regular" : "none" });
       setApplied({ ...conditions });
     } catch (err) {
       setError(err.message);
       setSimulation(null);
       setApplied(null);
-    } finally {
-      setBusy(false);
     }
   };
 
-  const assessment = simulation ? evaluateSimulation(simulation, baseline) : null;
+  const assessment = simulation;
   const beforeCost = assessment?.before ?? baseline?.predictedAnnualMedicalCost;
   const afterCost = assessment?.after;
   const difference = assessment?.difference;
@@ -85,16 +76,17 @@ const Simulation = () => {
       <Header />
       <SimulationContent>
         <PageTitle>생활 습관을 바꿨을 때의{" "}<span className="mobile-break" />예상 의료비는?</PageTitle>
-        <PageDescription>체질량지수(BMI)와 운동 조건을 바꿔 AI 모델이 다시{" "}<span className="mobile-break" />계산한 예측 결과를 비교합니다.</PageDescription>
+        <PageDescription>기존 AI 예측 의료비를 기준으로 BMI와 운동 조건을 바꾼{" "}<span className="mobile-break" />가상의 시나리오를 비교합니다.</PageDescription>
         {!id && <Notice role="alert">저장된 의료비 예측이 없습니다. <Link to="/analysis">설문부터 진행해주세요.</Link></Notice>}
         {error && <Notice role="alert">{error}</Notice>}
+        {!initial.exercise && <Notice role="alert">기존 설문 조건이 없습니다. 설문을 다시 진행해주세요.</Notice>}
         <SimulationGrid>
           <ConditionCard aria-labelledby="conditions-heading">
             <CardTitle id="conditions-heading">조건 변경</CardTitle>
             <ConditionRow>
               <ConditionName as="label" htmlFor="bmi">체질량지수(BMI)</ConditionName>
               <BMIValues>
-                <span>입력 기준 <strong>{initialConditions.bmi.toFixed(1)}</strong></span>
+                <span>입력 기준 <strong>{initial.bmi.toFixed(1)}</strong></span>
                 <span>변경 후 <output htmlFor="bmi">{conditions.bmi.toFixed(1)}</output></span>
               </BMIValues>
               <BMISlider id="bmi" type="range" min="15" max="40" step="0.1"
@@ -114,8 +106,8 @@ const Simulation = () => {
                 ))}
               </OptionGroup>
             </ConditionRow>
-            <PredictButton type="button" disabled={!baseline || busy} onClick={handleSimulate}>
-              {busy ? "AI 모델로 다시 계산 중..." : (<>바뀐 조건으로 의료비{" "}<span className="mobile-break" />다시 계산하기 →</>)}
+            <PredictButton type="button" disabled={!baseline || !initial.exercise} onClick={handleSimulate}>
+              바뀐 조건으로 의료비{" "}<span className="mobile-break" />다시 계산하기 →
             </PredictButton>
           </ConditionCard>
           <ResultCard aria-labelledby="result-heading">
@@ -123,7 +115,7 @@ const Simulation = () => {
             <div role="status" aria-live="polite" aria-atomic="true">
               <CostBox><CostLabel>변경 전 · AI 예측 연간 의료비</CostLabel>
                 <CostAmount>{beforeCost == null ? "—" : formatMedicalCost(Number(beforeCost))}</CostAmount></CostBox>
-              <CostBox $highlight><CostLabel>변경 후 · AI 예측 연간 의료비</CostLabel>
+              <CostBox $highlight><CostLabel>변경 후 · 가상 시나리오 연간 의료비</CostLabel>
                 <CostAmount $highlight>{afterCost == null ? "—" : formatMedicalCost(Number(afterCost))}</CostAmount></CostBox>
               <DifferenceBox>
                 {simulation && (
@@ -131,13 +123,12 @@ const Simulation = () => {
                     : `${formatMedicalCost(Math.abs(difference))} ${direction}`}</DifferenceAmount>
                 )}
                 {percent !== null && difference !== 0 && <DifferencePercent>약 {percent}% {direction}</DifferencePercent>}
-                {assessment?.reversed && <Notice role="status">변경한 생활 습관의 일반적인 기대 방향과 AI 예측 결과가 다르게 나타났습니다. 이는 오류로 확정할 수 없으며, 통계 모델의 비선형적 예측입니다. 실제 의료비 증가·감소나 건강 개선 효과로 해석하지 마세요.</Notice>}
                 {simulation && pending && <Notice>조건이 변경됐어요. 비교 버튼을 눌러 결과를 갱신하세요.</Notice>}
               </DifferenceBox>
             </div>
           </ResultCard>
         </SimulationGrid>
-        <Notice>시뮬레이션은 조건 변화에 따른 모델 예측 비교이며{" "}<span className="mobile-break" />실제 의료비 절감이나{" "}<span className="mobile-break" />인과적 효과를 보장하지 않습니다.</Notice>
+        <Notice>변경 후 금액은 BMI 1당 2%, 운동 여부 변경 시 5%를 적용한 가상의 계산값입니다(최대 ±30%). 의료 데이터로 검증된 효과가 아니며 실제 의료비나 건강 개선을 예측하지 않습니다. BMI 감소가 항상 건강 개선을 뜻하지 않습니다.</Notice>
       </SimulationContent>
     </SimulationContainer>
   );
