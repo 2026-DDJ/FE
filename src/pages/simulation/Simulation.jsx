@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import { readAssessment, getBMI } from "../../utils/assessment";
 import { formatMedicalCost } from "../../utils/formatMedicalCost";
+import { evaluateSimulation } from "../../utils/simulationResult.js";
 import { getPrediction, getPredictionId, simulatePrediction } from "../../api/predictions";
 import {
   SimulationContainer, SimulationContent, PageTitle, PageDescription,
@@ -25,6 +26,7 @@ const Simulation = () => {
   const [conditions, setConditions] = useState(initial);
   const [applied, setApplied] = useState(null);
   const [baseline, setBaseline] = useState(null);
+  const [initialConditions, setInitialConditions] = useState(initial);
   const [simulation, setSimulation] = useState(null);
   const [busy, setBusy] = useState(false);
   const [error, setError] = useState("");
@@ -36,7 +38,11 @@ const Simulation = () => {
     const controller = new AbortController();
     getPrediction(id, controller.signal)
       .then((data) => {
-        if (data.status === "COMPLETED") setBaseline(data);
+        if (data.status === "COMPLETED") {
+          setBaseline(data);
+          // Stored assessment can be out of sync with the prediction ID.
+          // The backend simulation response is the authoritative original condition.
+        }
         else setError("완료된 예측 결과가 없습니다. 먼저 의료비 예측을 진행해주세요.");
       })
       .catch((err) => {
@@ -51,19 +57,24 @@ const Simulation = () => {
     setError("");
     try {
       const result = await simulatePrediction(id, conditions);
+      evaluateSimulation(result, baseline);
       setSimulation(result);
+      setInitialConditions({ bmi: Number(result.before.bmi), exercise: result.before.exercises ? "regular" : "none" });
       setApplied({ ...conditions });
     } catch (err) {
       setError(err.message);
+      setSimulation(null);
+      setApplied(null);
     } finally {
       setBusy(false);
     }
   };
 
-  const beforeCost = simulation?.before?.predictedAnnualMedicalCost ?? baseline?.predictedAnnualMedicalCost;
-  const afterCost = simulation?.after?.predictedAnnualMedicalCost;
-  const difference = Number(simulation?.annualMedicalCostDifference);
-  const hasDifference = simulation && Number.isFinite(difference);
+  const assessment = simulation ? evaluateSimulation(simulation, baseline) : null;
+  const beforeCost = assessment?.before ?? baseline?.predictedAnnualMedicalCost;
+  const afterCost = assessment?.after;
+  const difference = assessment?.difference;
+  const hasDifference = assessment !== null;
   const percent = hasDifference && Number(beforeCost) > 0
     ? (Math.abs(difference) / Number(beforeCost) * 100).toFixed(1)
     : null;
@@ -83,7 +94,7 @@ const Simulation = () => {
             <ConditionRow>
               <ConditionName as="label" htmlFor="bmi">체질량지수(BMI)</ConditionName>
               <BMIValues>
-                <span>입력 기준 <strong>{initial.bmi.toFixed(1)}</strong></span>
+                <span>입력 기준 <strong>{initialConditions.bmi.toFixed(1)}</strong></span>
                 <span>변경 후 <output htmlFor="bmi">{conditions.bmi.toFixed(1)}</output></span>
               </BMIValues>
               <BMISlider id="bmi" type="range" min="15" max="40" step="0.1"
@@ -120,6 +131,7 @@ const Simulation = () => {
                     : `${formatMedicalCost(Math.abs(difference))} ${direction}`}</DifferenceAmount>
                 )}
                 {percent !== null && difference !== 0 && <DifferencePercent>약 {percent}% {direction}</DifferencePercent>}
+                {assessment?.reversed && <Notice role="status">변경한 생활 습관의 일반적인 기대 방향과 AI 예측 결과가 다르게 나타났습니다. 이는 오류로 확정할 수 없으며, 통계 모델의 비선형적 예측입니다. 실제 의료비 증가·감소나 건강 개선 효과로 해석하지 마세요.</Notice>}
                 {simulation && pending && <Notice>조건이 변경됐어요. 비교 버튼을 눌러 결과를 갱신하세요.</Notice>}
               </DifferenceBox>
             </div>
