@@ -35,6 +35,10 @@ export const IntroContent = styled.main`
     min-height: 100dvh;
   }
 
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-content: start; align-items: start; column-gap: 32px; row-gap: 32px; padding: 130px 6.5% 48px; height: auto; min-height: 100dvh;
+  }
+
 `;
 
 export const LeftSection = styled.section`
@@ -44,6 +48,10 @@ export const LeftSection = styled.section`
   left: 6.5%;
   @media (max-width: 1024px) { position: static; width: 100%; }
   @media (max-width: 768px) { grid-column: 1 / -1; align-self: start; }
+
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    position: static; width: 100%; min-width: 0; grid-column: 1; grid-row: 1;
+  }
 
 `;
 
@@ -58,6 +66,10 @@ export const Title = styled.h1`
   line-height: 0.95;
   letter-spacing: -0.03em;
   @media (max-width: 1024px) { font-size: clamp(34px, 6vw, 60px); line-height: 1.1; }
+
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    font-size: clamp(42px, 5.4vw, 60px); line-height: 1.1;
+  }
 
 `;
 
@@ -81,6 +93,10 @@ export const Description = styled.div`
     word-break: keep-all;
     br { display: initial; }
     p { margin: 0 0 18px; }
+  }
+
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    margin-top: 36px; font-size: clamp(20px, 2.35vw, 26px); line-height: 1.54; word-break: keep-all; br { display: none; } p { margin: 0 0 24px; }
   }
 
 `;
@@ -124,6 +140,10 @@ export const SkeletonSection = styled.div`
     animation: none;
   }
 
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    display: none;
+  }
+
 `;
 
 export const ProgressSection = styled.div`
@@ -143,6 +163,10 @@ export const ProgressSection = styled.div`
     height: clamp(230px, 36vh, 320px);
     min-width: 0;
     padding-left: 8px;
+  }
+
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    position: static; width: 100%; height: 340px; grid-column: 2; grid-row: 1; align-self: center;
   }
 
 `;
@@ -170,6 +194,10 @@ export const ButtonArea = styled.div`
     }
   }
 
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    position: static; grid-column: 1; grid-row: 2; width: 100%; display: flex; justify-content: flex-start; > button { width: auto; }
+  }
+
 `;
 
 /* =========================
@@ -187,6 +215,10 @@ export const ProgressContainer = styled.div`
     width: 100%;
     height: 100%;
     --intro-progress-dot-size: 22px;
+  }
+
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    height: 100%;
   }
 
 `;
@@ -308,6 +340,10 @@ export const ProgressStep = styled.div`
   transform: translateY(-50%);
 
   @media (max-width: 768px) { gap: 8px; }
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    gap: 12px;
+  }
+
 `;
 
 export const ProgressLabel = styled.span`
@@ -323,6 +359,10 @@ export const ProgressLabel = styled.span`
 
   @media (max-width: 1024px) { font-size: 18px; }
   @media (max-width: 768px) { font-size: clamp(12px, 3.1vw, 17px); }
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    font-size: clamp(18px, 2.1vw, 24px);
+  }
+
 `;
 
 export const ProgressDot = styled.div`

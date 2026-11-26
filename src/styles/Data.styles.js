@@ -29,6 +29,10 @@ export const DataContent = styled.main`
   @media (max-width: 1200px) { display: flex; flex-direction: column-reverse; align-items: center; gap: 36px; padding: 110px 5% 60px; }
   @media (max-width: 768px) { padding-bottom: 125px; }
 
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(0, 1fr); align-content: start; align-items: start; column-gap: 32px; row-gap: 32px; padding: 130px 6.5% 48px; min-height: 100dvh;
+  }
+
 `;
 
 export const LeftSection = styled.section`
@@ -44,6 +48,10 @@ export const LeftSection = styled.section`
 
   gap: 80px;
   @media (max-width: 1200px) { position: static; width: min(100%, 620px); gap: 24px; }
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    position: static; grid-column: 2; grid-row: 1; width: 100%; min-width: 0; gap: 18px;
+  }
+
 `;
 
 /* =========================
@@ -111,6 +119,10 @@ export const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    padding: 22px 16px; min-height: 100px; gap: 8px;
+  }
+
 `;
 
 export const CardName = styled.h2`
@@ -121,6 +133,10 @@ export const CardName = styled.h2`
   font-size: 36px;
   font-weight: normal;
   @media (max-width: 600px) { font-size: clamp(20px, 6vw, 30px); }
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    font-size: 25px;
+  }
+
 `;
 
 export const CardSummary = styled.p`
@@ -132,6 +148,10 @@ export const CardSummary = styled.p`
   line-height: 1.4;
 
   text-align: right;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    font-size: 16px;
+  }
+
 `;
 
 /* =========================
@@ -145,6 +165,10 @@ export const CardList = styled.div`
   flex-direction: column;
 
   gap: 22px;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    gap: 14px;
+  }
+
 `;
 
 /* =========================
@@ -169,6 +193,10 @@ export const DetailArea = styled.div`
       transform: translateY(0);
     }
   }
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    padding: 0 16px 22px;
+  }
+
 `;
 
 export const DetailLabel = styled.span`
@@ -212,6 +240,10 @@ export const FeatureGrid = styled.div`
   @media (max-width: 600px) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 
   gap: 8px;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
 `;
 
 export const FeatureItem = styled.div`
@@ -223,6 +255,10 @@ export const FeatureItem = styled.div`
   border-radius: 4px;
 
   text-align: center;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    padding: 8px 3px; overflow-wrap: anywhere;
+  }
+
 `;
 
 export const FeatureCode = styled.span`
@@ -292,6 +328,10 @@ export const CompareItem = styled.div`
   color: #202020;
 
   font-size: 12px;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    grid-template-columns: 84px minmax(0, 1fr);
+  }
+
 `;
 
 export const CompareBar = styled.div`
@@ -328,6 +368,10 @@ export const ReferenceTags = styled.div`
   justify-content: center;
 
   gap: 8px;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    flex-wrap: wrap;
+  }
+
 `;
 
 export const ReferenceTag = styled.span`
@@ -374,10 +418,14 @@ export const RightSection = styled.section`
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    position: static; grid-column: 1; grid-row: 1; width: 100%; min-width: 0; min-height: 0; align-items: flex-start;
+  }
+
 `;
 
 export const DataDescription = styled.p`
-  .mobile-copy { display: none; }
+  .mobile-copy, .tablet-copy { display: none; }
   max-width: 700px;
 
   margin-top: 55px;
@@ -401,6 +449,10 @@ export const DataDescription = styled.p`
     .desktop-copy { display: none; }
   }
 
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    margin: 36px 0 0; font-size: clamp(20px, 2.35vw, 26px); line-height: 1.54; text-align: left; .desktop-copy { display: none; } .mobile-copy { display: none; } .tablet-copy { display: block; br { display: initial; } }
+  }
+
 `;
 
 
@@ -417,6 +469,10 @@ export const DataTitle = styled.h1`
   text-align: right;
   letter-spacing: -0.03em;
   @media (max-width: 1200px) { text-align: left; font-size: clamp(38px, 6vw, 64px); line-height: 1.15; }
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    font-size: clamp(42px, 5.4vw, 60px); line-height: 1.1; text-align: left;
+  }
+
 `;
 
 export const ButtonArea = styled.div`
@@ -439,6 +495,10 @@ export const ButtonArea = styled.div`
       font-size: 20px;
       box-shadow: 0 4px 18px rgba(32, 32, 32, 0.12);
     }
+  }
+
+  @media (min-width: 769px) and (max-width: 1194px) and (pointer: coarse) {
+    margin-top: 32px; width: 100%; > button { width: auto; }
   }
 
 `;

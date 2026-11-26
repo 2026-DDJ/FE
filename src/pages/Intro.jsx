@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Header from "../components/Header";
@@ -19,6 +20,19 @@ import {
 
 const Intro = () => {
   const navigate = useNavigate();
+  const [isTablet, setIsTablet] = useState(() => window.matchMedia("(min-width: 769px) and (max-width: 1194px) and (pointer: coarse)").matches);
+
+  useEffect(() => {
+    const query = window.matchMedia("(min-width: 769px) and (max-width: 1194px) and (pointer: coarse)");
+    const update = () => setIsTablet(query.matches);
+    update();
+    if (query.addEventListener) query.addEventListener("change", update);
+    else query.addListener(update);
+    return () => {
+      if (query.removeEventListener) query.removeEventListener("change", update);
+      else query.removeListener(update);
+    };
+  }, []);
 
   return (
     <IntroContainer>
@@ -46,7 +60,7 @@ const Intro = () => {
         </LeftSection>
 
         <SkeletonSection>
-          <SkeletonViewer />
+          {!isTablet && <SkeletonViewer />}
         </SkeletonSection>
 
         <ProgressSection>

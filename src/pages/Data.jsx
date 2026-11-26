@@ -121,6 +121,11 @@ const Data = () => {
               <br />
               유사 집단 내 의료비 수준을 함께 제공합니다.
             </span>
+            <span className="tablet-copy">
+              한국의료패널(KHP)의 개인 단위 데이터를 기반으로 머신러닝 모델을 학습하여 연간 의료비를 예측합니다.
+              <br /><br />
+              예측 결과는 HIRA·NHIS 공공통계와 비교하여 유사 집단 내 의료비 수준을 함께 제공합니다.
+            </span>
           </DataDescription>
 
           <ButtonArea>
